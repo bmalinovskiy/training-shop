@@ -28,13 +28,13 @@
     },
     "plugins": ["react", "@typescript-eslint", "prettier", "jest", "cypress", "import", "react-hooks"],
     "rules": {
-      "react/function-component-definition": [
-        2,
-        {
+      "no-restricted-exports": ["off", {
+        "restrictedNamedExports": ["default"]
+      }],
+      "react/function-component-definition": [2, {
           "namedComponents": "arrow-function",
           "unnamedComponents": "arrow-function"
-        }
-      ],
+      }],
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "prettier/prettier": "error",
