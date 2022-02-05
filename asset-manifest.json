@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.8a685450.css",
+    "main.css": "/training-shop/static/css/main.89b2448c.css",
     "main.js": "/training-shop/static/js/main.b302bb79.js",
     "index.html": "/training-shop/index.html",
-    "main.8a685450.css.map": "/training-shop/static/css/main.8a685450.css.map",
+    "main.89b2448c.css.map": "/training-shop/static/css/main.89b2448c.css.map",
     "main.b302bb79.js.map": "/training-shop/static/js/main.b302bb79.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a685450.css",
+    "static/css/main.89b2448c.css",
     "static/js/main.b302bb79.js"
   ]
 }
