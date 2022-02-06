@@ -1,0 +1,20 @@
+@import './variables';
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Montserrat', 'Playfair Display SC', 'Spartan', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.wrapper {
+  max-width: $maxWidth;
+  margin: auto;
+}

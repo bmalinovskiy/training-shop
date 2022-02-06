@@ -1,7 +1,9 @@
 import React from 'react';
 
+import MainPage from '../../pages/main-page';
+
 const App = () => {
-  return <div>CleverShop</div>;
+  return <MainPage />;
 };
 
 export default App;
