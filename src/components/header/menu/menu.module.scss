@@ -1,0 +1,24 @@
+@import '../../../variables';
+
+.menu {
+  color: #121212;
+
+  hr {
+    margin: 20px 0;
+	  padding: 0;
+	  height: 2px;
+	  border: none;
+	  background: #F8F8F8;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: $containerWidth;
+  margin: 10px auto;
+}
+
+.logo {
+  font: 400 24px 'Playfair Display SC', sans-serif;
+}
