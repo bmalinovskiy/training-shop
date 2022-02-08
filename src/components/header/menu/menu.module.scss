@@ -1,7 +1,7 @@
 @import '../../../variables';
 
 .menu {
-  color: #121212;
+  color: $mainDark;
 
   hr {
     margin: 20px 0;
@@ -16,9 +16,5 @@
   display: flex;
   justify-content: space-between;
   max-width: $containerWidth;
-  margin: 10px auto;
-}
-
-.logo {
-  font: 400 24px 'Playfair Display SC', sans-serif;
+  margin: 20px auto;
 }

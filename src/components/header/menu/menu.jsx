@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import SidePanel from './side-panel';
 import MenuItems from './menu-items';
 
+import Logo from '../../../images/main/logo.svg';
+
 import styles from './menu.module.scss';
 
 const Menu = () => {
@@ -12,7 +14,7 @@ const Menu = () => {
     <div className={styles.menu}>
       <div className={styles.container}>
         <Link to='/'>
-          <span className={styles.logo}>CleverShop</span>
+          <img src={Logo} alt='Logo' />
         </Link>
         <MenuItems />
         <SidePanel />

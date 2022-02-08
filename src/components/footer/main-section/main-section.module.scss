@@ -1,0 +1,51 @@
+@import '../../../variables';
+
+.mainSection {
+  color: $mainDark;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: $containerWidth;
+  margin: 40px auto;
+
+  .mainSectionItem {
+    display: flex;
+    flex-direction: column;
+    margin:-7px 0;
+
+    .title {
+      font: 600 12px 'Spartan', sans-serif;
+      margin: 7px 0;
+    }
+
+    .linkItem {
+      font: 400 12px 'Spartan', sans-serif;
+      margin: 7px 0;
+    }
+
+    .aboutItem {
+      display: flex;
+      align-items: center;
+      margin: 5px -5px;
+      font: 400 12px 'Spartan', sans-serif;
+
+      span {
+        margin: 0 4px;
+      }
+
+      img {
+        margin: 0 4px;
+      }
+
+      .underline {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .lastItem {
+    margin-right: 65px;
+  }
+}

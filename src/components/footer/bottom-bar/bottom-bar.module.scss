@@ -1,0 +1,42 @@
+@import '../../../variables';
+
+.bottomBar {
+  color: $mainDark;
+  background: #F8F8F8;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: $containerWidth;
+  margin: 16px auto;
+  font: 500 11px 'Spartan', sans-serif;
+
+  a {
+    text-decoration: underline;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 -6px;
+  }
+
+  img {
+    margin: 0 6px;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

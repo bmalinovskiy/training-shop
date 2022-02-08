@@ -1,0 +1,42 @@
+@import '../../../variables';
+
+.topBar {
+  background-color: $mainDark;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: $containerWidth;
+  margin: 20px auto;
+
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 600 12px 'Spartan', sans-serif;
+  }
+
+  .form {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      width: 400px;
+      background: #414141;
+      color: #fff;
+      border: 0;
+      padding: 10px;
+      outline: none;
+      font: 500 13px 'Spartan', sans-serif;
+    }
+
+    button {
+      border: 1px solid #fff;
+      margin-left: 12px;
+      padding: 0 27px;
+      font: 600 12px 'Spartan', sans-serif;
+    }
+  }
+}

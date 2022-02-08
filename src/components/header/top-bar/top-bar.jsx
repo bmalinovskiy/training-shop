@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Contacts from '../../contacts';
+import Contacts from '../contacts';
 
 import Phone from '../../../images/main/phone.png';
 import LocationMarker from '../../../images/main/location-marker.png';

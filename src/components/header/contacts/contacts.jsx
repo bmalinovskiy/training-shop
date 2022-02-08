@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Facebook from '../../images/social/facebook.png';
-import Twitter from '../../images/social/twitter.png';
-import Instagram from '../../images/social/instagram.png';
-import Pinterest from '../../images/social/pinterest.png';
+import Facebook from '../../../images/social/facebook.png';
+import Twitter from '../../../images/social/twitter.png';
+import Instagram from '../../../images/social/instagram.png';
+import Pinterest from '../../../images/social/pinterest.png';
 
 import styles from './contacts.module.scss';
 
