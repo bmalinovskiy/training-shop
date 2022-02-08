@@ -7,7 +7,7 @@ import MainPage from '../../pages/main-page';
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<MainPage />} />
+      <Route path='/training-shop' element={<MainPage />} />
     </Routes>
   );
 };
