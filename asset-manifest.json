@@ -1,13 +1,29 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.e056ba91.css",
-    "main.js": "/training-shop/static/js/main.5b678247.js",
+    "main.css": "/training-shop/static/css/main.d44392ed.css",
+    "main.js": "/training-shop/static/js/main.cf101975.js",
+    "static/media/logo.svg": "/training-shop/static/media/logo.458fe7e5089d3c2642be67e88faf7931.svg",
+    "static/media/discover.svg": "/training-shop/static/media/discover.b97a75f50ef449599c9200d3de37e4e6.svg",
+    "static/media/american-express.svg": "/training-shop/static/media/american-express.a3226d327d41e94d6675429f5fb70ed7.svg",
+    "static/media/paypal.svg": "/training-shop/static/media/paypal.29aa4a027d2488836f7c251013e4dc7d.svg",
+    "static/media/visa.svg": "/training-shop/static/media/visa.f1b499ad0fd1627e5825af5238c61b05.svg",
+    "static/media/aes256.svg": "/training-shop/static/media/aes256.3752908e112058844511dc97ff6b2ef5.svg",
+    "static/media/stripe.svg": "/training-shop/static/media/stripe.f55468af6cb36ff8f393a56b186c0b93.svg",
+    "static/media/mastercard.svg": "/training-shop/static/media/mastercard.ea9fbc71d8fb5fe3240bcab90bacc0d5.svg",
+    "static/media/instagram.svg": "/training-shop/static/media/instagram.e87849a6efa697fdd74986039bac7ba6.svg",
+    "static/media/pinterest.svg": "/training-shop/static/media/pinterest.a55655e2a23a56204f057e02cb1830d1.svg",
+    "static/media/location-marker.svg": "/training-shop/static/media/location-marker.fea38b5875675bb1e251ee76d07e1d0b.svg",
+    "static/media/twitter.svg": "/training-shop/static/media/twitter.e30ec068e4e86e705fdd1a958bc26a72.svg",
     "index.html": "/training-shop/index.html",
-    "main.e056ba91.css.map": "/training-shop/static/css/main.e056ba91.css.map",
-    "main.5b678247.js.map": "/training-shop/static/js/main.5b678247.js.map"
+    "static/media/phone.svg": "/training-shop/static/media/phone.8a238a4d6289705c1a5c734be4ee3f5d.svg",
+    "static/media/clock.svg": "/training-shop/static/media/clock.6f4045f5e1f4b793f54cef4ea177d159.svg",
+    "static/media/mail.svg": "/training-shop/static/media/mail.1e839bd06ad87a7a4c92f40bce36cea8.svg",
+    "static/media/facebook.svg": "/training-shop/static/media/facebook.6e8b68a7e760b80dd818bbe4be5cee76.svg",
+    "main.d44392ed.css.map": "/training-shop/static/css/main.d44392ed.css.map",
+    "main.cf101975.js.map": "/training-shop/static/js/main.cf101975.js.map"
   },
   "entrypoints": [
-    "static/css/main.e056ba91.css",
-    "static/js/main.5b678247.js"
+    "static/css/main.d44392ed.css",
+    "static/js/main.cf101975.js"
   ]
 }
