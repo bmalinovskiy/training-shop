@@ -1,7 +1,11 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.d44392ed.css",
-    "main.js": "/training-shop/static/js/main.cf101975.js",
+    "main.css": "/training-shop/static/css/main.6c1e92c1.css",
+    "main.js": "/training-shop/static/js/main.63c261e2.js",
+    "static/media/banner.svg": "/training-shop/static/media/banner.98f81311cf9fd49c3049.svg",
+    "static/media/accessories.svg": "/training-shop/static/media/accessories.cd3ff0dcfed70e75d9ae.svg",
+    "static/media/women.svg": "/training-shop/static/media/women.aec235cc152d2d25759e.svg",
+    "static/media/men.svg": "/training-shop/static/media/men.5d97dbbde25f7b5a69d0.svg",
     "static/media/logo.svg": "/training-shop/static/media/logo.458fe7e5089d3c2642be67e88faf7931.svg",
     "static/media/discover.svg": "/training-shop/static/media/discover.b97a75f50ef449599c9200d3de37e4e6.svg",
     "static/media/american-express.svg": "/training-shop/static/media/american-express.a3226d327d41e94d6675429f5fb70ed7.svg",
@@ -10,20 +14,27 @@
     "static/media/aes256.svg": "/training-shop/static/media/aes256.3752908e112058844511dc97ff6b2ef5.svg",
     "static/media/stripe.svg": "/training-shop/static/media/stripe.f55468af6cb36ff8f393a56b186c0b93.svg",
     "static/media/mastercard.svg": "/training-shop/static/media/mastercard.ea9fbc71d8fb5fe3240bcab90bacc0d5.svg",
-    "static/media/instagram.svg": "/training-shop/static/media/instagram.e87849a6efa697fdd74986039bac7ba6.svg",
-    "static/media/pinterest.svg": "/training-shop/static/media/pinterest.a55655e2a23a56204f057e02cb1830d1.svg",
-    "static/media/location-marker.svg": "/training-shop/static/media/location-marker.fea38b5875675bb1e251ee76d07e1d0b.svg",
-    "static/media/twitter.svg": "/training-shop/static/media/twitter.e30ec068e4e86e705fdd1a958bc26a72.svg",
+    "static/media/truck.svg": "/training-shop/static/media/truck.a8092486d5e34f0a5ef12728500e4bcb.svg",
+    "static/media/instagram.svg": "/training-shop/static/media/instagram.2a030663c04e39e407430b43aa937d84.svg",
+    "static/media/globe.svg": "/training-shop/static/media/globe.afab6c089df5bad8489c353cb9672c4d.svg",
+    "static/media/pinterest.svg": "/training-shop/static/media/pinterest.999453765058229adcc060214525170e.svg",
+    "static/media/support.svg": "/training-shop/static/media/support.387710c1f8eec63ce36f5dddd238cee9.svg",
+    "static/media/location-marker.svg": "/training-shop/static/media/location-marker.2cd79b1e73268f765870ac64da280c1b.svg",
+    "static/media/clock.svg": "/training-shop/static/media/clock.6f4045f5e1f4b793f54cef4ea177d159.svg",
+    "static/media/twitter.svg": "/training-shop/static/media/twitter.62ef2af3f046bb8815888e0145a8aaf7.svg",
     "index.html": "/training-shop/index.html",
     "static/media/phone.svg": "/training-shop/static/media/phone.8a238a4d6289705c1a5c734be4ee3f5d.svg",
-    "static/media/clock.svg": "/training-shop/static/media/clock.6f4045f5e1f4b793f54cef4ea177d159.svg",
+    "static/media/refresh.svg": "/training-shop/static/media/refresh.604bbd49d89f8cefddc94a9941c127fe.svg",
+    "static/media/user.svg": "/training-shop/static/media/user.25b7e5b83c41cae3900270790c9a24f8.svg",
+    "static/media/search.svg": "/training-shop/static/media/search.ffc3b1dc00a36d398f4e11af51bfb6ff.svg",
     "static/media/mail.svg": "/training-shop/static/media/mail.1e839bd06ad87a7a4c92f40bce36cea8.svg",
     "static/media/facebook.svg": "/training-shop/static/media/facebook.6e8b68a7e760b80dd818bbe4be5cee76.svg",
-    "main.d44392ed.css.map": "/training-shop/static/css/main.d44392ed.css.map",
-    "main.cf101975.js.map": "/training-shop/static/js/main.cf101975.js.map"
+    "static/media/shopping-bag.svg": "/training-shop/static/media/shopping-bag.cddc071bd5dc6b49753aabb593ec8cec.svg",
+    "main.6c1e92c1.css.map": "/training-shop/static/css/main.6c1e92c1.css.map",
+    "main.63c261e2.js.map": "/training-shop/static/js/main.63c261e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.d44392ed.css",
-    "static/js/main.cf101975.js"
+    "static/css/main.6c1e92c1.css",
+    "static/js/main.63c261e2.js"
   ]
 }
