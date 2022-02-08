@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Search from '../../../../images/main/search.png';
-import Globe from '../../../../images/main/globe.png';
-import User from '../../../../images/main/user.png';
-import ShoppingBag from '../../../../images/main/shopping-bag.png';
+import Search from '../../../../images/header/search.svg';
+import Globe from '../../../../images/header/globe.svg';
+import User from '../../../../images/header/user.svg';
+import ShoppingBag from '../../../../images/header/shopping-bag.svg';
 
 import styles from './side-panel.module.scss';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { MENU } from '../../../../constants/menu';
+import { MENU } from '../../../../constants/header';
 
 import styles from './menu-items.module.scss';
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 import Contacts from '../contacts';
 
-import Phone from '../../../images/main/phone.png';
-import LocationMarker from '../../../images/main/location-marker.png';
-import Clock from '../../../images/main/clock.png';
+import Phone from '../../../images/header/phone.svg';
+import LocationMarker from '../../../images/header/location-marker.svg';
+import Clock from '../../../images/header/clock.svg';
 
 import styles from './top-bar.module.scss';
 

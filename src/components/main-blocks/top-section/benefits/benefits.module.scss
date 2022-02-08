@@ -1,0 +1,32 @@
+.benefits {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+
+  .benefit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -6px;
+
+    img {
+      margin: 0 6px;
+    }
+
+    .benefitTextBlock {
+      display: flex;
+      flex-direction: column;
+      margin: -4px 6px;
+
+      .benefitTitle {
+        margin: 4px 0;
+        font: 600 12px 'Spartan', sans-serif;
+      }
+  
+      .benefitText {
+        margin: 4px 0;
+        font: 500 12px 'Spartan', sans-serif;
+      }
+    }
+  }
+}

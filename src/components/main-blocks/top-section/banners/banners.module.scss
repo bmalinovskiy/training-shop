@@ -1,0 +1,68 @@
+@mixin banner-styles {
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banners {
+  display: grid;
+  height: 490px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 200px 260px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+
+  .slider {
+    grid-area: 1 / 1 / 3 / 3;
+    background-image: url(../../../../images/main-blocks/photos/banner.svg);
+    @include banner-styles;
+
+    .sliderBanner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 15px 25px;
+      margin: -5px 0;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    .bannerLabel {
+      color: #9C9C9C;
+      margin: 5px 0;
+      font: 600 12px 'Spartan', sans-serif;
+    }
+
+    .sliderTitle {
+      margin: 5px 0;
+      font: 600 22px 'Spartan', sans-serif;
+    }
+  }
+
+  .womenBanner {
+    grid-area: 1 / 3 / 2 / 4;
+    background-image: url(../../../../images/main-blocks/photos/women.svg);
+    @include banner-styles;
+  }
+
+  .menBanner {
+    grid-area: 1 / 4 / 2 / 5;
+    background-image: url(../../../../images/main-blocks/photos/men.svg);
+    @include banner-styles;
+  }
+
+  .accessoriesBanner {
+    grid-area: 2 / 3 / 3 / 5;
+    background-image: url(../../../../images/main-blocks/photos/accessories.svg);
+    @include banner-styles;
+  }
+
+  .bannerTitle {
+    padding: 15px 25px;
+    background-color: #fff;
+    border-radius: 5px;
+    font: 600 14px 'Spartan', sans-serif;
+  }
+}

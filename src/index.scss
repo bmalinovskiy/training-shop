@@ -1,4 +1,10 @@
-@import './variables';
+@import './scss/variables';
+
+@mixin flexbox-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 * {
   margin: 0;
@@ -17,6 +23,14 @@ ul {
 a {
   color: inherit;
   text-decoration: inherit;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  height: 2px;
+  border: none;
+  background: #F8F8F8;
 }
 
 button, input[type="submit"], input[type="reset"] {
