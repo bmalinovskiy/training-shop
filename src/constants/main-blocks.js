@@ -1,6 +1,6 @@
-import truckIcon from '../images/main-blocks/truck.svg';
-import refreshIcon from '../images/main-blocks/refresh.svg';
-import supportIcon from '../images/main-blocks/support.svg';
+import truckIcon from '../images/main-blocks/top-section/truck.svg';
+import refreshIcon from '../images/main-blocks/top-section/refresh.svg';
+import supportIcon from '../images/main-blocks/top-section/support.svg';
 
 export const BENEFITS = [
   {

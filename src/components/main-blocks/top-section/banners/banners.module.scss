@@ -15,7 +15,7 @@
 
   .slider {
     grid-area: 1 / 1 / 3 / 3;
-    background-image: url(../../../../images/main-blocks/photos/banner.svg);
+    background-image: url(../../../../images/main-blocks/top-section/banner.svg);
     @include banner-styles;
 
     .sliderBanner {
@@ -43,19 +43,19 @@
 
   .womenBanner {
     grid-area: 1 / 3 / 2 / 4;
-    background-image: url(../../../../images/main-blocks/photos/women.svg);
+    background-image: url(../../../../images/main-blocks/top-section/women.svg);
     @include banner-styles;
   }
 
   .menBanner {
     grid-area: 1 / 4 / 2 / 5;
-    background-image: url(../../../../images/main-blocks/photos/men.svg);
+    background-image: url(../../../../images/main-blocks/top-section/men.svg);
     @include banner-styles;
   }
 
   .accessoriesBanner {
     grid-area: 2 / 3 / 3 / 5;
-    background-image: url(../../../../images/main-blocks/photos/accessories.svg);
+    background-image: url(../../../../images/main-blocks/top-section/accessories.svg);
     @include banner-styles;
   }
 

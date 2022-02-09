@@ -1,0 +1,52 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.sale {
+  margin: 96px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: $containerWidth;
+  margin: auto;
+  height: 260px;
+
+  .newSeasonBanner {
+    padding: 95px 130px;
+    background-image: url(../../../images/main-blocks/sale/new-season.svg);
+    background-repeat: no-repeat;
+  }
+
+  .saleBanner {
+    padding: 95px 150px;
+    background-image: url(../../../images/main-blocks/sale/sale.svg);
+    background-repeat: no-repeat;
+  }
+
+  .bannerLabel {
+    @include flexbox-center;
+    margin: -4px 0;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px 25px;
+
+    .labelTitle {
+      font: 600 12px 'Spartan', sans-serif;
+      color: #9C9C9C;
+      margin: 4px 0;
+    }
+
+    .labelDescription {
+      font: 600 16px 'Spartan', sans-serif;
+      color: $mainDark;
+      margin: 4px 0;
+
+      .highlighted {
+        color: #E91E63;
+      }
+    }
+  }
+}

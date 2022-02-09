@@ -1,0 +1,72 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.specialOffer {
+  background-image: url(../../../images/main-blocks/special-offer/background.svg);
+  height: 580px;
+}
+
+.container {
+  @include flexbox-center;
+  max-width: $containerWidth;
+  margin: auto;
+
+  .womanImage {
+    position: relative;
+    top: 35px;
+    z-index: 1;
+  }
+
+  .manImage {
+    position: relative;
+    top: 25px;
+    right: 65px;
+    z-index: 1;
+  }
+
+  .subscribe {
+    position: relative;
+    right: 50px;
+    z-index: 0;
+    @include flexbox-center;
+    flex-direction: column;
+    padding: 90px;
+    background-color: #fff;
+    border-radius: 5px;
+
+    .specialOfferTitle {
+      color: #9C9C9C;
+      font: 600 12px 'Spartan', sans-serif;
+    }
+
+    .subscribeTitle {
+      text-align: center;
+      color: $mainDark;
+      margin-top: 20px;
+      font: 600 26px 'Spartan', sans-serif;
+
+      .highlighted {
+        color: #E91E63;
+      }
+    }
+
+    input {
+      background: #F8F8F8;
+      color: #9C9C9C;
+      text-align: center;
+      border: 0;
+      margin-top: 32px;
+      padding: 15px 54px;
+      outline: none;
+      font: 500 16px 'Spartan', sans-serif;
+    }
+
+    button {
+      background-color: $mainDark;
+      color: #fff;
+      margin-top: 24px;
+      padding: 20px 116px;
+      font: 500 16px 'Spartan', sans-serif;
+    }
+  }
+}
