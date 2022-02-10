@@ -1,0 +1,23 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+
+  .title {
+    margin-top: 16px;
+    font: 400 14px 'Spartan', sans-serif;
+    color: $darkGrey;
+  }
+
+  .description {
+    @include flexbox-between;
+    margin-top: 12px;
+
+    .price {
+      font: 700 14px 'Spartan', sans-serif;
+    }
+  }
+}

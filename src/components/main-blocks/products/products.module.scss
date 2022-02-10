@@ -1,0 +1,33 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.products {
+  margin: 96px 0;
+  .container {
+    max-width: $containerWidth;
+    margin: auto;
+
+    .header {
+      @include flexbox-between;
+      margin-bottom: 54px;
+
+      .title {
+        font: 600 22px 'Spartan', sans-serif;
+      }
+
+      .productFilter {
+        margin-left: 30px;
+        font: 400 12px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
+    }
+
+    .expandProducts {
+      margin-top: 50px;
+      width: 100%;
+      padding: 18px 0;
+      background-color: #F8F8F8;
+      font: 500 13px 'Spartan', sans-serif;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.latestFromBlog {
+  color: $mainDark;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: $containerWidth;
+  margin: 96px auto 16px;
+
+  .head {
+    @include flexbox-between;
+
+    .title {
+      font: 600 22px 'Spartan', sans-serif;
+    }
+  
+    .linkToBlog {
+      font: 500 12px 'Spartan', sans-serif;
+      color: $darkGrey;
+    }
+  }
+
+  .articles {
+    @include flexbox-between;
+    margin: 55px -15px 0;
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      margin: 0 15px;
+
+      .articleTextBlock {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: #fff;
+        left: 24px;
+        bottom: 56px;
+        padding: 24px 16px;
+        width: 77%;
+  
+        .articleTitle {
+          margin-bottom: 24px;
+          font: 600 14px 'Spartan', sans-serif;
+        }
+  
+        .articleText {
+          font: 400 14px 'Spartan', sans-serif;
+        }
+      }
+    }
+  }
+}

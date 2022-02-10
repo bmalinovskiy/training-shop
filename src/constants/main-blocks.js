@@ -2,6 +2,10 @@ import truckIcon from '../images/main-blocks/top-section/truck.svg';
 import refreshIcon from '../images/main-blocks/top-section/refresh.svg';
 import supportIcon from '../images/main-blocks/top-section/support.svg';
 
+import articlePhoto1 from '../images/main-blocks/latest-from-blog/article-photo-1.svg';
+import articlePhoto2 from '../images/main-blocks/latest-from-blog/article-photo-2.svg';
+import articlePhoto3 from '../images/main-blocks/latest-from-blog/article-photo-3.svg';
+
 export const BENEFITS = [
   {
     id: '1',
@@ -24,4 +28,36 @@ export const BENEFITS = [
     name: 'Support',
     imgPath: supportIcon,
   },
+];
+
+export const LATEST_FROM_BLOG = [
+  {
+    id: '1',
+    name: 'Article 1',
+    title: 'THE EASIEST WAY TO BREAK',
+    text: 'But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor',
+    imgPath: articlePhoto1,
+  },
+  {
+    id: '2',
+    name: 'Article 2',
+    title: 'WEDDING SEASON',
+    text: 'But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor',
+    imgPath: articlePhoto2,
+  },
+  {
+    id: '3',
+    name: 'Article 3',
+    title: 'THE EASIEST WAY TO BREAK',
+    text: 'But I must explain to you how all this mistaken idea of denouncing pleas and praising pain was bor',
+    imgPath: articlePhoto3,
+  },
+];
+
+export const PRODUCT_FILTERS = [
+  { id: '1', name: 'NEW ARRIVALS' },
+  { id: '2', name: 'SPECIALS' },
+  { id: '3', name: 'BESTSELLERS' },
+  { id: '4', name: 'MOST VIEWED' },
+  { id: '5', name: 'FEATURED PRODUCTS' },
 ];
