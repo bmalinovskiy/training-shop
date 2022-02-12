@@ -1,13 +1,13 @@
-import Item1 from '../images/mens-clothes/item-1.svg';
-import Item2 from '../images/mens-clothes/item-2.svg';
-import Item3 from '../images/mens-clothes/item-3.svg';
-import Item4 from '../images/mens-clothes/item-4.svg';
-import Item5 from '../images/mens-clothes/item-5.svg';
-import Item6 from '../images/mens-clothes/item-6.svg';
-import Item7 from '../images/mens-clothes/item-7.svg';
-import Item8 from '../images/mens-clothes/item-8.svg';
+import Item1 from '../images/mens-products/item-1.svg';
+import Item2 from '../images/mens-products/item-2.svg';
+import Item3 from '../images/mens-products/item-3.svg';
+import Item4 from '../images/mens-products/item-4.svg';
+import Item5 from '../images/mens-products/item-5.svg';
+import Item6 from '../images/mens-products/item-6.svg';
+import Item7 from '../images/mens-products/item-7.svg';
+import Item8 from '../images/mens-products/item-8.svg';
 
-export const MENS_CLOTHES = [
+export const MENS_PRODUCTS = [
   {
     id: '1',
     name: 'item-1',

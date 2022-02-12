@@ -1,5 +1,13 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
 .productCards {
+  max-width: $containerWidth;
+  margin: auto;
+
+  .container {
   display: flex;
   flex-wrap: wrap;
   margin: -15px;
+  }
 }

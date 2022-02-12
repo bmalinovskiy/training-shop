@@ -13,13 +13,12 @@ const Menu = () => {
   return (
     <div className={styles.menu}>
       <div className={styles.container}>
-        <Link to='/'>
+        <Link to='/training-shop'>
           <img src={Logo} alt='Logo' />
         </Link>
         <MenuItems />
         <SidePanel />
       </div>
-      <hr />
     </div>
   );
 };

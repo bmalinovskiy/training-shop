@@ -8,6 +8,7 @@ const MainPage = () => {
   return (
     <div className='wrapper'>
       <Header />
+      <hr />
       <MainBlocks />
       <Footer />
     </div>

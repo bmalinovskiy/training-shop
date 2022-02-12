@@ -1,0 +1,59 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.productsHeader {
+  background-color:  #F8F8F8;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: $containerWidth;
+    margin: auto;
+
+    .topLine {
+      @include flexbox-between;
+      margin-top: 12px;
+
+      .navigation {
+        @include flexbox-center;
+        margin: 0 -5px;
+        font: 500 11px 'Spartan', sans-serif;
+
+        .homeLink {
+          margin: 0 5px;
+          color: $darkGrey;
+        }
+
+        .pointer {
+          font-family: system-ui;
+          margin: 0 5px;
+          padding-bottom: 2px;
+        }
+
+        .productsLink {
+          margin: 0 5px;
+        }
+      }
+
+      .shareButton {
+        @include flexbox-center;
+        margin: 0 -5px;
+      }
+
+      .shareIcon {
+        margin: 0 5px;
+      }
+
+      .shareText {
+        margin: 0 5px;
+        font: 500 11px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
+    }
+  
+    .title {
+      margin: 20px auto;
+      font: 600 26px 'Spartan', sans-serif;
+    }
+  }
+}

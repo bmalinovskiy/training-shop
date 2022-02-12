@@ -1,13 +1,13 @@
-import Item1 from '../images/womens-clothes/item-1.svg';
-import Item2 from '../images/womens-clothes/item-2.svg';
-import Item3 from '../images/womens-clothes/item-3.svg';
-import Item4 from '../images/womens-clothes/item-4.svg';
-import Item5 from '../images/womens-clothes/item-5.svg';
-import Item6 from '../images/womens-clothes/item-6.svg';
-import Item7 from '../images/womens-clothes/item-7.svg';
-import Item8 from '../images/womens-clothes/item-8.svg';
+import Item1 from '../images/womens-products/item-1.svg';
+import Item2 from '../images/womens-products/item-2.svg';
+import Item3 from '../images/womens-products/item-3.svg';
+import Item4 from '../images/womens-products/item-4.svg';
+import Item5 from '../images/womens-products/item-5.svg';
+import Item6 from '../images/womens-products/item-6.svg';
+import Item7 from '../images/womens-products/item-7.svg';
+import Item8 from '../images/womens-products/item-8.svg';
 
-export const WOMENS_CLOTHES = [
+export const WOMENS_PRODUCTS = [
   {
     id: '1',
     name: 'item-1',
