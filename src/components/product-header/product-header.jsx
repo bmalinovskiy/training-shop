@@ -20,11 +20,11 @@ const ProductHeader = ({ title, productType, productId, rating, sku, availabilit
               Home
             </Link>
             <span className={styles.pointer}>&#9658;</span>
-            <Link to={productType} className={styles.productTypeLink}>
+            <Link to={`/${productType}`} className={styles.productTypeLink}>
               {`${productType.charAt(0).toUpperCase()}${productType.slice(1)}`}
             </Link>
             <span className={[styles.pointer, styles.active].join(' ')}>&#9658;</span>
-            <Link to={productId} className={styles.productLink}>
+            <Link to={`/${productType}/${productId}`} className={styles.productLink}>
               {title}
             </Link>
           </div>
