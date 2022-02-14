@@ -1,0 +1,7 @@
+@import '../../scss/variables';
+
+.content {
+  display: flex;
+  max-width: $containerWidth;
+  margin: 32px auto 0;
+}

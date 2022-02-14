@@ -6,9 +6,9 @@ import Rating from '../rating';
 
 import styles from './product-card.module.scss';
 
-const ProductCard = ({ id, productType, imgPath, name, title, price, rating }) => {
+const ProductCard = ({ id, imgPath, name, title, price, rating }) => {
   return (
-    <Link to={`/${productType}/${id}`}>
+    <Link to={id}>
       <div className={styles.productCard}>
         <img src={imgPath} alt={name} />
         <span className={styles.title}>{title}</span>

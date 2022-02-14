@@ -1,0 +1,103 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.productHeader {
+  background-color:  #F8F8F8;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: $containerWidth;
+    margin: auto;
+
+    .topLine {
+      @include flexbox-between;
+      margin-top: 12px;
+
+      .navigation {
+        @include flexbox-center;
+        margin: 0 -5px;
+        font: 500 11px 'Spartan', sans-serif;
+
+        .homeLink {
+          margin: 0 5px;
+          color: $darkGrey;
+        }
+
+        .productTypeLink {
+          margin: 0 5px;
+          color: $darkGrey;
+        }
+
+        .productLink {
+          margin: 0 5px;
+        }
+
+        .pointer {
+          font-family: system-ui;
+          color: $darkGrey;
+          margin: 0 5px;
+          padding-bottom: 2px;
+        }
+
+        .active {
+          color: $mainDark;
+        }
+      }
+
+      .shareButton {
+        @include flexbox-center;
+        margin: 0 -5px;
+
+        .shareIcon {
+          margin: 0 5px;
+        }
+  
+        .shareText {
+          margin: 0 5px;
+          font: 500 11px 'Spartan', sans-serif;
+          color: $darkGrey;
+        }
+      }
+    }
+    .title {
+      margin: 20px auto 0;
+      font: 600 26px 'Spartan', sans-serif;
+    }
+
+    .bottomLine {
+      @include flexbox-between;
+
+      .rating {
+        @include flexbox-center;
+        margin: 0 -4px;
+
+        .ratingStars {
+          margin: 0 4px;
+        }
+
+        .ratingText {
+          font: 500 11px 'Spartan', sans-serif;
+          color: $darkGrey;
+          margin: 0 4px;
+        }
+      }
+
+      .productArticle {
+        @include flexbox-center;
+        margin: 0 -12px;
+
+        .name {
+          font: 500 11px 'Spartan', sans-serif;
+          color: $darkGrey;
+          margin: 0 12px;
+        }
+
+        .value {
+          font: 700 11px 'Spartan', sans-serif;
+          color: $mainDark;
+        }
+      }
+    }
+  }
+}

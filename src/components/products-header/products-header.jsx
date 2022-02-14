@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { mainPath } from '../../constants/routes';
+import ROUTES from '../../constants/routes';
 
 import shareIcon from '../../images/products/share.svg';
 
@@ -14,11 +14,11 @@ const ProductsHeader = ({ title }) => {
       <div className={styles.container}>
         <div className={styles.topLine}>
           <div className={styles.navigation}>
-            <Link to={mainPath} className={styles.homeLink}>
+            <Link to={ROUTES.root} className={styles.homeLink}>
               Home
             </Link>
             <span className={styles.pointer}>&#9658;</span>
-            <Link to={`${mainPath}/${title.toLowerCase()}`} className={styles.productsLink}>
+            <Link to={`/${title.toLowerCase()}`} className={styles.productsLink}>
               {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
             </Link>
           </div>

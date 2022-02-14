@@ -8,14 +8,14 @@ import ProductsSettings from '../../components/products-settings';
 
 import styles from './products-page.module.scss';
 
-const ProductsPage = ({ products, productType, title }) => {
+const ProductsPage = ({ products, title }) => {
   return (
     <div className='wrapper'>
       <Header />
-      <div className={styles.content}>
+      <div className={styles.products}>
         <ProductsHeader title={title} />
         <ProductsSettings />
-        <ProductCards products={products} productType={productType} />
+        <ProductCards products={products} />
       </div>
       <Footer />
     </div>

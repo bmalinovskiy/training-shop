@@ -1,0 +1,67 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.reviews {
+  .title {
+    display: flex;
+    font: 600 12px 'Spartan', sans-serif;
+    margin: 32px 0;
+  }
+
+  .reviewsHeader {
+    @include flexbox-between;
+
+    .totalRating {
+      @include flexbox-center;
+
+      .totalRatingText {
+        margin-left: 10px;
+        font: 500 11px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
+    }
+
+    .addReview {
+      @include flexbox-center;
+
+      .addReviewText {
+        margin-left: 10px;
+        font: 500 12px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
+    }
+  }
+
+  .reviewList {
+    display: flex;
+    flex-direction: column;
+    .reviewItem {
+      margin: 24px 0;
+
+      .reviewHeader {
+        @include flexbox-between;
+
+        .reviewAuthor {
+          font: 500 14px 'Spartan', sans-serif;
+        }
+
+        .reviewRating {
+          @include flexbox-center;
+
+          .reviewDate {
+            font: 500 11px 'Spartan', sans-serif;
+            color: $darkGrey;
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .reviewText {
+        display: flex;
+        font: 400 14px 'Spartan', sans-serif;
+        color: $darkGrey;
+        margin-top: 18px;
+      }
+    }
+  }
+}

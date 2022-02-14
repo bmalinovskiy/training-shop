@@ -1,0 +1,46 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.productSlider {
+  display: flex;
+
+  .imgListSlider {
+    display: flex;
+    flex-direction: column;
+
+    .listSwitchers {
+      @include flexbox-center;
+      margin: 10px -16px 18px;
+
+      .listSwitcher {
+        margin: 0 16px;
+      }
+    }
+
+    .imgList{
+      display: flex;
+      flex-direction: column;
+      margin: -8px 0;
+
+      .listItem {
+        margin: 8px 0;
+      }
+    }
+  }
+
+  .imgViewSlider {
+    @include flexbox-between;
+    width: 448px;
+    max-height: 560px;
+    background-image: url('../../images/product/img-1.png');
+    background-repeat: no-repeat;
+    margin: 0 16px;
+
+    .viewSwitcher {
+      margin: 0 16px;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 8px 10px 6px;
+    }
+  }
+}

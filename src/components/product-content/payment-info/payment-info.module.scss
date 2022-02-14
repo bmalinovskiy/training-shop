@@ -1,0 +1,68 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.paymentInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .paymentActions {
+    display: flex;
+    align-items: center;
+    margin: 32px 0;
+
+    .productPrice {
+      font: 700 22px 'Spartan', sans-serif;
+    }
+
+    .productAdd {
+      background-color: $mainDark;
+      margin-left: 24px;
+      padding: 16px 24px;
+      font: 500 13px 'Spartan', sans-serif;
+      color: #fff;
+    }
+
+    .favouriteIcon {
+      margin-left: 28px;
+    }
+
+    .scaleIcon {
+      margin-left: 40px;
+    }
+  }
+
+  .paymentFAQ {
+    @include flexbox-between;
+    margin: 36px 0;
+
+    .faqItem {
+      @include flexbox-center;
+
+      .itemText {
+        margin-left: 10px;
+        font: 500 12px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
+    }
+  }
+
+  .safeCheckout {
+    display: flex;
+    align-items: center;
+
+    .safeCheckoutText {
+      font: 600 12px 'Spartan', sans-serif;
+    }
+
+    .safeCheckoutHr {
+      width: 56%;
+      margin-left: 24px;
+    }
+  }
+
+  .paymentSystems {
+    @include flexbox-between;
+    margin: 28px 0;
+  }
+}

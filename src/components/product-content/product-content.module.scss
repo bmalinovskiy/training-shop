@@ -1,0 +1,69 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.productContent {
+  margin: 5px 0 0 10px;
+  width: 100%;
+
+  .productParameter {
+    font: 600 12px 'Spartan', sans-serif;
+
+    .parameterText {
+      color: $darkGrey;
+    }
+
+    .parameterValue {
+      margin-left: 6px;
+    }
+  }
+
+  .colorList {
+    display: flex;
+    margin: 20px -8px;
+
+    .colorItem {
+      margin: 0 8px;
+    }
+  }
+
+  .sizeList {
+    display: flex;
+    margin: 20px -8px;
+
+    .sizeItem {
+      background-color: #F8F8F8;
+      margin: 0 8px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .sizeGuide {
+    @include flexbox-center;
+    margin-bottom: 36px;
+
+    .sizeGuideText {
+      font: 500 12px 'Spartan', sans-serif;
+      margin-left: 8px;
+      color: $darkGrey;
+    }
+  }
+
+  .description {
+    .descriptionTitle {
+      display: flex;
+      font: 600 12px 'Spartan', sans-serif;
+      color: $darkGrey;
+      margin: 35px 0;
+    }
+  }
+
+
+  .active {
+    border: 2px solid $mainDark;
+  }
+
+  .inactive {
+    border: none;
+  }
+}
