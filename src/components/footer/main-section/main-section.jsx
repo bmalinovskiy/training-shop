@@ -18,7 +18,7 @@ const MainSection = () => {
         <div className={styles.mainSectionItem}>
           <span className={styles.title}>CATEGORIES</span>
           {CATEGORIES.map(({ id, path, name }) => (
-            <Link key={id} to={path} className={styles.linkItem}>
+            <Link key={id} to={path} className={styles.linkItem} data-test-id={`footer-nav-link-${path.substring(1)}`}>
               <span>{name}</span>
             </Link>
           ))}

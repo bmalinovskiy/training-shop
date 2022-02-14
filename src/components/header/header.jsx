@@ -7,7 +7,7 @@ import styles from './header.module.scss';
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-test-id='header'>
       <TopBar />
       <Menu />
     </header>

@@ -6,9 +6,9 @@ import Rating from '../rating';
 
 import styles from './product-card.module.scss';
 
-const ProductCard = ({ id, imgPath, name, title, price, rating, discount }) => {
+const ProductCard = ({ id, productType, imgPath, name, title, price, rating, discount }) => {
   return (
-    <Link to={id}>
+    <Link to={`/${productType}/${id}`} data-test-id={`clothes-card-${productType}`}>
       <div className={styles.productCard}>
         <img src={imgPath} alt={name} />
         <span className={discount ? styles.discount : styles.undiscounted}>{`-${discount}%`}</span>

@@ -9,11 +9,11 @@ import RelatedProducts from '../../components/related-products';
 
 import styles from './product-page.module.scss';
 
-const ProductPage = ({ headerProps }) => {
+const ProductPage = ({ headerProps, productType }) => {
   return (
     <div className='wrapper'>
       <Header />
-      <div className={styles.product}>
+      <div className={styles.product} data-test-id={`product-page-${productType}`}>
         <ProductHeader {...headerProps} />
         <div className={styles.content}>
           <ProductSlider />

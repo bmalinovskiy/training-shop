@@ -6,7 +6,7 @@ import Footer from '../../components/footer';
 
 const MainPage = () => {
   return (
-    <div className='wrapper'>
+    <div className='wrapper' data-test-id='app'>
       <Header />
       <hr />
       <MainBlocks />

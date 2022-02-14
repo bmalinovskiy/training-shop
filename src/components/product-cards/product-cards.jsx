@@ -4,7 +4,7 @@ import ProductCard from '../product-card';
 
 import styles from './product-cards.module.scss';
 
-const ProductCards = ({ products }) => {
+const ProductCards = ({ products, productType }) => {
   return (
     <div className={styles.productCards}>
       <div className={styles.container}>
@@ -12,6 +12,7 @@ const ProductCards = ({ products }) => {
           <ProductCard
             key={id}
             id={id}
+            productType={productType}
             name={name}
             title={title}
             price={price}

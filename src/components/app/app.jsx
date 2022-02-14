@@ -15,8 +15,11 @@ const App = () => {
   return (
     <Routes>
       <Route path={ROUTES.root} element={<MainPage />} />
-      <Route path={ROUTES.women} element={<ProductsPage products={WOMENS_PRODUCTS} title='WOMEN' />} />
-      <Route path={ROUTES.men} element={<ProductsPage products={MENS_PRODUCTS} title='MEN' />} />
+      <Route
+        path={ROUTES.women}
+        element={<ProductsPage products={WOMENS_PRODUCTS} productType='women' title='WOMEN' />}
+      />
+      <Route path={ROUTES.men} element={<ProductsPage products={MENS_PRODUCTS} productType='men' title='MEN' />} />
       <Route
         path='women/1'
         element={
@@ -29,6 +32,23 @@ const App = () => {
               sku: '777',
               availability: 'In Stock',
             }}
+            productType='women'
+          />
+        }
+      />
+      <Route
+        path='men/1'
+        element={
+          <ProductPage
+            headerProps={{
+              title: `Striped Sweatshirt`,
+              productType: 'men',
+              productId: '1',
+              rating: '5',
+              sku: '777',
+              availability: 'In Stock',
+            }}
+            productType='men'
           />
         }
       />

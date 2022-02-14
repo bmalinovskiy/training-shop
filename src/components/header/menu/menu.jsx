@@ -13,7 +13,7 @@ const Menu = () => {
   return (
     <div className={styles.menu}>
       <div className={styles.container}>
-        <Link to='/'>
+        <Link to='/' data-test-id='header-logo-link'>
           <img src={Logo} alt='Logo' />
         </Link>
         <MenuItems />

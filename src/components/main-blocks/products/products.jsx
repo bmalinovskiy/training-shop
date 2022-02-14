@@ -8,7 +8,7 @@ import styles from './products.module.scss';
 
 const Products = ({ title, products, productType }) => {
   return (
-    <div className={styles.products}>
+    <div className={styles.products} data-test-id={`clothes-${productType}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>{title}</span>
