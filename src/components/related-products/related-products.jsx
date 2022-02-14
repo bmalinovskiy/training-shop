@@ -25,8 +25,17 @@ const RelatedProducts = () => {
           </div>
         </div>
         <div className={styles.products}>
-          {RELATED_PRODUCTS.map(({ id, name, title, price, rating, imgPath }) => (
-            <ProductCard key={id} id={id} name={name} title={title} price={price} rating={rating} imgPath={imgPath} />
+          {RELATED_PRODUCTS.map(({ id, name, title, price, discount, rating, imgPath }) => (
+            <ProductCard
+              key={id}
+              id={id}
+              name={name}
+              title={title}
+              price={price}
+              discount={discount}
+              rating={rating}
+              imgPath={imgPath}
+            />
           ))}
         </div>
       </div>

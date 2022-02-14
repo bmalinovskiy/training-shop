@@ -8,8 +8,17 @@ const ProductCards = ({ products }) => {
   return (
     <div className={styles.productCards}>
       <div className={styles.container}>
-        {products.map(({ id, name, title, price, rating, imgPath }) => (
-          <ProductCard key={id} id={id} name={name} title={title} price={price} rating={rating} imgPath={imgPath} />
+        {products.map(({ id, name, title, price, discount, rating, imgPath }) => (
+          <ProductCard
+            key={id}
+            id={id}
+            name={name}
+            title={title}
+            price={price}
+            discount={discount}
+            rating={rating}
+            imgPath={imgPath}
+          />
         ))}
       </div>
     </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import styles from './banners.module.scss';
 
 const Banners = () => {
@@ -12,13 +14,19 @@ const Banners = () => {
         </div>
       </div>
       <div className={styles.womenBanner}>
-        <span className={styles.bannerTitle}>WOMEN</span>
+        <Link to='/women'>
+          <span className={styles.bannerTitle}>WOMEN</span>
+        </Link>
       </div>
       <div className={styles.menBanner}>
-        <span className={styles.bannerTitle}>MEN</span>
+        <Link to='/men'>
+          <span className={styles.bannerTitle}>MEN</span>
+        </Link>
       </div>
       <div className={styles.accessoriesBanner}>
-        <span className={styles.bannerTitle}>ACCESSORIES</span>
+        <Link to='/accessories'>
+          <span className={styles.bannerTitle}>ACCESSORIES</span>
+        </Link>
       </div>
     </div>
   );
