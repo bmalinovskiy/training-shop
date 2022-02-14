@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.f94f38fe.css",
-    "main.js": "/training-shop/static/js/main.d5074d69.js",
+    "main.css": "/training-shop/static/css/main.32d96b77.css",
+    "main.js": "/training-shop/static/js/main.2a894ae7.js",
     "static/media/man.svg": "/training-shop/static/media/man.cac6b6110b6f01fe16bc7f707ac8916a.svg",
     "static/media/woman.svg": "/training-shop/static/media/woman.6140cf3fd6ebed5fa5b8c2544bd04a0a.svg",
     "static/media/item-8.svg": "/training-shop/static/media/item-8.60bbf8f9197788a54779263861d96827.svg",
@@ -49,6 +49,7 @@
     "static/media/clock.svg": "/training-shop/static/media/clock.6f4045f5e1f4b793f54cef4ea177d159.svg",
     "static/media/twitter.svg": "/training-shop/static/media/twitter.62ef2af3f046bb8815888e0145a8aaf7.svg",
     "index.html": "/training-shop/index.html",
+    "static/media/non-rating-star.svg": "/training-shop/static/media/non-rating-star.4d2c701c3f52074f69168db14458b365.svg",
     "static/media/rating-star.svg": "/training-shop/static/media/rating-star.1b4fa10c81eda89d4924efd0e8564250.svg",
     "static/media/phone.svg": "/training-shop/static/media/phone.8a238a4d6289705c1a5c734be4ee3f5d.svg",
     "static/media/heart.svg": "/training-shop/static/media/heart.038db87dd3d9c4f14b289f90ebd3075d.svg",
@@ -67,11 +68,11 @@
     "static/media/switch-up.svg": "/training-shop/static/media/switch-up.56bc9cd660679bdd0011dd2f5533496e.svg",
     "static/media/switch-down.svg": "/training-shop/static/media/switch-down.00c9144ab235b9958a420117323d7892.svg",
     "static/media/switch-right.svg": "/training-shop/static/media/switch-right.6a871d585953b3e789bd0c0fea717ae1.svg",
-    "main.f94f38fe.css.map": "/training-shop/static/css/main.f94f38fe.css.map",
-    "main.d5074d69.js.map": "/training-shop/static/js/main.d5074d69.js.map"
+    "main.32d96b77.css.map": "/training-shop/static/css/main.32d96b77.css.map",
+    "main.2a894ae7.js.map": "/training-shop/static/js/main.2a894ae7.js.map"
   },
   "entrypoints": [
-    "static/css/main.f94f38fe.css",
-    "static/js/main.d5074d69.js"
+    "static/css/main.32d96b77.css",
+    "static/js/main.2a894ae7.js"
   ]
 }
