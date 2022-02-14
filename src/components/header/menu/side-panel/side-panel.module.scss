@@ -1,11 +1,31 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
 .sidePanel {
   display: flex;
   margin: 0 -14px;
 
+  .shoppingBag {
+    position: relative;
+    padding: 6px 6px 0 0;
+
+    .products {
+      @include flexbox-center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 16px;
+      height: 16px;
+      background-color: $mainDark;
+      color: #fff;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      font: 700 9px 'Spartan', sans-serif;
+    }
+  }
+
   button {
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox-center;
     margin: 0 14px;
   }
 }

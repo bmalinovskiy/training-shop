@@ -19,8 +19,9 @@ const SidePanel = () => {
       <button type='button'>
         <img src={User} alt='UserIcon' />
       </button>
-      <button type='button'>
+      <button type='button' className={styles.shoppingBag}>
         <img src={ShoppingBag} alt='ShoppingBagIcon' />
+        <span className={styles.products}>2</span>
       </button>
     </div>
   );
