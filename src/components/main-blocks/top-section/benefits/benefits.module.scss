@@ -5,10 +5,8 @@
   @include flexbox-between;
   margin: 30px auto;
   @include desktop {
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 30px -10px;
     width: 100%;
   }
 
