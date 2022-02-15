@@ -36,14 +36,13 @@
 
   .categories {
     @include flexbox-center;
-    margin: 0 -2px;
 
     .categoriesText {
       margin: 0 2px;
     }
 
     .categoriesIcon {
-      margin: 0 2px;
+      margin-left: 2px;
     }
   }
 }

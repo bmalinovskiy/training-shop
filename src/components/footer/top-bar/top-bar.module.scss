@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .topBar {
   background-color: $mainDark;
@@ -10,17 +11,26 @@
   justify-content: space-between;
   max-width: $containerWidth;
   margin: 20px auto;
-
-  .label {
-    display: flex;
+  @include desktop {
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .label {
+    @include flexbox-center;
     font: 600 12px 'Spartan', sans-serif;
+    @include desktop {
+      margin: 8px 0;
+    }
   }
 
   .form {
     display: flex;
     justify-content: space-between;
+    @include desktop {
+      margin: 8px 0;
+    }
 
     input {
       width: 400px;
@@ -30,6 +40,9 @@
       padding: 10px;
       outline: none;
       font: 500 13px 'Spartan', sans-serif;
+      @include tablet {
+        width: 200px;
+      }
     }
 
     button {

@@ -6,23 +6,42 @@
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox-between;
   max-width: $containerWidth;
   margin: auto;
-  height: 260px;
+  @include desktop {
+    flex-direction: column;
+    margin: -12px 0;
+  }
 
   .newSeasonBanner {
-    padding: 95px 130px;
+    @include flexbox-center;
+    width: 540px;
+    height: 260px;
     background-image: url(../../../images/main-blocks/sale/new-season.svg);
     background-repeat: no-repeat;
+    @include desktop {
+      margin: 12px 0;
+    }
+    @include tablet {
+      width: 100%;
+      background-position: center;
+    }
   }
 
   .saleBanner {
-    padding: 95px 150px;
+    @include flexbox-center;
+    width: 540px;
+    height: 260px;
     background-image: url(../../../images/main-blocks/sale/sale.svg);
     background-repeat: no-repeat;
+    @include desktop {
+      margin: 12px 0;
+    }
+    @include tablet {
+      width: 100%;
+      background-position: center;
+    }
   }
 
   .bannerLabel {

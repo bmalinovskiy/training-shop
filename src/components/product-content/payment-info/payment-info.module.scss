@@ -64,5 +64,9 @@
   .paymentSystems {
     @include flexbox-between;
     margin: 28px 0;
+    @include tablet {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 }

@@ -10,10 +10,10 @@ const LatestFromBlog = () => {
   return (
     <div className={styles.latestFromBlog}>
       <div className={styles.container}>
-        <div className={styles.head}>
+        <div className={styles.header}>
           <span className={styles.title}>LATEST FROM BLOG</span>
-          <Link to='/#'>
-            <span className={styles.linkToBlog}>SEE ALL</span>
+          <Link to='/blog'>
+            <span className={styles.blogLink}>SEE ALL</span>
           </Link>
         </div>
         <div className={styles.articles}>

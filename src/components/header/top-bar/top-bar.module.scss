@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .topBar {
   background-color: $mainDark;
@@ -10,14 +11,27 @@
   justify-content: space-between;
   max-width: $containerWidth;
   margin: auto;
+  @include desktop {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   ul {
     display: flex;
     margin: 5px 0;
+    @include tablet {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   li {
     padding-right: 32px;
+    @include tablet {
+      padding: 0;
+    }
   }
 
   span {

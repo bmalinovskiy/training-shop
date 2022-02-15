@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .topSection {
   color: $mainDark;
@@ -7,4 +8,8 @@
 .container {
   max-width: $containerWidth;
   margin: 30px auto;
+  @include desktop {
+    @include flexbox-center;
+    flex-direction: column;
+  }
 }

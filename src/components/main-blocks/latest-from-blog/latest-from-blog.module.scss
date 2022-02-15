@@ -11,14 +11,14 @@
   max-width: $containerWidth;
   margin: 96px auto 16px;
 
-  .head {
+  .header {
     @include flexbox-between;
 
     .title {
       font: 600 22px 'Spartan', sans-serif;
     }
   
-    .linkToBlog {
+    .blogLink {
       font: 500 12px 'Spartan', sans-serif;
       color: $darkGrey;
     }
@@ -27,11 +27,19 @@
   .articles {
     @include flexbox-between;
     margin: 55px -15px 0;
+    @include desktop {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
 
     .article {
       display: flex;
       flex-direction: column;
       margin: 0 15px;
+      @include desktop {
+        width: 350px;
+      }
 
       .articleTextBlock {
         display: flex;

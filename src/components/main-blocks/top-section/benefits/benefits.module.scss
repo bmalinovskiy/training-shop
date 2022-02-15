@@ -1,13 +1,24 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
 .benefits {
-  display: flex;
-  justify-content: space-between;
+  @include flexbox-between;
   margin: 30px auto;
+  @include desktop {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 30px -10px;
+    width: 100%;
+  }
 
   .benefit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox-center;
     margin: 0 -6px;
+    @include desktop {
+      display: flex;
+      margin: 10px 10px;
+    }
 
     img {
       margin: 0 6px;

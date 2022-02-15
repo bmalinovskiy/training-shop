@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .bottomBar {
   color: $mainDark;
@@ -11,21 +12,32 @@
   max-width: $containerWidth;
   margin: 16px auto;
   font: 500 11px 'Spartan', sans-serif;
+  @include desktop {
+    flex-direction: column;
+    align-items: center;
+  }
 
   a {
     text-decoration: underline;
   }
 
   .icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox-center;
+    @include desktop {
+      margin: 8px 0;
+    }
+    @include tablet {
+      flex-direction: column;
+    }
 
     margin: 0 -6px;
   }
 
   img {
     margin: 0 6px;
+    @include tablet {
+      margin: 8px 6px;;
+    }
   }
 
   span {

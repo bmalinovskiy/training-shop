@@ -3,22 +3,44 @@
 
 .products {
   margin: 96px 0;
+
   .container {
     max-width: $containerWidth;
     margin: auto;
 
     .header {
       @include flexbox-between;
+      @include desktop {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
       margin-bottom: 54px;
 
       .title {
         font: 600 22px 'Spartan', sans-serif;
+        @include desktop {
+          margin: 8px 0;
+        }
       }
 
-      .productFilter {
-        margin-left: 30px;
-        font: 400 12px 'Spartan', sans-serif;
-        color: $darkGrey;
+      .productFilters {
+        @include desktop {
+          margin: 8px 0;
+        }
+        @include tablet {
+          @include flexbox-center;
+          flex-direction: column;
+        }
+
+        .productFilter {
+          margin-left: 30px;
+          font: 400 12px 'Spartan', sans-serif;
+          color: $darkGrey;
+          @include tablet {
+            margin: 12px 0;
+          }
+        }
       }
     }
 

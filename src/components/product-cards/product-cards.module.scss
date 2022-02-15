@@ -9,5 +9,9 @@
   display: flex;
   flex-wrap: wrap;
   margin: -15px;
+  @include desktop {
+    @include flexbox-center;
+    width: 100%;
+  }
   }
 }

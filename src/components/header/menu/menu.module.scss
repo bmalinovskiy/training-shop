@@ -1,12 +1,18 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .menu {
   color: $mainDark;
-}
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  max-width: $containerWidth;
-  margin: 20px auto;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: $containerWidth;
+    margin: 20px auto;
+    @include desktop {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }

@@ -15,7 +15,6 @@
 
       .slider {
         display: flex;
-        margin: 0 -20px;
 
         .sliderButton {
           margin: 0 20px;
@@ -26,6 +25,11 @@
     .products {
       display: flex;
       margin: 54px 0 0 -15px;
+      @include desktop {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }

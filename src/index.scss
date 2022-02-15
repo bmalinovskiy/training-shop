@@ -1,16 +1,12 @@
 @import './scss/variables';
-
-@mixin flexbox-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@import './scss/mixins';
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
+ 
 body {
   margin: 0;
   font-family: 'Inter', 'Montserrat', 'Playfair Display SC', 'Spartan', sans-serif;
@@ -46,4 +42,7 @@ button, input[type="submit"], input[type="reset"] {
 .wrapper {
   max-width: $maxWidth;
   margin: auto;
+  @include desktop {
+    width: 100%;
+  }
 }

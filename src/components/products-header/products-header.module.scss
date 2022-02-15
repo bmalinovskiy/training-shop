@@ -13,14 +13,16 @@
     .topLine {
       @include flexbox-between;
       margin-top: 12px;
+      @include desktop {
+        width: 100%;
+      }
 
       .navigation {
         @include flexbox-center;
-        margin: 0 -5px;
         font: 500 11px 'Spartan', sans-serif;
 
         .homeLink {
-          margin: 0 5px;
+          margin-right: 5px;
           color: $darkGrey;
         }
 
@@ -37,7 +39,6 @@
 
       .shareButton {
         @include flexbox-center;
-        margin: 0 -5px;
       }
 
       .shareIcon {
@@ -45,7 +46,7 @@
       }
 
       .shareText {
-        margin: 0 5px;
+        margin-left: 5px;
         font: 500 11px 'Spartan', sans-serif;
         color: $darkGrey;
       }

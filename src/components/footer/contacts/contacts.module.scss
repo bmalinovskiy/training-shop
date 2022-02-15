@@ -1,8 +1,14 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .contacts {
   display:flex;
   justify-content: center;
   align-items: center;
   margin: 0 -7px;
+  @include desktop {
+    margin: 8px -7px;
+  }
 
   img {
     margin: 0 7px;

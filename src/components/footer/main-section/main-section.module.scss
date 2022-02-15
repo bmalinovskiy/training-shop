@@ -1,4 +1,5 @@
 @import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .mainSection {
   color: $mainDark;
@@ -9,11 +10,25 @@
   justify-content: space-between;
   max-width: $containerWidth;
   margin: 40px auto;
+  @include tablet {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 40px -12px;
+    width: 100%;
+  }
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   .mainSectionItem {
     display: flex;
     flex-direction: column;
     margin:-7px 0;
+    @include tablet {
+      margin: 8px 12px;
+    }
 
     .title {
       font: 600 12px 'Spartan', sans-serif;
@@ -28,7 +43,7 @@
     .aboutItem {
       display: flex;
       align-items: center;
-      margin: 5px -5px;
+      margin: 5px 0 5px -5px;
       font: 400 12px 'Spartan', sans-serif;
 
       span {
@@ -47,5 +62,11 @@
 
   .lastItem {
     margin-right: 65px;
+    @include desktop {
+      margin: 0;
+    }
+    @include tablet {
+      margin: 8px 12px;
+    }
   }
 }

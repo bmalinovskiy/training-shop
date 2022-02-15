@@ -4,6 +4,10 @@
 .productContent {
   margin: 5px 0 0 10px;
   width: 100%;
+  @include desktop {
+    width: 100%;
+    margin: 14px 0 0 0;
+  }
 
   .productParameter {
     font: 600 12px 'Spartan', sans-serif;
@@ -19,7 +23,7 @@
 
   .colorList {
     display: flex;
-    margin: 20px -8px;
+    margin: 20px 0;
 
     .colorItem {
       margin: 0 8px;
@@ -28,7 +32,7 @@
 
   .sizeList {
     display: flex;
-    margin: 20px -8px;
+    margin: 20px 0;
 
     .sizeItem {
       background-color: #F8F8F8;

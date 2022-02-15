@@ -16,11 +16,10 @@
 
       .navigation {
         @include flexbox-center;
-        margin: 0 -5px;
         font: 500 11px 'Spartan', sans-serif;
 
         .homeLink {
-          margin: 0 5px;
+          margin-right: 5px;
           color: $darkGrey;
         }
 
@@ -47,14 +46,13 @@
 
       .shareButton {
         @include flexbox-center;
-        margin: 0 -5px;
 
         .shareIcon {
           margin: 0 5px;
         }
   
         .shareText {
-          margin: 0 5px;
+          margin-left: 5px;
           font: 500 11px 'Spartan', sans-serif;
           color: $darkGrey;
         }
@@ -70,7 +68,6 @@
 
       .rating {
         @include flexbox-center;
-        margin: 0 -4px;
 
         .ratingStars {
           margin: 0 4px;
@@ -85,12 +82,11 @@
 
       .productArticle {
         @include flexbox-center;
-        margin: 0 -12px;
 
         .name {
           font: 500 11px 'Spartan', sans-serif;
           color: $darkGrey;
-          margin: 0 12px;
+          margin-left: 12px;
         }
 
         .value {

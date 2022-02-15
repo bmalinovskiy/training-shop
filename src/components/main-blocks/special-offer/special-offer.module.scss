@@ -4,17 +4,26 @@
 .specialOffer {
   background-image: url(../../../images/main-blocks/special-offer/background.svg);
   height: 580px;
+  @include desktop {
+    @include flexbox-center;
+  }
 }
 
 .container {
   @include flexbox-center;
   max-width: $containerWidth;
   margin: auto;
+  @include tablet {
+    width: 100%;
+  }
 
   .womanImage {
     position: relative;
     top: 35px;
     z-index: 1;
+    @include desktop {
+      display: none;
+    }
   }
 
   .manImage {
@@ -22,11 +31,20 @@
     top: 25px;
     right: 65px;
     z-index: 1;
+    @include desktop {
+      display: none;
+    }
   }
 
   .subscribe {
     position: relative;
     right: 50px;
+    @include desktop {
+      right: 0;
+    }
+    @include tablet {
+      width: 100%;
+    }
     z-index: 0;
     @include flexbox-center;
     flex-direction: column;

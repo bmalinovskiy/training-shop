@@ -1,7 +1,12 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .content {
   display: flex;
   max-width: $containerWidth;
   margin: 32px auto 0;
+
+  @include desktop {
+    flex-direction: column;
+  }
 }
