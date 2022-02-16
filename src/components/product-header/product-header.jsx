@@ -12,7 +12,7 @@ import styles from './product-header.module.scss';
 
 const ProductHeader = ({ title, productType, productId, rating, sku, availability }) => {
   return (
-    <div className={styles.productHeader}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.topLine}>
           <div className={styles.navigation}>
@@ -28,18 +28,18 @@ const ProductHeader = ({ title, productType, productId, rating, sku, availabilit
               {title}
             </Link>
           </div>
-          <button type='button' className={styles.shareButton}>
-            <img className={styles.shareIcon} src={shareIcon} alt='Share' />
-            <span className={styles.shareText}>Share</span>
+          <button type='button' className={styles.share}>
+            <img className={styles.icon} src={shareIcon} alt='Share' />
+            <span className={styles.text}>Share</span>
           </button>
         </div>
         <span className={styles.title}>{title}</span>
         <div className={styles.bottomLine}>
           <div className={styles.rating}>
-            <Rating rating={rating} className={styles.ratingStars} />
-            <span className={styles.ratingText}>2 Reviews</span>
+            <Rating rating={rating} className={styles.stars} />
+            <span className={styles.text}>2 Reviews</span>
           </div>
-          <div className={styles.productArticle}>
+          <div className={styles.article}>
             <span className={styles.name}>
               SKU: <span className={styles.value}>{sku}</span>
             </span>

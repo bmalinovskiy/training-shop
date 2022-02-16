@@ -8,7 +8,7 @@ import styles from './latest-from-blog.module.scss';
 
 const LatestFromBlog = () => {
   return (
-    <div className={styles.latestFromBlog}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>LATEST FROM BLOG</span>
@@ -20,9 +20,9 @@ const LatestFromBlog = () => {
           {LATEST_FROM_BLOG.map(({ id, title, text, name, imgPath }) => (
             <div key={id} className={styles.article}>
               <img src={imgPath} alt={name} />
-              <div className={styles.articleTextBlock}>
-                <span className={styles.articleTitle}>{title}</span>
-                <span className={styles.articleText}>{text}</span>
+              <div className={styles.label}>
+                <span className={styles.title}>{title}</span>
+                <span className={styles.text}>{text}</span>
               </div>
             </div>
           ))}

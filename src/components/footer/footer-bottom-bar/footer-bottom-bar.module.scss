@@ -1,0 +1,50 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.wrapper {
+  color: $mainDark;
+  background: #F8F8F8;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: $containerWidth;
+    margin: 16px auto;
+    font: 500 11px 'Spartan', sans-serif;
+
+    @include desktop {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .copyright {
+      @include flexbox-center;
+    }
+  
+    .icons {
+      margin: 0 -6px;
+
+      @include flexbox-center;
+      @include desktop {
+        margin: 8px 0;
+      }
+      @include tablet {
+        flex-direction: column;
+      }
+
+      .icon {
+        margin: 0 6px;
+
+        @include tablet {
+          margin: 8px 6px;;
+        }
+      }
+    }
+  
+    .link {
+      text-decoration: underline;
+
+      @include flexbox-center;
+    }
+  }
+}

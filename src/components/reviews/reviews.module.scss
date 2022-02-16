@@ -1,20 +1,20 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.reviews {
+.container {
   .title {
     display: flex;
     font: 600 12px 'Spartan', sans-serif;
     margin: 32px 0;
   }
 
-  .reviewsHeader {
+  .header {
     @include flexbox-between;
 
-    .totalRating {
+    .rating {
       @include flexbox-center;
 
-      .totalRatingText {
+      .text {
         margin-left: 10px;
         font: 500 11px 'Spartan', sans-serif;
         color: $darkGrey;
@@ -24,7 +24,7 @@
     .addReview {
       @include flexbox-center;
 
-      .addReviewText {
+      .text {
         margin-left: 10px;
         font: 500 12px 'Spartan', sans-serif;
         color: $darkGrey;
@@ -35,20 +35,21 @@
   .reviewList {
     display: flex;
     flex-direction: column;
-    .reviewItem {
+
+    .item {
       margin: 24px 0;
 
-      .reviewHeader {
+      .header {
         @include flexbox-between;
 
-        .reviewAuthor {
+        .author {
           font: 500 14px 'Spartan', sans-serif;
         }
 
-        .reviewRating {
+        .rating {
           @include flexbox-center;
 
-          .reviewDate {
+          .date {
             font: 500 11px 'Spartan', sans-serif;
             color: $darkGrey;
             margin-right: 10px;
@@ -56,7 +57,7 @@
         }
       }
 
-      .reviewText {
+      .text {
         display: flex;
         font: 400 14px 'Spartan', sans-serif;
         color: $darkGrey;

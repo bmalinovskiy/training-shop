@@ -1,0 +1,15 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.container {
+  margin: 0 -7px;
+
+  @include flexbox-center;
+  @include desktop {
+    margin: 8px -7px;
+  }
+
+  .link {
+    margin: 0 7px;
+  }
+}

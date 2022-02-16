@@ -9,16 +9,16 @@ import styles from './banners.module.scss';
 
 const Banners = () => {
   return (
-    <div className={styles.banners}>
+    <div className={styles.container}>
       <div className={styles.slider}>
-        <button type='button' className={styles.viewSwitcher}>
+        <button type='button' className={styles.switcher}>
           <img src={switchLeft} alt='Switch left' />
         </button>
-        <div className={styles.sliderBanner}>
-          <span className={styles.bannerLabel}>BANNER</span>
-          <span className={styles.sliderTitle}>YOUR TITLE TEXT</span>
+        <div className={styles.label}>
+          <span className={styles.title}>BANNER</span>
+          <span className={styles.text}>YOUR TITLE TEXT</span>
         </div>
-        <button type='button' className={styles.viewSwitcher}>
+        <button type='button' className={styles.switcher}>
           <img src={switchRight} alt='Switch right' />
         </button>
       </div>

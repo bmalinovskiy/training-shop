@@ -1,0 +1,59 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.wrapper {
+  background-color: $mainDark;
+  color: #fff;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: $containerWidth;
+    margin: 20px auto;
+    
+    @include desktop {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .title {
+      font: 600 12px 'Spartan', sans-serif;
+
+      @include flexbox-center;
+      @include desktop {
+        margin: 8px 0;
+      }
+    }
+  
+    .form {
+      display: flex;
+      justify-content: space-between;
+      
+      @include desktop {
+        margin: 8px 0;
+      }
+  
+      input {
+        width: 400px;
+        background: #414141;
+        color: #fff;
+        font: 500 13px 'Spartan', sans-serif;
+        padding: 10px;
+        border: 0;
+        outline: none;
+
+        @include tablet {
+          width: 200px;
+        }
+      }
+  
+      button {
+        border: 1px solid #fff;
+        margin-left: 12px;
+        padding: 0 27px;
+        font: 600 12px 'Spartan', sans-serif;
+      }
+    }
+  }
+}

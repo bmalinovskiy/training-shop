@@ -37,10 +37,10 @@ const ProductContent = () => {
   const [activeSize, setActiveSize] = useState('S');
 
   return (
-    <div className={styles.productContent}>
-      <div className={styles.productParameter}>
-        <span className={styles.parameterText}>COLOR:</span>
-        <span className={styles.parameterValue}>{activeColor}</span>
+    <div className={styles.container}>
+      <div className={styles.parameter}>
+        <span className={styles.name}>COLOR:</span>
+        <span className={styles.value}>{activeColor}</span>
       </div>
       <div className={styles.colorList}>
         {colorList.map(({ id, name, imgPath }) => (
@@ -51,15 +51,15 @@ const ProductContent = () => {
             }}
             type='button'
             key={id}
-            className={styles.colorItem}
+            className={styles.item}
           >
             <img src={imgPath} alt={name} className={id === activeColorId ? styles.active : styles.inactive} />
           </button>
         ))}
       </div>
-      <div className={styles.productParameter}>
-        <span className={styles.parameterText}>SIZE:</span>
-        <span className={styles.parameterValue}>{activeSize}</span>
+      <div className={styles.parameter}>
+        <span className={styles.name}>SIZE:</span>
+        <span className={styles.value}>{activeSize}</span>
       </div>
       <div className={styles.sizeList}>
         {sizeList.map(({ id, name }) => (
@@ -70,20 +70,20 @@ const ProductContent = () => {
             }}
             type='button'
             key={id}
-            className={[styles.sizeItem, id === activeSizeId ? styles.active : styles.inactive].join(' ')}
+            className={[styles.item, id === activeSizeId ? styles.active : styles.inactive].join(' ')}
           >
             <span>{name}</span>
           </button>
         ))}
       </div>
       <button type='button' className={styles.sizeGuide}>
-        <img src={clothesHanger} alt='Clothes hanger' className={styles.sizeGuideIcon} />
-        <span className={styles.sizeGuideText}>Size guide</span>
+        <img src={clothesHanger} alt='Clothes hanger' />
+        <span className={styles.text}>Size guide</span>
       </button>
       <PaymentInfo />
       <div className={styles.description}>
         <hr />
-        <span className={styles.descriptionTitle}>DESCRIPTION</span>
+        <span className={styles.title}>DESCRIPTION</span>
         <hr />
       </div>
       <AdditionalInfo

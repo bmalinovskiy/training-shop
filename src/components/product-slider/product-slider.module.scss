@@ -1,18 +1,18 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.productSlider {
+.container {
   display: flex;
 
   .imgListSlider {
     display: flex;
     flex-direction: column;
 
-    .listSwitchers {
+    .switchers {
       @include flexbox-center;
       margin: 10px -16px 18px;
 
-      .listSwitcher {
+      .switcher {
         margin: 0 16px;
       }
     }
@@ -36,7 +36,7 @@
     background-repeat: no-repeat;
     margin: 0 16px;
 
-    .viewSwitcher {
+    .switcher {
       margin: 0 16px;
       background-color: #fff;
       border-radius: 50%;

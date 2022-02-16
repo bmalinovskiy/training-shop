@@ -1,15 +1,15 @@
 import React from 'react';
 
-import TopBar from './top-bar';
-import Menu from './menu';
+import HeaderTopBar from './header-top-bar';
+import HeaderMenuBar from './header-menu-bar';
 
 import styles from './header.module.scss';
 
 const Header = () => {
   return (
-    <header className={styles.header} data-test-id='header'>
-      <TopBar />
-      <Menu />
+    <header className={styles.wrapper} data-test-id='header'>
+      <HeaderTopBar />
+      <HeaderMenuBar />
     </header>
   );
 };

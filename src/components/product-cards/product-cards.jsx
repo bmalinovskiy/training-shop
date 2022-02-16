@@ -6,7 +6,7 @@ import styles from './product-cards.module.scss';
 
 const ProductCards = ({ products, productType }) => {
   return (
-    <div className={styles.productCards}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         {products.map(({ id, name, title, price, discount, rating, imgPath }) => (
           <ProductCard

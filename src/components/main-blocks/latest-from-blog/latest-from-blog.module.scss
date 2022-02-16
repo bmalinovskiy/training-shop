@@ -1,63 +1,65 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.latestFromBlog {
+.wrapper {
   color: $mainDark;
-}
 
-.container {
-  display: flex;
-  flex-direction: column;
-  max-width: $containerWidth;
-  margin: 96px auto 16px;
-
-  .header {
-    @include flexbox-between;
-
-    .title {
-      font: 600 22px 'Spartan', sans-serif;
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: $containerWidth;
+    margin: 96px auto 16px;
+  
+    .header {
+      @include flexbox-between;
+  
+      .title {
+        font: 600 22px 'Spartan', sans-serif;
+      }
+    
+      .blogLink {
+        font: 500 12px 'Spartan', sans-serif;
+        color: $darkGrey;
+      }
     }
   
-    .blogLink {
-      font: 500 12px 'Spartan', sans-serif;
-      color: $darkGrey;
-    }
-  }
+    .articles {
+      margin: 55px -15px 0;
 
-  .articles {
-    @include flexbox-between;
-    margin: 55px -15px 0;
-    @include desktop {
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .article {
-      display: flex;
-      flex-direction: column;
-      margin: 0 15px;
+      @include flexbox-between;
       @include desktop {
-        width: 350px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
       }
-
-      .articleTextBlock {
+  
+      .article {
         display: flex;
         flex-direction: column;
-        position: relative;
-        background-color: #fff;
-        left: 24px;
-        bottom: 56px;
-        padding: 24px 16px;
-        width: 77%;
-  
-        .articleTitle {
-          margin-bottom: 24px;
-          font: 600 14px 'Spartan', sans-serif;
+        margin: 0 15px;
+
+        @include desktop {
+          width: 350px;
         }
   
-        .articleText {
-          font: 400 14px 'Spartan', sans-serif;
+        .label {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          background-color: #fff;
+          left: 24px;
+          bottom: 56px;
+          padding: 24px 16px;
+          width: 86%;
+    
+          .title {
+            margin-bottom: 24px;
+            font: 600 14px 'Spartan', sans-serif;
+          }
+    
+          .text {
+            font: 400 14px 'Spartan', sans-serif;
+          }
         }
       }
     }

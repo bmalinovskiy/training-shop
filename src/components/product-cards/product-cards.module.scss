@@ -1,7 +1,7 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.productCards {
+.wrapper {
   max-width: $containerWidth;
   margin: auto;
 
@@ -9,6 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: -15px;
+    
     @include desktop {
       @include flexbox-center;
       width: 100%;

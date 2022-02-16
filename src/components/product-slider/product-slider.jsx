@@ -14,13 +14,13 @@ import styles from './product-slider.module.scss';
 
 const ProductSlider = () => {
   return (
-    <div className={styles.productSlider}>
+    <div className={styles.container}>
       <div className={styles.imgListSlider}>
-        <div className={styles.listSwitchers}>
-          <button type='button' className={styles.listSwitcher}>
+        <div className={styles.switchers}>
+          <button type='button' className={styles.switcher}>
             <img src={switchUp} alt='Switch up' />
           </button>
-          <button type='button' className={styles.listSwitcher}>
+          <button type='button' className={styles.switcher}>
             <img src={switchDown} alt='Switch down' />
           </button>
         </div>
@@ -32,10 +32,10 @@ const ProductSlider = () => {
         </div>
       </div>
       <div className={styles.imgViewSlider}>
-        <button type='button' className={styles.viewSwitcher}>
+        <button type='button' className={styles.switcher}>
           <img src={switchLeft} alt='Switch left' />
         </button>
-        <button type='button' className={styles.viewSwitcher}>
+        <button type='button' className={styles.switcher}>
           <img src={switchRight} alt='Switch right' />
         </button>
       </div>

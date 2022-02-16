@@ -1,70 +1,67 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.sale {
-  margin: 96px 0;
+@mixin banner {
+  width: 540px;
+  height: 260px;
+  background-repeat: no-repeat;
+
+  @include flexbox-center;
+  @include desktop {
+    margin: 12px 0;
+  }
+  @include tablet {
+    width: 100%;
+    background-position: center;
+  }
 }
 
-.container {
-  @include flexbox-between;
-  max-width: $containerWidth;
-  margin: auto;
-  @include desktop {
-    flex-direction: column;
-    margin: -12px 0;
-  }
+.wrapper {
+  margin: 96px 0;
 
-  .newSeasonBanner {
-    @include flexbox-center;
-    width: 540px;
-    height: 260px;
-    background-image: url(../../../images/main-blocks/sale/new-season.svg);
-    background-repeat: no-repeat;
+  .container {
+    max-width: $containerWidth;
+    margin: auto;
+
+    @include flexbox-between;
     @include desktop {
-      margin: 12px 0;
+      flex-direction: column;
+      margin: -12px 0;
     }
-    @include tablet {
-      width: 100%;
-      background-position: center;
+  
+    .newSeasonBanner {
+      background-image: url(../../../images/main-blocks/sale/new-season.svg);
+      @include banner;
     }
-  }
-
-  .saleBanner {
-    @include flexbox-center;
-    width: 540px;
-    height: 260px;
-    background-image: url(../../../images/main-blocks/sale/sale.svg);
-    background-repeat: no-repeat;
-    @include desktop {
-      margin: 12px 0;
+  
+    .saleBanner {
+      background-image: url(../../../images/main-blocks/sale/sale.svg);
+      @include banner;
     }
-    @include tablet {
-      width: 100%;
-      background-position: center;
-    }
-  }
+  
+    .label {
+      margin: -4px 0;
+      flex-direction: column;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 15px 25px;
 
-  .bannerLabel {
-    @include flexbox-center;
-    margin: -4px 0;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 15px 25px;
-
-    .labelTitle {
-      font: 600 12px 'Spartan', sans-serif;
-      color: #9C9C9C;
-      margin: 4px 0;
-    }
-
-    .labelDescription {
-      font: 600 16px 'Spartan', sans-serif;
-      color: $mainDark;
-      margin: 4px 0;
-
-      .highlighted {
-        color: #E91E63;
+      @include flexbox-center;
+  
+      .title {
+        font: 600 12px 'Spartan', sans-serif;
+        color: #9C9C9C;
+        margin: 4px 0;
+      }
+  
+      .text {
+        font: 600 16px 'Spartan', sans-serif;
+        color: $mainDark;
+        margin: 4px 0;
+  
+        .highlighted {
+          color: #E91E63;
+        }
       }
     }
   }

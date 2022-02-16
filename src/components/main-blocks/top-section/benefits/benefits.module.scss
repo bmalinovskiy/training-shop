@@ -1,18 +1,20 @@
 @import '../../../../scss/variables';
 @import '../../../../scss/mixins';
 
-.benefits {
-  @include flexbox-between;
+.container {
   margin: 30px auto;
+
+  @include flexbox-between;
   @include desktop {
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
 
-  .benefit {
-    @include flexbox-center;
+  .item {
     margin: 0 -6px;
+
+    @include flexbox-center;
     @include desktop {
       display: flex;
       margin: 10px 10px;
@@ -22,17 +24,17 @@
       margin: 0 6px;
     }
 
-    .benefitTextBlock {
+    .description {
       display: flex;
       flex-direction: column;
       margin: -4px 6px;
 
-      .benefitTitle {
+      .title {
         margin: 4px 0;
         font: 600 12px 'Spartan', sans-serif;
       }
   
-      .benefitText {
+      .text {
         margin: 4px 0;
         font: 500 12px 'Spartan', sans-serif;
       }

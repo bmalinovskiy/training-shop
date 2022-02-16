@@ -8,13 +8,13 @@ import styles from './products.module.scss';
 
 const Products = ({ title, products, productType }) => {
   return (
-    <div className={styles.products} data-test-id={`clothes-${productType}`}>
+    <div className={styles.wrapper} data-test-id={`clothes-${productType}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>{title}</span>
-          <div className={styles.productFilters}>
+          <div className={styles.filters}>
             {PRODUCT_FILTERS.map(({ id, name }) => (
-              <button key={id} type='button' className={styles.productFilter}>
+              <button key={id} type='button' className={styles.filter}>
                 {name}
               </button>
             ))}

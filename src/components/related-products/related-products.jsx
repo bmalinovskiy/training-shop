@@ -11,15 +11,15 @@ import styles from './related-products.module.scss';
 
 const RelatedProducts = () => {
   return (
-    <div className={styles.relatedProducts}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>RELATED PRODUCTS</span>
           <div className={styles.slider}>
-            <button type='button' className={styles.sliderButton}>
+            <button type='button'>
               <img src={switchLeftIcon} alt='Switch left' />
             </button>
-            <button type='button' className={styles.sliderButton}>
+            <button type='button'>
               <img src={switchRightIcon} alt='Switch right' />
             </button>
           </div>

@@ -1,7 +1,7 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.products {
+.wrapper {
   margin: 96px 0;
 
   .container {
@@ -9,22 +9,24 @@
     margin: auto;
 
     .header {
+      margin-bottom: 54px;
+
       @include flexbox-between;
       @include desktop {
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
-      margin-bottom: 54px;
 
       .title {
         font: 600 22px 'Spartan', sans-serif;
+
         @include desktop {
           margin: 8px 0;
         }
       }
 
-      .productFilters {
+      .filters {
         @include desktop {
           margin: 8px 0;
         }
@@ -33,10 +35,11 @@
           flex-direction: column;
         }
 
-        .productFilter {
+        .filter {
           margin-left: 30px;
           font: 400 12px 'Spartan', sans-serif;
           color: $darkGrey;
+          
           @include tablet {
             margin: 12px 0;
           }

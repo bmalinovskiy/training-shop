@@ -1,24 +1,24 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.additionalInfo {
-  .infoTitle {
+.container {
+  .title {
     display: flex;
     font: 600 12px 'Spartan', sans-serif;
     margin-top: 32px;
   }
 
-  .infoText {
+  .text {
     margin: 36px 0;
 
-    .textItem {
+    .item {
       margin: 6px 0;
       
-      .itemName {
+      .name {
         font: 500 14px 'Spartan', sans-serif;
       }
   
-      .itemValue {
+      .value {
         font: 400 14px 'Spartan', sans-serif;
         color: $darkGrey;
         margin-left: 4px;

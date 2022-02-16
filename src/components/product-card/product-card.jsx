@@ -9,7 +9,7 @@ import styles from './product-card.module.scss';
 const ProductCard = ({ id, productType, imgPath, name, title, price, rating, discount }) => {
   return (
     <Link to={`/${productType}/${id}`} data-test-id={`clothes-card-${productType}`}>
-      <div className={styles.productCard}>
+      <div className={styles.container}>
         <img src={imgPath} alt={name} />
         <span className={discount ? styles.discount : styles.undiscounted}>{`-${discount}%`}</span>
         <span className={styles.title}>{title}</span>
@@ -18,7 +18,7 @@ const ProductCard = ({ id, productType, imgPath, name, title, price, rating, dis
             <span className={styles.price}>
               {discount ? `$ ${price - (price / 100) * discount}.00` : `$ ${price}.00`}
             </span>
-            <span className={discount ? styles.undiscountedPrice : styles.undiscounted}>{`$ ${price}.00`}</span>
+            <span className={discount ? styles.regularPrice : styles.undiscounted}>{`$ ${price}.00`}</span>
           </div>
           <Rating rating={rating} />
         </div>

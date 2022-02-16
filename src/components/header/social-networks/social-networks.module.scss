@@ -1,0 +1,12 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.container {
+  margin: 0 -5px;
+
+  @include flexbox-center;
+
+  img {
+    margin: 0 5px;
+  }
+}

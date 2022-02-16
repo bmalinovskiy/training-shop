@@ -1,0 +1,34 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.container {
+  display: flex;
+  margin: 0 -14px;
+
+  .shoppingBag {
+    position: relative;
+    padding: 4px 4px 0 0;
+
+    .productCounter {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 18px;
+      height: 18px;
+      padding-top: 2px;
+      background-color: $mainDark;
+      color: #fff;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      font: 700 9px 'Spartan', sans-serif;
+
+      @include flexbox-center;
+    }
+  }
+
+  button {
+    margin: 0 14px;
+
+    @include flexbox-center;
+  }
+}

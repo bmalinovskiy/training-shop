@@ -11,7 +11,7 @@ import twitterIcon from '../images/footer/twitter.svg';
 import instagramIcon from '../images/footer/instagram.svg';
 import pinterestIcon from '../images/footer/pinterest.svg';
 
-export const SOCIAL_ICONS = [
+export const SOCIAL_NETWORKS = [
   { id: '1', name: 'Facebook', path: facebookIcon, link: 'https://www.facebook.com/' },
   { id: '2', name: 'Twitter', path: twitterIcon, link: 'https://twitter.com/' },
   { id: '3', name: 'Instagram', path: instagramIcon, link: 'https://www.instagram.com/' },

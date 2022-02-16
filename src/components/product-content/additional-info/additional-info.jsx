@@ -4,13 +4,13 @@ import styles from './additional-info.module.scss';
 
 const AdditionalInfo = ({ infoList }) => {
   return (
-    <div className={styles.additionalInfo}>
-      <span className={styles.infoTitle}>ADDITIONAL INFORMATION</span>
-      <div className={styles.infoText}>
+    <div className={styles.container}>
+      <span className={styles.title}>ADDITIONAL INFORMATION</span>
+      <div className={styles.text}>
         {infoList.map(({ id, name, value }) => (
-          <div key={id} className={styles.textItem}>
-            <span className={styles.itemName}>{name}:</span>
-            <span className={styles.itemValue}>
+          <div key={id} className={styles.item}>
+            <span className={styles.name}>{name}:</span>
+            <span className={styles.value}>
               {value.map((item) => (item !== value[value.length - 1] ? `${item}, ` : item))}
             </span>
           </div>

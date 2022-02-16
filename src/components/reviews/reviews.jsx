@@ -10,29 +10,29 @@ import styles from './reviews.module.scss';
 
 const Reviews = () => {
   return (
-    <div className={styles.reviews}>
+    <div className={styles.container}>
       <span className={styles.title}>REVIEWS</span>
-      <div className={styles.reviewsHeader}>
-        <div className={styles.totalRating}>
+      <div className={styles.header}>
+        <div className={styles.rating}>
           <Rating rating='5' />
-          <span className={styles.totalRatingText}>2 Reviews</span>
+          <span className={styles.text}>2 Reviews</span>
         </div>
         <button type='button' className={styles.addReview}>
           <img src={annotationIcon} alt='Annotation' />
-          <span className={styles.addReviewText}>Write a review</span>
+          <span className={styles.text}>Write a review</span>
         </button>
       </div>
       <div className={styles.reviewList}>
         {REVIEWS.map(({ id, author, text, rating }) => (
-          <div key={id} className={styles.reviewItem}>
-            <div className={styles.reviewHeader}>
-              <span className={styles.reviewAuthor}>{author}</span>
-              <div className={styles.reviewRating}>
-                <span className={styles.reviewDate}>3 months ago</span>
+          <div key={id} className={styles.item}>
+            <div className={styles.header}>
+              <span className={styles.author}>{author}</span>
+              <div className={styles.rating}>
+                <span className={styles.date}>3 months ago</span>
                 <Rating rating={rating} />
               </div>
             </div>
-            <span className={styles.reviewText}>{text}</span>
+            <span className={styles.text}>{text}</span>
           </div>
         ))}
       </div>

@@ -10,7 +10,7 @@ import styles from './products-header.module.scss';
 
 const ProductsHeader = ({ title }) => {
   return (
-    <div className={styles.productsHeader}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.topLine}>
           <div className={styles.navigation}>
@@ -18,13 +18,13 @@ const ProductsHeader = ({ title }) => {
               Home
             </Link>
             <span className={styles.pointer}>&#9658;</span>
-            <Link to={`/${title.toLowerCase()}`} className={styles.productsLink}>
+            <Link to={`/${title.toLowerCase()}`} className={styles.productTypeLink}>
               {`${title.charAt(0).toUpperCase()}${title.slice(1).toLowerCase()}`}
             </Link>
           </div>
-          <button type='button' className={styles.shareButton}>
-            <img className={styles.shareIcon} src={shareIcon} alt='Share' />
-            <span className={styles.shareText}>Share</span>
+          <button type='button' className={styles.share}>
+            <img className={styles.icon} src={shareIcon} alt='Share' />
+            <span className={styles.text}>Share</span>
           </button>
         </div>
         <span className={styles.title}>{title}</span>

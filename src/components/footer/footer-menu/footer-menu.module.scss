@@ -1,0 +1,65 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.wrapper {
+  color: $mainDark;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: $containerWidth;
+    margin: 40px auto;
+
+    @include tablet {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .item {
+      display: flex;
+      flex-direction: column;
+      margin:-7px 0;
+
+      @include tablet {
+        margin: 8px 0 8px 35%;
+      }
+  
+      .title {
+        font: 600 12px 'Spartan', sans-serif;
+        margin: 7px 0;
+      }
+  
+      .link {
+        font: 400 12px 'Spartan', sans-serif;
+        margin: 7px 0;
+      }
+  
+      .contactItem {
+        display: flex;
+        align-items: center;
+        margin: 5px 0 5px -5px;
+        font: 400 12px 'Spartan', sans-serif;
+
+        img {
+          margin: 0 4px;
+        }
+  
+        span {
+          margin: 0 4px;
+        }
+  
+        .underlineItem {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    .lastItem {
+      margin-right: 65px;
+
+      @include desktop {
+        margin-right: 0;
+      }
+    }
+  }
+}

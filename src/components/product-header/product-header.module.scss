@@ -1,7 +1,7 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.productHeader {
+.wrapper {
   background-color:  #F8F8F8;
 
   .container {
@@ -44,20 +44,21 @@
         }
       }
 
-      .shareButton {
+      .share {
         @include flexbox-center;
 
-        .shareIcon {
+        .icon {
           margin: 0 5px;
         }
   
-        .shareText {
+        .text {
           margin-left: 5px;
           font: 500 11px 'Spartan', sans-serif;
           color: $darkGrey;
         }
       }
     }
+
     .title {
       margin: 20px auto 0;
       font: 600 26px 'Spartan', sans-serif;
@@ -69,18 +70,18 @@
       .rating {
         @include flexbox-center;
 
-        .ratingStars {
+        .stars {
           margin: 0 4px;
         }
 
-        .ratingText {
+        .text {
           font: 500 11px 'Spartan', sans-serif;
           color: $darkGrey;
           margin: 0 4px;
         }
       }
 
-      .productArticle {
+      .article {
         @include flexbox-center;
 
         .name {

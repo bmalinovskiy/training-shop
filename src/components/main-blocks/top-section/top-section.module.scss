@@ -1,15 +1,16 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.topSection {
+.wrapper {
   color: $mainDark;
-}
 
-.container {
-  max-width: $containerWidth;
-  margin: 30px auto;
-  @include desktop {
-    @include flexbox-center;
-    flex-direction: column;
+  .container {
+    max-width: $containerWidth;
+    margin: 30px auto;
+    
+    @include desktop {
+      @include flexbox-center;
+      flex-direction: column;
+    }
   }
 }

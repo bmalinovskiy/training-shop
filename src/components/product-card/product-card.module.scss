@@ -1,7 +1,7 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.productCard {
+.container {
   display: flex;
   flex-direction: column;
   margin: 15px;
@@ -14,14 +14,15 @@
   }
 
   .description {
-    @include flexbox-between;
     margin-top: 12px;
+
+    @include flexbox-between;
 
     .price {
       font: 700 14px 'Spartan', sans-serif;
     }
 
-    .undiscountedPrice {
+    .regularPrice {
       font: 700 12px 'Spartan', sans-serif;
       color: #a0a0a0;
       text-decoration: line-through;
@@ -30,7 +31,6 @@
   }
 
   .discount {
-    @include flexbox-center;
     position: absolute;
     top: 0;
     left: 0;
@@ -40,8 +40,8 @@
     color: #fff;
     font: 700 12px 'Spartan', sans-serif;
     line-height: 13px;
-    text-align: center;
-    line-height: 13px;
+
+    @include flexbox-center;
   }
 
   .undiscounted {

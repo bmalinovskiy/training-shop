@@ -8,41 +8,41 @@
   font: 500 13px 'Spartan', sans-serif;
   color: $darkGrey;
 
-  .filter {
-    @include flexbox-center;
-    margin: 0 -8px;
-
-    .filterIcon {
-      margin: 0 8px;
+    .filter {
+      @include flexbox-center;
+      margin: 0 -8px;
+  
+      .icon {
+        margin: 0 8px;
+      }
+  
+      .text {
+        margin: 0 8px;
+      }
     }
-
-    .filterText {
-      margin: 0 8px;
+  
+    .viewType {
+      @include flexbox-center;
+      margin: 0 -14px;
+  
+      .list {
+        margin: 0 14px;
+      }
+  
+      .grid {
+        margin: 0 14px;
+      }
     }
-  }
-
-  .viewType {
-    @include flexbox-center;
-    margin: 0 -14px;
-
-    .viewList {
-      margin: 0 14px;
+  
+    .categories {
+      @include flexbox-center;
+  
+      .text {
+        margin: 0 2px;
+      }
+  
+      .icon {
+        margin-left: 2px;
+      }
     }
-
-    .viewGrid {
-      margin: 0 14px;
-    }
-  }
-
-  .categories {
-    @include flexbox-center;
-
-    .categoriesText {
-      margin: 0 2px;
-    }
-
-    .categoriesIcon {
-      margin-left: 2px;
-    }
-  }
 }

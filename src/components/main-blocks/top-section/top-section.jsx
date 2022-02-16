@@ -7,7 +7,7 @@ import styles from './top-section.module.scss';
 
 const TopSection = () => {
   return (
-    <div className={styles.topSection}>
+    <div className={styles.wrapper}>
       <div className={styles.container}>
         <Banners />
         <Benefits />

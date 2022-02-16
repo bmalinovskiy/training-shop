@@ -1,21 +1,21 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
-.paymentInfo {
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
 
-  .paymentActions {
+  .actions {
     display: flex;
     align-items: center;
     margin: 32px 0;
 
-    .productPrice {
+    .price {
       font: 700 22px 'Spartan', sans-serif;
     }
 
-    .productAdd {
+    .addProduct {
       background-color: $mainDark;
       margin-left: 24px;
       padding: 16px 24px;
@@ -32,14 +32,14 @@
     }
   }
 
-  .paymentFAQ {
+  .faq {
     @include flexbox-between;
     margin: 36px 0;
 
-    .faqItem {
+    .item {
       @include flexbox-center;
 
-      .itemText {
+      .text {
         margin-left: 10px;
         font: 500 12px 'Spartan', sans-serif;
         color: $darkGrey;
@@ -51,11 +51,11 @@
     display: flex;
     align-items: center;
 
-    .safeCheckoutText {
+    .text {
       font: 600 12px 'Spartan', sans-serif;
     }
 
-    .safeCheckoutHr {
+    hr {
       width: 56%;
       margin-left: 24px;
     }
