@@ -10,11 +10,6 @@ import mastercardIcon from '../images/product/mastercard.svg';
 import discoverIcon from '../images/product/discover.svg';
 import americanExpressIcon from '../images/product/american-express.svg';
 
-import relatedProduct1 from '../images/product/related-product-1.png';
-import relatedProduct2 from '../images/product/related-product-2.png';
-import relatedProduct3 from '../images/product/related-product-3.png';
-import relatedProduct4 from '../images/product/related-product-4.png';
-
 export const PAYMENT_FAQ = [
   { id: '1', name: 'Truck', text: 'Shipping & Delivery', imgPath: truckIcon },
   { id: '2', name: 'Refresh', text: 'Returns & Exchanges', imgPath: refreshIcon },
@@ -49,38 +44,58 @@ export const REVIEWS = [
 export const RELATED_PRODUCTS = [
   {
     id: '1',
-    name: 'related-product-1',
-    title: `Women's tracksuit Q109`,
-    price: '30',
+    name: `Women's tracksuit Q109`,
+    price: 30,
     discount: null,
     rating: '4',
-    imgPath: relatedProduct1,
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
   },
   {
     id: '2',
-    name: 'related-product-2',
-    title: `Women's tracksuit Q109`,
-    price: '60',
-    discount: '50',
+    name: `Women's tracksuit Q109`,
+    price: 60,
+    discount: '-50%',
     rating: '4',
-    imgPath: relatedProduct2,
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
   },
   {
     id: '3',
-    name: 'related-product-3',
-    title: `Women's tracksuit Q109`,
-    price: '30',
+    name: `Women's tracksuit Q109`,
+    price: 30,
     discount: null,
     rating: '4',
-    imgPath: relatedProduct3,
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
   },
   {
     id: '4',
-    name: 'related-product-4',
-    title: `Women's tracksuit Q109`,
-    price: '30',
+    name: `Women's tracksuit Q109`,
+    price: 30,
     discount: null,
     rating: '4',
-    imgPath: relatedProduct4,
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
   },
 ];

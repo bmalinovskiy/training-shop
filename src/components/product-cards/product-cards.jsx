@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 import { PRODUCTS } from '../../constants/products';
@@ -10,7 +11,7 @@ const ProductCards = ({ productType }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {PRODUCTS[productType].map(({ ...card }) => (
+        {PRODUCTS[productType].map((card) => (
           <ProductCard key={card.id} card={card} productType={productType} />
         ))}
       </div>

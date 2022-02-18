@@ -9,12 +9,19 @@ import RelatedProducts from '../../components/related-products';
 
 import styles from './product-page.module.scss';
 
-const ProductPage = ({ headerProps, productType }) => {
+const ProductPage = ({ productType }) => {
   return (
     <div className='wrapper'>
       <Header />
       <div className={styles.product} data-test-id={`product-page-${productType}`}>
-        <ProductHeader {...headerProps} />
+        <ProductHeader
+          title={`Women's tracksuit Q109`}
+          productType={productType}
+          productId='620126dda5293589353a9c74'
+          rating='5'
+          sku='777'
+          availability='In Stock'
+        />
         <div className={styles.content}>
           <ProductSlider />
           <ProductContent />
