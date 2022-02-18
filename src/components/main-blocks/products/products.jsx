@@ -6,7 +6,7 @@ import { PRODUCT_FILTERS } from '../../../constants/main-blocks';
 
 import styles from './products.module.scss';
 
-const Products = ({ title, products, productType }) => {
+const Products = ({ title, productType }) => {
   return (
     <div className={styles.wrapper} data-test-id={`clothes-${productType}`}>
       <div className={styles.container}>
@@ -20,7 +20,7 @@ const Products = ({ title, products, productType }) => {
             ))}
           </div>
         </div>
-        <ProductCards products={products} productType={productType} />
+        <ProductCards productType={productType} />
         <button type='button' className={styles.expandProducts}>
           SEE ALL
         </button>

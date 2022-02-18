@@ -1,25 +1,17 @@
 import React from 'react';
 
+import { PRODUCTS } from '../../constants/products';
+
 import ProductCard from '../product-card';
 
 import styles from './product-cards.module.scss';
 
-const ProductCards = ({ products, productType }) => {
+const ProductCards = ({ productType }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        {products.map(({ id, name, title, price, discount, rating, imgPath }) => (
-          <ProductCard
-            key={id}
-            id={id}
-            productType={productType}
-            name={name}
-            title={title}
-            price={price}
-            discount={discount}
-            rating={rating}
-            imgPath={imgPath}
-          />
+        {PRODUCTS[productType].map(({ ...card }) => (
+          <ProductCard key={card.id} card={card} productType={productType} />
         ))}
       </div>
     </div>

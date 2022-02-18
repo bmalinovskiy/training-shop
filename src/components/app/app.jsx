@@ -8,18 +8,12 @@ import ProductPage from '../../pages/product-page';
 
 import ROUTES from '../../constants/routes';
 
-import { WOMENS_PRODUCTS } from '../../constants/womens-products';
-import { MENS_PRODUCTS } from '../../constants/mens-products';
-
 const App = () => {
   return (
     <Routes>
       <Route path={ROUTES.root} element={<MainPage />} />
-      <Route
-        path={ROUTES.women}
-        element={<ProductsPage products={WOMENS_PRODUCTS} productType='women' title='WOMEN' />}
-      />
-      <Route path={ROUTES.men} element={<ProductsPage products={MENS_PRODUCTS} productType='men' title='MEN' />} />
+      <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
+      <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
       <Route
         path='women/1'
         element={

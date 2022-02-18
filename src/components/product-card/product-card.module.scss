@@ -6,8 +6,9 @@
   flex-direction: column;
   margin: 15px;
   position: relative;
+  width: 255px;
 
-  .title {
+  .name {
     margin-top: 16px;
     font: 400 14px 'Spartan', sans-serif;
     color: $darkGrey;
