@@ -8,9 +8,9 @@ const useOnClickOutside = (ref, handler) => {
       }
       handler(event);
     };
-    document.addEventListener('mousedown', listener);
+    document.addEventListener('click', listener);
     return () => {
-      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('click', listener);
     };
   }, [ref, handler]);
 };
