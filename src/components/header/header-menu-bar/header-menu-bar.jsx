@@ -1,12 +1,11 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+
+import NavState from '../../../context/nav-state';
 
 import SidePanel from './side-panel';
 import Menu from './menu';
 import SideMenu from '../../side-menu';
-
-import NavState from '../../../context/nav-state';
 
 import Logo from '../../../images/header/logo.svg';
 
