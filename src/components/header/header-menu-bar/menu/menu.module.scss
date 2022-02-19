@@ -7,7 +7,7 @@
 
   @include flexbox-center;
   @include desktop {
-    margin: 20px 0;
+    display: none;
   }
   @include tablet {
     flex-direction: column;

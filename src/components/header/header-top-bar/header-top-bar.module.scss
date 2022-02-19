@@ -21,7 +21,7 @@
       display: flex;
       margin: 5px 0;
 
-      @include tablet {
+      @include small {
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -30,7 +30,7 @@
       li {
         padding-right: 32px;
         
-        @include tablet {
+        @include small {
           padding: 0;
         }
 

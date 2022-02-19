@@ -3,17 +3,28 @@
 
 .wrapper {
   color: $mainDark;
+  @include desktop {
+    position: relative;
+  }
 
   .container {
     display: flex;
     justify-content: space-between;
     max-width: $containerWidth;
     margin: 20px auto;
-    
     @include desktop {
+      width: 100%;
+    }
+    @include small {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    .logo {
+      @include small {
+        margin: 8px 0;
+      }
     }
   }
 }

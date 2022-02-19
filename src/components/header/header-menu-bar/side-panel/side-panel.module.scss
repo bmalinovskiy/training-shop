@@ -3,7 +3,9 @@
 
 .container {
   display: flex;
-  margin: 0 -14px;
+  @include small {
+    margin: 8px 0;
+  }
 
   .shoppingBag {
     position: relative;
@@ -28,7 +30,5 @@
 
   button {
     margin: 0 14px;
-
-    @include flexbox-center;
   }
 }

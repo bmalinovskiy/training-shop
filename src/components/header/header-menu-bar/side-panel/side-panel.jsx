@@ -1,5 +1,7 @@
 import React from 'react';
 
+import HamburgerButton from '../../../hamburger-button';
+
 import Search from '../../../../images/header/search.svg';
 import Globe from '../../../../images/header/globe.svg';
 import User from '../../../../images/header/user.svg';
@@ -23,6 +25,7 @@ const SidePanel = () => {
         <img src={ShoppingBag} alt='ShoppingBagIcon' />
         <span className={styles.productCounter}>2</span>
       </button>
+      <HamburgerButton />
     </div>
   );
 };
