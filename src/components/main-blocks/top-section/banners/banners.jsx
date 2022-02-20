@@ -1,27 +1,54 @@
+// eslint swiper bug
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import switchLeft from '../../../../images/product/switch-left.svg';
-import switchRight from '../../../../images/product/switch-right.svg';
+import { Navigation, Virtual } from 'swiper';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import swipePrev from '../../../../images/product/swipe-prev.svg';
+import swipeNext from '../../../../images/product/swipe-next.svg';
+
+import bannerImg from '../../../../images/main-blocks/top-section/banner.svg';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+import './swiper.scss';
 import styles from './banners.module.scss';
 
 const Banners = () => {
+  const slides = [...Array(3)].map((_, index) => `Slide ${index + 1}`);
   return (
     <div className={styles.container}>
-      <div className={styles.slider}>
-        <button type='button' className={styles.switcher}>
-          <img src={switchLeft} alt='Switch left' />
+      <Swiper
+        className={styles.swiper}
+        modules={[Navigation, Virtual]}
+        slidesPerView={1}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        virtual
+      >
+        {slides.map((key) => (
+          <SwiperSlide key={key} virtualIndex={key} className='swiper-slide'>
+            <img src={bannerImg} alt='Banner' />
+          </SwiperSlide>
+        ))}
+        <button type='button' className='swiper-button-next'>
+          <img src={swipeNext} alt='Swipe next' />
+        </button>
+        <button type='button' className='swiper-button-prev'>
+          <img src={swipePrev} alt='Swipe prev' />
         </button>
         <div className={styles.label}>
           <span className={styles.title}>BANNER</span>
           <span className={styles.text}>YOUR TITLE TEXT</span>
         </div>
-        <button type='button' className={styles.switcher}>
-          <img src={switchRight} alt='Switch right' />
-        </button>
-      </div>
+      </Swiper>
       <div className={styles.womenBanner}>
         <Link to='/women'>
           <span className={styles.bannerTitle}>WOMEN</span>

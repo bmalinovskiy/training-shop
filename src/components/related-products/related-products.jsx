@@ -4,8 +4,8 @@ import ProductCard from '../product-card';
 
 import { RELATED_PRODUCTS } from '../../constants/product';
 
-import switchLeftIcon from '../../images/product/switch-left.svg';
-import switchRightIcon from '../../images/product/switch-right.svg';
+import swipePrev from '../../images/product/swipe-prev.svg';
+import swipeNext from '../../images/product/swipe-next.svg';
 
 import styles from './related-products.module.scss';
 
@@ -17,10 +17,10 @@ const RelatedProducts = () => {
           <span className={styles.title}>RELATED PRODUCTS</span>
           <div className={styles.slider}>
             <button type='button'>
-              <img src={switchLeftIcon} alt='Switch left' />
+              <img src={swipePrev} alt='Switch left' />
             </button>
             <button type='button'>
-              <img src={switchRightIcon} alt='Switch right' />
+              <img src={swipeNext} alt='Switch right' />
             </button>
           </div>
         </div>

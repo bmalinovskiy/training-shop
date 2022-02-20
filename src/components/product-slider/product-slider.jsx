@@ -2,8 +2,8 @@ import React from 'react';
 
 import switchUp from '../../images/product/switch-up.svg';
 import switchDown from '../../images/product/switch-down.svg';
-import switchLeft from '../../images/product/switch-left.svg';
-import switchRight from '../../images/product/switch-right.svg';
+import swipePrev from '../../images/product/swipe-prev.svg';
+import swipeNext from '../../images/product/swipe-next.svg';
 
 import img2 from '../../images/product/img-2.png';
 import img3 from '../../images/product/img-3.png';
@@ -33,10 +33,10 @@ const ProductSlider = () => {
       </div>
       <div className={styles.imgViewSlider}>
         <button type='button' className={styles.switcher}>
-          <img src={switchLeft} alt='Switch left' />
+          <img src={swipePrev} alt='Switch left' />
         </button>
         <button type='button' className={styles.switcher}>
-          <img src={switchRight} alt='Switch right' />
+          <img src={swipeNext} alt='Switch right' />
         </button>
       </div>
     </div>
