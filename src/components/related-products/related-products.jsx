@@ -42,7 +42,7 @@ const RelatedProducts = () => {
         <Swiper
           navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
           slidesPerView={4}
-          spaceBetween={20}
+          spaceBetween={16}
           modules={[Navigation]}
           className={styles.products}
         >

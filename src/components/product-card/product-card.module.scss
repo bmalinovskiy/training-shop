@@ -7,11 +7,19 @@
   margin: 15px;
   position: relative;
   width: 255px;
+  transition: transform .3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   .name {
     margin-top: 16px;
     font: 400 14px 'Spartan', sans-serif;
     color: $darkGrey;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .description {

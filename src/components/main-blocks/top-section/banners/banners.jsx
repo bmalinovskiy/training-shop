@@ -50,18 +50,18 @@ const Banners = () => {
         </div>
       </Swiper>
       <div className={styles.womenBanner}>
-        <Link to='/women'>
-          <span className={styles.bannerTitle}>WOMEN</span>
+        <Link to='/women' className={styles.bannerTitle}>
+          <span>WOMEN</span>
         </Link>
       </div>
       <div className={styles.menBanner}>
-        <Link to='/men'>
-          <span className={styles.bannerTitle}>MEN</span>
+        <Link to='/men' className={styles.bannerTitle}>
+          <span>MEN</span>
         </Link>
       </div>
       <div className={styles.accessoriesBanner}>
-        <Link to='/accessories'>
-          <span className={styles.bannerTitle}>ACCESSORIES</span>
+        <Link to='/accessories' className={styles.bannerTitle}>
+          <span>ACCESSORIES</span>
         </Link>
       </div>
     </div>

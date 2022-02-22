@@ -96,9 +96,17 @@
   }
 
   .bannerTitle {
-    padding: 15px 25px;
+    @include flexbox-center;
+    transition-property: width;
+    transition-duration: 1.5s;
+    width: 40%;
+    padding: 15px 0;
     background-color: #fff;
     border-radius: 5px;
     font: 600 14px 'Spartan', sans-serif;
+
+    &:hover {
+      width: 100%;
+    }
   }
 }

@@ -66,10 +66,15 @@
           width: 100% !important;
           height: 114px !important;
           opacity: 0.4;
-        }
-      
-        .swiper-slide-thumb-active {
-          opacity: 1;
+
+          &.swiper-slide-visible {
+            cursor: pointer;
+          }
+
+          &.swiper-slide-thumb-active {
+            opacity: 1;
+            cursor: auto;
+          }
         }
       }
     }
