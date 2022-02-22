@@ -44,6 +44,12 @@ const RelatedProducts = () => {
           slidesPerView={4}
           spaceBetween={16}
           modules={[Navigation]}
+          breakpoints={{
+            360: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            992: { slidesPerView: 3 },
+            1170: { slidesPerView: 4 },
+          }}
           className={styles.products}
         >
           {relatedProducts}

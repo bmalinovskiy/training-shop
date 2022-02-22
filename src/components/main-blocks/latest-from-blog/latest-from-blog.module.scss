@@ -31,6 +31,7 @@
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
+        margin: 55px 0 0;
       }
   
       .article {
@@ -40,6 +41,10 @@
 
         @include desktop {
           width: 350px;
+        }
+        @include small {
+          margin: 0;
+          overflow: hidden;
         }
   
         .label {

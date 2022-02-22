@@ -24,11 +24,13 @@
 
     .products {
       display: flex;
-      margin: 54px 0 0 -15px;
+      margin: 54px -15px 0;
       @include desktop {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 54px 0 0;
+        width: 100%;
       }
     }
   }

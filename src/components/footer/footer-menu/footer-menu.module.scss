@@ -22,7 +22,13 @@
       width: 20%;
 
       @include tablet {
-        margin: 8px 0 8px 35%;
+        margin: 8px auto;
+        width: 40%;
+      }
+
+      @include small {
+        margin: 8px auto;
+        width: 60%;
       }
   
       .title {
