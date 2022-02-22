@@ -1,0 +1,11 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+
+.swipe-prev,
+.swipe-next {
+  &.swiper-button-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}

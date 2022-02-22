@@ -1,4 +1,9 @@
+/* eslint-disable import/no-unresolved */
+// eslint swiper bug
 import React from 'react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
 
 import ProductCard from '../product-card';
 
@@ -7,28 +12,42 @@ import { RELATED_PRODUCTS } from '../../constants/product';
 import swipePrev from '../../images/product/swipe-prev.svg';
 import swipeNext from '../../images/product/swipe-next.svg';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+import './swiper.scss';
+
 import styles from './related-products.module.scss';
 
 const RelatedProducts = () => {
+  const relatedProducts = RELATED_PRODUCTS.map((card) => (
+    <SwiperSlide key={card.id}>
+      <ProductCard card={card} productType={card.category} />
+    </SwiperSlide>
+  ));
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>RELATED PRODUCTS</span>
           <div className={styles.slider}>
-            <button type='button'>
-              <img src={swipePrev} alt='Switch left' />
+            <button type='button' className='swipe-prev'>
+              <img src={swipePrev} alt='Swipe prev' />
             </button>
-            <button type='button'>
-              <img src={swipeNext} alt='Switch right' />
+            <button type='button' className='swipe-next'>
+              <img src={swipeNext} alt='Swipe next' />
             </button>
           </div>
         </div>
-        <div className={styles.products}>
-          {RELATED_PRODUCTS.map((card) => (
-            <ProductCard key={card.id} card={card} productType={card.category} />
-          ))}
-        </div>
+        <Swiper
+          navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
+          slidesPerView={4}
+          spaceBetween={20}
+          modules={[Navigation]}
+          className={styles.products}
+        >
+          {relatedProducts}
+        </Swiper>
       </div>
     </div>
   );

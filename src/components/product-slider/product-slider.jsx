@@ -1,44 +1,76 @@
-import React from 'react';
+/* eslint-disable import/no-unresolved */
+// eslint swiper bug
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Thumbs } from 'swiper';
 
-import switchUp from '../../images/product/switch-up.svg';
-import switchDown from '../../images/product/switch-down.svg';
+import swipeUp from '../../images/product/swipe-up.svg';
+import swipeDown from '../../images/product/swipe-down.svg';
 import swipePrev from '../../images/product/swipe-prev.svg';
 import swipeNext from '../../images/product/swipe-next.svg';
 
-import img2 from '../../images/product/img-2.png';
-import img3 from '../../images/product/img-3.png';
-import img4 from '../../images/product/img-4.png';
-import img5 from '../../images/product/img-5.png';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
-import styles from './product-slider.module.scss';
+import './swiper.scss';
 
 const ProductSlider = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const slides = [...Array(8)].map((_, index) => `Slide ${index + 1}`);
+  const slidesContent = slides.map((key) => (
+    <SwiperSlide key={key} className='swiper-slide'>
+      <img
+        src='https://training.cleverland.by/shop/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg'
+        alt='Slide'
+      />
+    </SwiperSlide>
+  ));
+
   return (
-    <div className={styles.container}>
-      <div className={styles.imgListSlider}>
-        <div className={styles.switchers}>
-          <button type='button' className={styles.switcher}>
-            <img src={switchUp} alt='Switch up' />
+    <div className='slider-wrapper'>
+      <div className='thumbs-wrapper'>
+        <div className='thumb-buttons'>
+          <button type='button' className='thumbs-button-prev'>
+            <img src={swipeUp} alt='Swipe prev' />
           </button>
-          <button type='button' className={styles.switcher}>
-            <img src={switchDown} alt='Switch down' />
+          <button type='button' className='thumbs-button-next'>
+            <img src={swipeDown} alt='Swipe next' />
           </button>
         </div>
-        <div className={styles.imgList}>
-          <img src={img2} alt='Img 2' className={styles.listItem} />
-          <img src={img3} alt='Img 3' className={styles.listItem} />
-          <img src={img4} alt='Img 4' className={styles.listItem} />
-          <img src={img5} alt='Img 5' className={styles.listItem} />
-        </div>
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          slidesPerView={4}
+          spaceBetween={20}
+          navigation={{
+            nextEl: '.thumbs-button-next',
+            prevEl: '.thumbs-button-prev',
+          }}
+          modules={[Navigation, Thumbs]}
+          direction='vertical'
+          className='swiper-thumbs'
+        >
+          {slidesContent}
+        </Swiper>
       </div>
-      <div className={styles.imgViewSlider}>
-        <button type='button' className={styles.switcher}>
-          <img src={swipePrev} alt='Switch left' />
+      <Swiper
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[Navigation, Thumbs]}
+        className='main-swiper'
+      >
+        {slidesContent}
+        <button type='button' className='swiper-button-next'>
+          <img src={swipeNext} alt='Swipe next' />
         </button>
-        <button type='button' className={styles.switcher}>
-          <img src={swipeNext} alt='Switch right' />
+        <button type='button' className='swiper-button-prev'>
+          <img src={swipePrev} alt='Swipe prev' />
         </button>
-      </div>
+      </Swiper>
     </div>
   );
 };

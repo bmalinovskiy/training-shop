@@ -98,4 +98,32 @@ export const RELATED_PRODUCTS = [
       },
     ],
   },
+  {
+    id: '5',
+    name: `Women's tracksuit Q109`,
+    price: 30,
+    discount: null,
+    rating: '4',
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
+  },
+  {
+    id: '6',
+    name: `Women's tracksuit Q109`,
+    price: 30,
+    discount: null,
+    rating: '4',
+    images: [
+      {
+        color: 'Multicolor',
+        url: '/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg',
+        id: '620512e977fffe0cd128c8ac',
+      },
+    ],
+  },
 ];
