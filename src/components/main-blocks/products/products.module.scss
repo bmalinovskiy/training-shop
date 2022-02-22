@@ -43,6 +43,10 @@
           @include tablet {
             margin: 12px 0;
           }
+
+          &:hover {
+            font-weight: 500;
+          }
         }
       }
     }

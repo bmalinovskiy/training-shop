@@ -22,6 +22,7 @@
     }
 
     .logo {
+      @include flexbox-center;
       @include small {
         margin: 8px 0;
       }

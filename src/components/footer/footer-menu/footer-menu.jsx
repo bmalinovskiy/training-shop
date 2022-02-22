@@ -39,7 +39,7 @@ const FooterMenu = () => {
             </Link>
           ))}
         </div>
-        <div className={[styles.item, styles.lastItem].join(' ')}>
+        <div className={styles.item}>
           <span className={styles.title}>CONTACT US</span>
           <div className={styles.contactItem}>
             <img src={LocationMarker} alt='location-marker icon' />

@@ -19,6 +19,7 @@
       display: flex;
       flex-direction: column;
       margin:-7px 0;
+      width: 20%;
 
       @include tablet {
         margin: 8px 0 8px 35%;
@@ -32,6 +33,10 @@
       .link {
         font: 400 12px 'Spartan', sans-serif;
         margin: 7px 0;
+
+        &:hover {
+          font-weight: 500;
+        }
       }
   
       .contactItem {
@@ -51,14 +56,6 @@
         .underlineItem {
           text-decoration: underline;
         }
-      }
-    }
-  
-    .lastItem {
-      margin-right: 65px;
-
-      @include desktop {
-        margin-right: 0;
       }
     }
   }
