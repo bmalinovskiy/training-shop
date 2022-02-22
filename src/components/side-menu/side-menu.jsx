@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -22,6 +22,12 @@ const SideMenu = () => {
       toggleMenuMode();
     }
   });
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else document.body.style.overflow = 'auto';
+  }, [isMenuOpen]);
 
   return (
     <nav className={SideMenuClass} ref={node}>
