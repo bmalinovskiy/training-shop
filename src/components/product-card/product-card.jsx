@@ -10,7 +10,9 @@ import styles from './product-card.module.scss';
 const ProductCard = ({ card: { id, name, price, images, rating, discount }, productType }) => {
   return (
     <Link to={`/${productType}/${id}`} className={styles.container} data-test-id={`clothes-card-${productType}`}>
-      <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='Product' />
+      <div className={styles.cardImage}>
+        <img src={`https://training.cleverland.by/shop${images[0]?.url}`} alt='Product' />
+      </div>
       <span className={discount ? styles.discount : styles.undiscounted}>{discount}</span>
       <span className={styles.name}>{name}</span>
       <div className={styles.description}>
