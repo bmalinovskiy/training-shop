@@ -13,7 +13,7 @@
         font: 600 22px 'Spartan', sans-serif;
       }
 
-      .slider {
+      .sliderNav {
         display: flex;
 
         button {
@@ -22,7 +22,7 @@
       }
     }
 
-    .products {
+    .slider {
       display: flex;
       margin: 54px -15px 0;
       @include desktop {

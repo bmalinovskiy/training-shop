@@ -32,6 +32,7 @@ const Banners = () => {
           prevEl: '.swiper-button-prev',
         }}
         virtual
+        data-test-id='main-slider'
       >
         {slides.map((key) => (
           <SwiperSlide key={key} virtualIndex={key} className='swiper-slide'>

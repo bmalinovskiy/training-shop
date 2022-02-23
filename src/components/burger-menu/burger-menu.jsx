@@ -9,12 +9,12 @@ import { MenuContext } from '../../context/nav-state';
 
 import { MENU } from '../../constants/header';
 
-import styles from './side-menu.module.scss';
+import styles from './burger-menu.module.scss';
 
-const SideMenu = () => {
+const BurgerMenu = () => {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
-  const SideMenuClass = classNames({ [styles.container]: true, [styles.open]: isMenuOpen });
+  const BurgerMenuClass = classNames({ [styles.container]: true, [styles.open]: isMenuOpen });
 
   const node = useRef();
   useOnClickOutside(node, () => {
@@ -30,7 +30,7 @@ const SideMenu = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className={SideMenuClass} ref={node}>
+    <nav className={BurgerMenuClass} ref={node} data-test-id='burger-menu'>
       {MENU.map(({ id, path, name }) => (
         <Link key={id} to={path} className={styles.link}>
           <span>{name}</span>
@@ -40,4 +40,4 @@ const SideMenu = () => {
   );
 };
 
-export default SideMenu;
+export default BurgerMenu;

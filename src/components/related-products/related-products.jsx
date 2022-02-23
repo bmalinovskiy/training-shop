@@ -30,7 +30,7 @@ const RelatedProducts = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.title}>RELATED PRODUCTS</span>
-          <div className={styles.slider}>
+          <div className={styles.sliderNav}>
             <button type='button' className='swipe-prev'>
               <img src={swipePrev} alt='Swipe prev' />
             </button>
@@ -50,7 +50,8 @@ const RelatedProducts = () => {
             992: { slidesPerView: 3 },
             1170: { slidesPerView: 4 },
           }}
-          className={styles.products}
+          className={styles.slider}
+          data-test-id='related-slider'
         >
           {relatedProducts}
         </Swiper>

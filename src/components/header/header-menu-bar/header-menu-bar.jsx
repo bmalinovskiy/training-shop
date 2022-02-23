@@ -5,7 +5,7 @@ import NavState from '../../../context/nav-state';
 
 import SidePanel from './side-panel';
 import Menu from './menu';
-import SideMenu from '../../side-menu';
+import BurgerMenu from '../../burger-menu';
 
 import Logo from '../../../images/header/logo.svg';
 
@@ -22,7 +22,7 @@ const HeaderMenuBar = () => {
           <Menu />
           <SidePanel />
         </div>
-        <SideMenu />
+        <BurgerMenu />
       </NavState>
     </div>
   );

@@ -4,19 +4,19 @@ import classNames from 'classnames';
 
 import { MenuContext } from '../../context/nav-state';
 
-import styles from './hamburger-button.module.scss';
+import styles from './burger-btn.module.scss';
 
-const HamburgerButton = () => {
+const BurgerBtn = () => {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
   const clickHandler = () => {
     toggleMenuMode();
   };
 
-  const hamburgerButtonClass = classNames({ [styles.btn]: true, [styles.active]: isMenuOpen });
+  const burgerBtnClass = classNames({ [styles.btn]: true, [styles.active]: isMenuOpen });
 
   return (
-    <button type='button' className={hamburgerButtonClass} onClick={clickHandler}>
+    <button type='button' className={burgerBtnClass} onClick={clickHandler} data-test-id='burger-menu-btn'>
       <span />
       <span />
       <span />
@@ -24,4 +24,4 @@ const HamburgerButton = () => {
   );
 };
 
-export default HamburgerButton;
+export default BurgerBtn;

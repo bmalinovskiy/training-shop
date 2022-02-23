@@ -1,7 +1,7 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.slider-wrapper {
+.product-slider {
   display: flex;
   height: 560px;
   width: 50%;
@@ -45,7 +45,7 @@
     }
   }
 
-  .thumbs-wrapper {
+  .thumbs-swiper {
     @include flexbox-center;
     flex-direction: column;
     margin-right: 16px;

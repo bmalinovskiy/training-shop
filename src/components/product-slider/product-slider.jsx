@@ -29,8 +29,8 @@ const ProductSlider = () => {
   ));
 
   return (
-    <div className='slider-wrapper'>
-      <div className='thumbs-wrapper'>
+    <div className='product-slider' data-test-id='product-slider'>
+      <div className='thumbs-swiper'>
         <div className='thumb-buttons'>
           <button type='button' className='thumbs-button-prev'>
             <img src={swipeUp} alt='Swipe prev' />
