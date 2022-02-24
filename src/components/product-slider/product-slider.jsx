@@ -15,16 +15,12 @@ import 'swiper/css/thumbs';
 
 import './swiper.scss';
 
-const ProductSlider = () => {
+const ProductSlider = ({ product: { images } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const slides = [...Array(8)].map((_, index) => `Slide ${index + 1}`);
-  const slidesContent = slides.map((key) => (
-    <SwiperSlide key={key} className='swiper-slide'>
-      <img
-        src='https://training.cleverland.by/shop/media/620126dda5293589353a9c74/RTLAAO978301_14935848_1_v1_2x.jpg'
-        alt='Slide'
-      />
+  const slides = images.map(({ id }) => (
+    <SwiperSlide key={id} className='swiper-slide'>
+      <img src={`https://training.cleverland.by/shop${images.find((image) => image.id === id).url}`} alt='Slide' />
     </SwiperSlide>
   ));
 
@@ -51,7 +47,7 @@ const ProductSlider = () => {
           direction='vertical'
           className='swiper-thumbs'
         >
-          {slidesContent}
+          {slides}
         </Swiper>
       </div>
       <Swiper
@@ -63,7 +59,7 @@ const ProductSlider = () => {
         modules={[Navigation, Thumbs]}
         className='main-swiper'
       >
-        {slidesContent}
+        {slides}
         <button type='button' className='swiper-button-next'>
           <img src={swipeNext} alt='Swipe next' />
         </button>

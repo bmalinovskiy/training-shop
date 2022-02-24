@@ -11,8 +11,12 @@ import { PRODUCTS } from '../../constants/products';
 
 const App = () => {
   const productRoutes = Object.values(PRODUCTS).map((products) =>
-    products.map(({ id, category }) => (
-      <Route key={id} path={`/${category}/${id}`} element={<ProductPage productType={category} />} />
+    products.map((product) => (
+      <Route
+        key={product.id}
+        path={`/${product.category}/${product.id}`}
+        element={<ProductPage product={product} productType={product.category} />}
+      />
     ))
   );
   return (

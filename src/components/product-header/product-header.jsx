@@ -10,7 +10,7 @@ import shareIcon from '../../images/products/share.svg';
 
 import styles from './product-header.module.scss';
 
-const ProductHeader = ({ title, productType, productId, rating, sku, availability }) => {
+const ProductHeader = ({ product: { id, name, category, rating } }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -20,12 +20,12 @@ const ProductHeader = ({ title, productType, productId, rating, sku, availabilit
               Home
             </Link>
             <span className={styles.pointer}>&#9658;</span>
-            <Link to={`/${productType}`} className={styles.productTypeLink}>
-              {`${productType.charAt(0).toUpperCase()}${productType.slice(1)}`}
+            <Link to={`/${category}`} className={styles.productTypeLink}>
+              {`${category.charAt(0).toUpperCase()}${category.slice(1)}`}
             </Link>
             <span className={[styles.pointer, styles.active].join(' ')}>&#9658;</span>
-            <Link to={`/${productType}/${productId}`} className={styles.productLink}>
-              {title}
+            <Link to={`/${category}/${id}`} className={styles.productLink}>
+              {name}
             </Link>
           </div>
           <button type='button' className={styles.share}>
@@ -33,7 +33,7 @@ const ProductHeader = ({ title, productType, productId, rating, sku, availabilit
             <span className={styles.text}>Share</span>
           </button>
         </div>
-        <span className={styles.title}>{title}</span>
+        <span className={styles.title}>{name}</span>
         <div className={styles.bottomLine}>
           <div className={styles.rating}>
             <Rating rating={rating} className={styles.stars} />
@@ -41,10 +41,10 @@ const ProductHeader = ({ title, productType, productId, rating, sku, availabilit
           </div>
           <div className={styles.article}>
             <span className={styles.name}>
-              SKU: <span className={styles.value}>{sku}</span>
+              SKU: <span className={styles.value}>777</span>
             </span>
             <span className={styles.name}>
-              Availability: <span className={styles.value}>{availability}</span>
+              Availability: <span className={styles.value}>In Stock</span>
             </span>
           </div>
         </div>

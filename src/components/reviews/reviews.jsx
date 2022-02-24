@@ -2,20 +2,18 @@ import React from 'react';
 
 import Rating from '../rating';
 
-import { REVIEWS } from '../../constants/product';
-
 import annotationIcon from '../../images/product/annotation.svg';
 
 import styles from './reviews.module.scss';
 
-const Reviews = () => {
+const Reviews = ({ reviews }) => {
   return (
     <div className={styles.container}>
       <span className={styles.title}>REVIEWS</span>
       <div className={styles.header}>
         <div className={styles.rating}>
           <Rating rating='5' />
-          <span className={styles.text}>2 Reviews</span>
+          <span className={styles.text}>{`${reviews.length} Reviews`}</span>
         </div>
         <button type='button' className={styles.addReview}>
           <img src={annotationIcon} alt='Annotation' />
@@ -23,10 +21,10 @@ const Reviews = () => {
         </button>
       </div>
       <div className={styles.reviewList}>
-        {REVIEWS.map(({ id, author, text, rating }) => (
+        {reviews.map(({ id, name, text, rating }) => (
           <div key={id} className={styles.item}>
             <div className={styles.header}>
-              <span className={styles.author}>{author}</span>
+              <span className={styles.author}>{name}</span>
               <div className={styles.rating}>
                 <span className={styles.date}>3 months ago</span>
                 <Rating rating={rating} />

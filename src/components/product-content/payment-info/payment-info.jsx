@@ -7,12 +7,12 @@ import scaleIcon from '../../../images/product/scale.svg';
 
 import styles from './payment-info.module.scss';
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ price }) => {
   return (
     <div className={styles.container}>
       <hr />
       <div className={styles.actions}>
-        <span className={styles.price}>$ 379.99</span>
+        <span className={styles.price}>{`$ ${price}`}</span>
         <button type='button' className={styles.addProduct}>
           ADD TO CARD
         </button>

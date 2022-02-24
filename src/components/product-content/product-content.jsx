@@ -4,37 +4,17 @@ import PaymentInfo from './payment-info';
 import AdditionalInfo from './additional-info';
 import Reviews from '../reviews';
 
-import color1 from '../../images/product/color-1.png';
-import color2 from '../../images/product/color-2.png';
-import color3 from '../../images/product/color-3.png';
-import color4 from '../../images/product/color-4.png';
-
 import clothesHanger from '../../images/product/clothes-hanger.svg';
 
 import styles from './product-content.module.scss';
 
-const ProductContent = () => {
-  // delete later
-  const colorList = [
-    { id: '1', name: 'Blue', imgPath: color1 },
-    { id: '2', name: 'White', imgPath: color2 },
-    { id: '3', name: 'Black', imgPath: color3 },
-    { id: '4', name: 'Grey', imgPath: color4 },
-  ];
+const ProductContent = ({ product: { price, material, images, sizes, reviews } }) => {
+  const [activeColorId, setActiveColorId] = useState(images[0].id);
+  const [activeColor, setActiveColor] = useState(images[0].color);
 
-  const sizeList = [
-    { id: '1', name: 'XS' },
-    { id: '2', name: 'S' },
-    { id: '3', name: 'M' },
-    { id: '4', name: 'L' },
-  ];
-  // delete later
+  const [activeSize, setActiveSize] = useState(sizes[0]);
 
-  const [activeColorId, setActiveColorId] = useState('1');
-  const [activeColor, setActiveColor] = useState('Blue');
-
-  const [activeSizeId, setActiveSizeId] = useState('2');
-  const [activeSize, setActiveSize] = useState('S');
+  const colors = new Set(images.map(({ color }) => color));
 
   return (
     <div className={styles.container}>
@@ -43,36 +23,35 @@ const ProductContent = () => {
         <span className={styles.value}>{activeColor}</span>
       </div>
       <div className={styles.colorList}>
-        {colorList.map(({ id, name, imgPath }) => (
-          <button
-            onClick={() => {
-              setActiveColorId(id);
-              setActiveColor(name);
-            }}
-            type='button'
-            key={id}
-            className={styles.item}
-          >
-            <img src={imgPath} alt={name} className={id === activeColorId ? styles.active : styles.inactive} />
-          </button>
-        ))}
+        {[...colors]
+          .map((item) => images.find(({ color }) => color === item))
+          .map(({ id, color, url }) => (
+            <button
+              onClick={() => {
+                setActiveColorId(id);
+                setActiveColor(color);
+              }}
+              type='button'
+              key={id}
+              className={[styles.item, id === activeColorId ? styles.active : styles.inactive].join(' ')}
+            >
+              <img src={`https://training.cleverland.by/shop${url}`} alt={color} />
+            </button>
+          ))}
       </div>
       <div className={styles.parameter}>
         <span className={styles.name}>SIZE:</span>
         <span className={styles.value}>{activeSize}</span>
       </div>
       <div className={styles.sizeList}>
-        {sizeList.map(({ id, name }) => (
+        {sizes.map((size) => (
           <button
-            onClick={() => {
-              setActiveSizeId(id);
-              setActiveSize(name);
-            }}
+            onClick={() => setActiveSize(size)}
             type='button'
-            key={id}
-            className={[styles.item, id === activeSizeId ? styles.active : styles.inactive].join(' ')}
+            key={size}
+            className={[styles.item, size === activeSize ? styles.active : styles.inactive].join(' ')}
           >
-            <span>{name}</span>
+            <span>{size}</span>
           </button>
         ))}
       </div>
@@ -80,7 +59,7 @@ const ProductContent = () => {
         <img src={clothesHanger} alt='Clothes hanger' />
         <span className={styles.text}>Size guide</span>
       </button>
-      <PaymentInfo />
+      <PaymentInfo price={price} />
       <div className={styles.description}>
         <hr />
         <span className={styles.title}>DESCRIPTION</span>
@@ -88,13 +67,13 @@ const ProductContent = () => {
       </div>
       <AdditionalInfo
         infoList={[
-          { id: '1', name: 'Color', value: ['Blue', 'White', 'Black', 'Grey'] },
-          { id: '2', name: 'Size', value: ['XS', 'S', 'M', 'L'] },
-          { id: '3', name: 'Material', value: ['100% Polyester'] },
+          { id: '1', name: 'Color', value: [...colors] },
+          { id: '2', name: 'Size', value: sizes },
+          { id: '3', name: 'Material', value: [material] },
         ]}
       />
       <hr />
-      <Reviews />
+      <Reviews reviews={reviews} />
       <hr />
     </div>
   );
