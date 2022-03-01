@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.1d02d479.css",
-    "main.js": "/training-shop/static/js/main.b32ec813.js",
+    "main.css": "/training-shop/static/css/main.737a5043.css",
+    "main.js": "/training-shop/static/js/main.6ea045d2.js",
     "static/media/man.svg": "/training-shop/static/media/man.cac6b6110b6f01fe16bc7f707ac8916a.svg",
     "static/media/woman.svg": "/training-shop/static/media/woman.6140cf3fd6ebed5fa5b8c2544bd04a0a.svg",
     "static/media/banner.svg": "/training-shop/static/media/banner.98f81311cf9fd49c304977a2208b7ba7.svg",
@@ -47,17 +47,16 @@
     "static/media/scale.svg": "/training-shop/static/media/scale.981b0e757230e59b19bfb9a19bebdc01.svg",
     "static/media/background.svg": "/training-shop/static/media/background.573aeaba1db217fe7c4f.svg",
     "static/media/shopping-bag.svg": "/training-shop/static/media/shopping-bag.cddc071bd5dc6b49753aabb593ec8cec.svg",
-    "static/media/arrow.svg": "/training-shop/static/media/arrow.1942795bfad331b4a402a03f79c0b437.svg",
     "static/media/view-list.svg": "/training-shop/static/media/view-list.f1d242843fc15f61cc5abf04d2079f81.svg",
     "static/media/swipe-prev.svg": "/training-shop/static/media/swipe-prev.34f90d2018aeaaff76632eabc96a9a84.svg",
     "static/media/swipe-up.svg": "/training-shop/static/media/swipe-up.56bc9cd660679bdd0011dd2f5533496e.svg",
     "static/media/swipe-down.svg": "/training-shop/static/media/swipe-down.00c9144ab235b9958a420117323d7892.svg",
     "static/media/swipe-next.svg": "/training-shop/static/media/swipe-next.6a871d585953b3e789bd0c0fea717ae1.svg",
-    "main.1d02d479.css.map": "/training-shop/static/css/main.1d02d479.css.map",
-    "main.b32ec813.js.map": "/training-shop/static/js/main.b32ec813.js.map"
+    "main.737a5043.css.map": "/training-shop/static/css/main.737a5043.css.map",
+    "main.6ea045d2.js.map": "/training-shop/static/js/main.6ea045d2.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d02d479.css",
-    "static/js/main.b32ec813.js"
+    "static/css/main.737a5043.css",
+    "static/js/main.6ea045d2.js"
   ]
 }
