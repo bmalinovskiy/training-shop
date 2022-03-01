@@ -10,7 +10,7 @@ import shareIcon from '../../images/products/share.svg';
 
 import styles from './product-header.module.scss';
 
-const ProductHeader = ({ product: { id, name, category, rating } }) => {
+const ProductHeader = ({ product: { id, name, category, rating, reviews } }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -37,7 +37,7 @@ const ProductHeader = ({ product: { id, name, category, rating } }) => {
         <div className={styles.bottomLine}>
           <div className={styles.rating}>
             <Rating rating={rating} className={styles.stars} />
-            <span className={styles.text}>2 Reviews</span>
+            <span className={styles.text}>{`${reviews.length} Reviews`}</span>
           </div>
           <div className={styles.article}>
             <span className={styles.name}>

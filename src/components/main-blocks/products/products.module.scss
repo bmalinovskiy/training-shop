@@ -44,7 +44,9 @@
             margin: 12px 0;
           }
 
-          &:hover {
+          &:hover, 
+          &.active {
+            color: $mainDark;
             font-weight: 500;
           }
         }

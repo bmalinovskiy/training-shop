@@ -26,21 +26,6 @@ export const PAYMENT_SYSTEMS = [
   { id: '7', name: 'American Express', imgPath: americanExpressIcon },
 ];
 
-export const REVIEWS = [
-  {
-    id: '1',
-    author: 'Oleh Chabanov',
-    text: 'On the other hand, we denounce with righteous indignation and like men who are so beguiled and demoralized by the charms of pleasure of the moment',
-    rating: '5',
-  },
-  {
-    id: '2',
-    author: 'ShAmAn design',
-    text: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti',
-    rating: '5',
-  },
-];
-
 export const RELATED_PRODUCTS = [
   {
     id: '1',

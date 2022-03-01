@@ -54,10 +54,10 @@ export const LATEST_FROM_BLOG = [
   },
 ];
 
-export const PRODUCT_FILTERS = [
-  { id: '1', name: 'NEW ARRIVALS' },
-  { id: '2', name: 'SPECIALS' },
-  { id: '3', name: 'BESTSELLERS' },
-  { id: '4', name: 'MOST VIEWED' },
-  { id: '5', name: 'FEATURED PRODUCTS' },
+export const PARTICULARS = [
+  { id: '1', name: 'isNewArrivals', text: 'NEW ARRIVALS' },
+  { id: '2', name: 'isSpecial', text: 'SPECIALS' },
+  { id: '3', name: 'isBestseller', text: 'BESTSELLERS' },
+  { id: '4', name: 'isMostViewed', text: 'MOST VIEWED' },
+  { id: '5', name: 'isFeatured', text: 'FEATURED PRODUCTS' },
 ];

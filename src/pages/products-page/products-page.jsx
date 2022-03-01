@@ -14,7 +14,7 @@ const ProductsPage = ({ productType, title }) => {
       <Header />
       <div className={styles.products} data-test-id={`products-page-${productType}`}>
         <ProductsHeader title={title} />
-        <ProductsSettings />
+        <ProductsSettings productType={productType} />
         <ProductCards productType={productType} />
       </div>
       <Footer />
