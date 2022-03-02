@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from '../../pages/main-page';
 import ProductsPage from '../../pages/products-page';
@@ -20,12 +19,14 @@ const App = () => {
     ))
   );
   return (
-    <Routes>
-      <Route path={ROUTES.root} element={<MainPage />} />
-      <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
-      <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
-      {productRoutes}
-    </Routes>
+    <HashRouter>
+      <Routes>
+        <Route path={ROUTES.root} element={<MainPage />} />
+        <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
+        <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
+        {productRoutes}
+      </Routes>
+    </HashRouter>
   );
 };
 
