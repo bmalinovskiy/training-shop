@@ -1,6 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import classNames from 'classnames';
 
 import Filter from '../filter';
+
+import { setFilterOpen } from '../../store/state/filter/actions';
+
+import { filterSelector } from '../../selectors';
 
 import filterIcon from '../../images/products/filter.svg';
 import viewListIcon from '../../images/products/view-list.svg';
@@ -9,10 +16,19 @@ import viewGridIcon from '../../images/products/view-grid.svg';
 import styles from './products-settings.module.scss';
 
 const ProductsSettings = ({ productType }) => {
+  const dispatch = useDispatch();
+  const { isFilterOpen } = useSelector(filterSelector);
+
+  const filterBtnClass = classNames({ [styles.filterBtn]: true, [styles.active]: isFilterOpen });
+
+  const handleClick = () => {
+    dispatch(setFilterOpen(!isFilterOpen));
+  };
+
   return (
     <>
       <div className={styles.container}>
-        <button type='button' className={styles.filter}>
+        <button type='button' className={filterBtnClass} onClick={handleClick}>
           <img src={filterIcon} alt='Filter' className={styles.icon} />
           <span className={styles.text}>FILTER</span>
         </button>
@@ -25,7 +41,7 @@ const ProductsSettings = ({ productType }) => {
           </button>
         </div>
       </div>
-      <Filter productType={productType} />
+      {isFilterOpen && <Filter productType={productType} />}
     </>
   );
 };

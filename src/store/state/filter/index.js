@@ -4,6 +4,8 @@ import {
   CHANGE_BRAND_FILTER,
   CHANGE_PRICE_FILTER,
   RESET_FILTERS,
+  SET_ITEMS_FOUND,
+  SET_FILTER_OPEN,
 } from './types';
 
 const initialState = {
@@ -11,6 +13,8 @@ const initialState = {
   sizes: [],
   brands: [],
   prices: [],
+  itemsFound: null,
+  isFilterOpen: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -50,7 +54,27 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     case RESET_FILTERS: {
-      return initialState;
+      return {
+        ...state,
+        colors: [],
+        sizes: [],
+        brands: [],
+        prices: [],
+      };
+    }
+    case SET_ITEMS_FOUND: {
+      const itemsFound = payload;
+      return {
+        ...state,
+        itemsFound,
+      };
+    }
+    case SET_FILTER_OPEN: {
+      const isFilterOpen = payload;
+      return {
+        ...state,
+        isFilterOpen,
+      };
     }
     default:
       return state;

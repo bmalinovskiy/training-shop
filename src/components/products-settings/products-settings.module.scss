@@ -8,7 +8,7 @@
   font: 500 13px 'Spartan', sans-serif;
   color: $darkGrey;
 
-  .filter {
+  .filterBtn {
     @include flexbox-center;
     margin: 0 -8px;
 
@@ -18,6 +18,13 @@
 
     .text {
       margin: 0 8px;
+    }
+
+    &.active {
+      img {
+        content:url('../../images/products/filter-close.svg');
+      }
+      color: $mainDark;
     }
   }
   

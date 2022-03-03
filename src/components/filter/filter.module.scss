@@ -1,10 +1,10 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.wrapper {
+.filterList {
   max-width: $containerWidth;
   height: 318px;
-  margin: auto;
+  margin: 0 auto 32px;
   padding: 28px 42px;
   background-color:  #F8F8F8;
   display: flex;
@@ -30,5 +30,21 @@
         margin: 0 8px 16px 0;
       }
     }
+  }
+}
+
+.appliedFilters {
+  max-width: $containerWidth;
+  margin: 0 auto 32px;
+
+  .itemsFound {
+    font: 700 14px 'Spartan', sans-serif;
+    margin-right: 16px;
+  }
+
+  .item {
+    font: 400 14px 'Spartan', sans-serif;
+    color: $darkGrey;
+    margin-right: 16px;
   }
 }
