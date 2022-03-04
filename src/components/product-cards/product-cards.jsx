@@ -14,36 +14,36 @@ import styles from './product-cards.module.scss';
 const ProductCards = ({ productType, particular }) => {
   const dispatch = useDispatch();
 
-  const { colors, sizes, brands, prices } = useSelector(filterSelector);
-  const priceRanges = prices.map((price) => price.replace(/[^0-9,-]/g, '').split('-'));
+  const { colorFilters, sizeFilters, brandFilters, priceFilters } = useSelector(filterSelector);
+
+  const priceRanges = priceFilters.map((price) => price.replace(/[^0-9,-]/g, '').split('-'));
+  const isAnyFilter = colorFilters.length || sizeFilters.length || brandFilters.length || priceFilters.length;
 
   const productCards = PRODUCTS[productType]
-    .filter(({ particulars }) => (particular ? particulars[particular] : particulars))
-    .filter((card) =>
-      colors.length > 0 ? colors.filter((item) => card.images.find(({ color }) => color === item)).length > 0 : card
-    )
-    .filter((card) =>
-      sizes.length > 0 ? sizes.filter((size) => card.sizes.includes(size)).length === sizes.length : card
-    )
-    .filter((card) => (brands.length > 0 ? brands.includes(card.brand) : card))
-    .filter((card) =>
-      prices.length > 0
-        ? priceRanges.filter(([from, to]) =>
-            card.discount
-              ? card.price - (card.price / 100) * parseInt(card.discount.match(/\d+/), 10) > parseInt(from, 10) &&
-                card.price - (card.price / 100) * parseInt(card.discount.match(/\d+/), 10) < parseInt(to, 10)
-              : card.price > parseInt(from, 10) && card.price < parseInt(to, 10)
-          ).length > 0
-        : card
+    .filter(
+      ({ particulars, images, sizes, brand, price, discount }) =>
+        (particular ? particulars[particular] : particulars) &&
+        (colorFilters.length
+          ? colorFilters.filter((item) => images.find(({ color }) => color === item)).length
+          : images) &&
+        (sizeFilters.length
+          ? sizeFilters.filter((size) => sizes.includes(size)).length === sizeFilters.length
+          : sizes) &&
+        (brandFilters.length ? brandFilters.includes(brand) : brand) &&
+        (priceFilters.length
+          ? priceRanges.filter(([from, to]) =>
+              discount
+                ? price - (price / 100) * parseInt(discount.match(/\d+/), 10) > parseInt(from, 10) &&
+                  price - (price / 100) * parseInt(discount.match(/\d+/), 10) < parseInt(to, 10)
+                : price > parseInt(from, 10) && price < parseInt(to, 10)
+            ).length
+          : price)
     )
     .map((card) => <ProductCard key={card.id} card={card} productType={productType} />);
 
   useEffect(
-    () =>
-      colors.length || sizes.length || brands.length || prices.length
-        ? dispatch(setItemsFound(productCards.length))
-        : dispatch(setItemsFound(null)),
-    [brands.length, colors.length, dispatch, prices.length, productCards.length, sizes.length]
+    () => (isAnyFilter ? dispatch(setItemsFound(productCards.length)) : dispatch(setItemsFound(null))),
+    [dispatch, isAnyFilter, productCards.length]
   );
 
   return (

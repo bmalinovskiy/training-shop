@@ -9,10 +9,10 @@ import {
 } from './types';
 
 const initialState = {
-  colors: [],
-  sizes: [],
-  brands: [],
-  prices: [],
+  colorFilters: [],
+  sizeFilters: [],
+  brandFilters: [],
+  priceFilters: [],
   itemsFound: null,
   isFilterOpen: false,
 };
@@ -23,43 +23,45 @@ export default (state = initialState, { type, payload }) => {
       const { value } = payload;
       return {
         ...state,
-        colors: state.colors.includes(value)
-          ? state.colors.filter((color) => color !== value)
-          : [...state.colors, value],
+        colorFilters: state.colorFilters.includes(value)
+          ? state.colorFilters.filter((color) => color !== value)
+          : [...state.colorFilters, value],
       };
     }
     case CHANGE_SIZE_FILTER: {
       const { value } = payload;
       return {
         ...state,
-        sizes: state.sizes.includes(value) ? state.sizes.filter((size) => size !== value) : [...state.sizes, value],
+        sizeFilters: state.sizeFilters.includes(value)
+          ? state.sizeFilters.filter((size) => size !== value)
+          : [...state.sizeFilters, value],
       };
     }
     case CHANGE_BRAND_FILTER: {
       const { value } = payload;
       return {
         ...state,
-        brands: state.brands.includes(value)
-          ? state.brands.filter((brand) => brand !== value)
-          : [...state.brands, value],
+        brandFilters: state.brandFilters.includes(value)
+          ? state.brandFilters.filter((brand) => brand !== value)
+          : [...state.brandFilters, value],
       };
     }
     case CHANGE_PRICE_FILTER: {
       const { value } = payload;
       return {
         ...state,
-        prices: state.prices.includes(value)
-          ? state.prices.filter((price) => price !== value)
-          : [...state.prices, value],
+        priceFilters: state.priceFilters.includes(value)
+          ? state.priceFilters.filter((price) => price !== value)
+          : [...state.priceFilters, value],
       };
     }
     case RESET_FILTERS: {
       return {
         ...state,
-        colors: [],
-        sizes: [],
-        brands: [],
-        prices: [],
+        colorFilters: [],
+        sizeFilters: [],
+        brandFilters: [],
+        priceFilters: [],
       };
     }
     case SET_ITEMS_FOUND: {

@@ -17,7 +17,7 @@ import styles from './filter.module.scss';
 
 const Filter = ({ productType }) => {
   const dispatch = useDispatch();
-  const { colors, sizes, brands, prices, itemsFound } = useSelector(filterSelector);
+  const { colorFilters, sizeFilters, brandFilters, priceFilters, itemsFound } = useSelector(filterSelector);
 
   const colorList = useMemo(
     () => [...new Set(PRODUCTS[productType].map(({ images }) => images.map(({ color }) => color)).flat())],
@@ -99,22 +99,22 @@ const Filter = ({ productType }) => {
         <div className={styles.appliedFilters}>
           <span className={styles.itemsFound}>{`${itemsFound} items found`}</span>
           <span>
-            {colors.map((color) => (
+            {colorFilters.map((color) => (
               <span key={color} className={styles.item}>{`Color: ${color}`}</span>
             ))}
           </span>
           <span>
-            {sizes.map((size) => (
+            {sizeFilters.map((size) => (
               <span key={size} className={styles.item}>{`Size: ${size}`}</span>
             ))}
           </span>
           <span>
-            {brands.map((brand) => (
+            {brandFilters.map((brand) => (
               <span key={brand} className={styles.item}>{`Brand: ${brand}`}</span>
             ))}
           </span>
           <span>
-            {prices.map((price) => (
+            {priceFilters.map((price) => (
               <span key={price} className={styles.item}>{`Price: ${price}`}</span>
             ))}
           </span>
