@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
@@ -24,6 +24,8 @@ const ProductsSettings = ({ productType }) => {
   const handleClick = () => {
     dispatch(setFilterOpen(!isFilterOpen));
   };
+
+  useEffect(() => dispatch(setFilterOpen(false)), [dispatch, productType]);
 
   return (
     <>
