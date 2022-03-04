@@ -3,7 +3,7 @@
 
 .btn {
   display: none;
-  @include desktop {
+  @include burger-menu {
     display: flex;
   }
   flex-direction:column;

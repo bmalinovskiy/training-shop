@@ -35,3 +35,9 @@
       @content;
   }
 }
+
+@mixin burger-menu {
+  @media (max-width: $burgerMenu){
+      @content;
+  }
+}

@@ -4,10 +4,8 @@
 .container {
   font: 400 14px 'Spartan', sans-serif;
   margin: 0 -15px;
-  width: 60%;
-
   @include flexbox-center;
-  @include desktop {
+  @include burger-menu {
     display: none;
   }
   @include tablet {
