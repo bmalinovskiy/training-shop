@@ -30,14 +30,9 @@
   
   .viewType {
     @include flexbox-center;
-    margin: 0 -14px;
-
-    .list {
-      margin: 0 14px;
-    }
 
     .grid {
-      margin: 0 14px;
+      margin-left: 28px;
     }
   }
 }

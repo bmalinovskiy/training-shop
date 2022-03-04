@@ -49,13 +49,19 @@ const Filter = ({ productType }) => {
 
   return (
     <>
-      <div className={styles.filterList}>
+      <div className={styles.filterList} data-test-id={`filters-${productType}`}>
         <div className={styles.item}>
           <span className={styles.title}>COLOR</span>
-          <div className={styles.list}>
+          <div className={styles.list} data-test-id='filters-color'>
             {colorList.map((color) => (
               <div key={color}>
-                <input key={color} type='checkbox' value={color} onChange={handleChange} />
+                <input
+                  key={color}
+                  type='checkbox'
+                  value={color}
+                  onChange={handleChange}
+                  data-test-id={`filter-color-${color}`}
+                />
                 <label htmlFor={color}>{color}</label>
               </div>
             ))}
@@ -63,10 +69,16 @@ const Filter = ({ productType }) => {
         </div>
         <div className={styles.item}>
           <span className={styles.title}>SIZE</span>
-          <div className={styles.list}>
+          <div className={styles.list} data-test-id='filters-size'>
             {sizeList.map((size) => (
               <div key={size}>
-                <input key={size} type='checkbox' value={size} onChange={handleChange} />
+                <input
+                  key={size}
+                  type='checkbox'
+                  value={size}
+                  onChange={handleChange}
+                  data-test-id={`filter-size-${size}`}
+                />
                 <label htmlFor={size}>{size}</label>
               </div>
             ))}
@@ -74,10 +86,16 @@ const Filter = ({ productType }) => {
         </div>
         <div className={styles.item}>
           <span className={styles.title}>BRAND</span>
-          <div className={styles.list}>
+          <div className={styles.list} data-test-id='filters-brand'>
             {brandList.map((brand) => (
               <div key={brand} className={styles.values}>
-                <input key={brand} type='checkbox' value={brand} onChange={handleChange} />
+                <input
+                  key={brand}
+                  type='checkbox'
+                  value={brand}
+                  onChange={handleChange}
+                  data-test-id={`filter-brand-${brand}`}
+                />
                 <label htmlFor={brand}>{brand}</label>
               </div>
             ))}

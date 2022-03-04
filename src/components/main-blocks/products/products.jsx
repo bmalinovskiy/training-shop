@@ -21,6 +21,7 @@ const Products = ({ title, productType }) => {
                 type='button'
                 className={[styles.filter, name === particular ? styles.active : null].join(' ')}
                 onClick={() => setParticular(name)}
+                data-test-id={`clothes-${productType}-${name}`}
               >
                 {text}
               </button>

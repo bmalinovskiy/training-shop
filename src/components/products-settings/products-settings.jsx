@@ -28,7 +28,7 @@ const ProductsSettings = ({ productType }) => {
   return (
     <>
       <div className={styles.container}>
-        <button type='button' className={filterBtnClass} onClick={handleClick}>
+        <button type='button' className={filterBtnClass} onClick={handleClick} data-test-id='filter-button'>
           <img src={filterIcon} alt='Filter' className={styles.icon} />
           <span className={styles.text}>FILTER</span>
         </button>

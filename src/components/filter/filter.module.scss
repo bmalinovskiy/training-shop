@@ -9,10 +9,18 @@
   background-color:  #F8F8F8;
   display: flex;
   justify-content: space-between;
+  @include tablet {
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
 
   .item {
     display: flex;
     flex-direction: column;
+    @include tablet {
+      margin-bottom: 12px;
+    }
 
     .title {
       font: 600 14px 'Spartan', sans-serif;
