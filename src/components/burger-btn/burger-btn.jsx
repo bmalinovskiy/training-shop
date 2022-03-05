@@ -13,7 +13,7 @@ const BurgerBtn = () => {
     toggleMenuMode();
   };
 
-  const burgerBtnClass = classNames({ [styles.btn]: true, [styles.active]: isMenuOpen });
+  const burgerBtnClass = classNames({ [styles.burgerBtn]: true, [styles.active]: isMenuOpen });
 
   return (
     <button type='button' className={burgerBtnClass} onClick={clickHandler} data-test-id='burger-menu-btn'>

@@ -24,11 +24,9 @@ const ProductCards = ({ productType, particular }) => {
       ({ particulars, images, sizes, brand, price, discount }) =>
         (particular ? particulars[particular] : particulars) &&
         (colorFilters.length
-          ? colorFilters.filter((item) => images.find(({ color }) => color === item)).length
+          ? colorFilters.filter((item) => images.some(({ color }) => color === item)).length
           : images) &&
-        (sizeFilters.length
-          ? sizeFilters.filter((size) => sizes.includes(size)).length === sizeFilters.length
-          : sizes) &&
+        (sizeFilters.length ? sizeFilters.filter((size) => sizes.includes(size)).length : sizes) &&
         (brandFilters.length ? brandFilters.includes(brand) : brand) &&
         (priceFilters.length
           ? priceRanges.filter(([from, to]) =>
