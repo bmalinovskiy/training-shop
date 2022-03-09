@@ -18,9 +18,9 @@ import './swiper.scss';
 const ProductSlider = ({ product: { images } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const slides = images.map(({ id }) => (
+  const slides = images.map(({ id, url }) => (
     <SwiperSlide key={id} className='swiper-slide'>
-      <img src={`https://training.cleverland.by/shop${images.find((image) => image.id === id).url}`} alt='Slide' />
+      <img src={`https://training.cleverland.by/shop${url}`} alt='Slide' />
     </SwiperSlide>
   ));
 
