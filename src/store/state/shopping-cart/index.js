@@ -32,7 +32,7 @@ export default (state = initialState, { type, payload }) => {
       const { id, value } = payload;
       const items = state.items.map((item) => ({
         ...item,
-        quantity: item.id === id ? value : item.quantity,
+        quantity: item.id === id && value > 0 ? value : item.quantity,
       }));
       return {
         ...state,

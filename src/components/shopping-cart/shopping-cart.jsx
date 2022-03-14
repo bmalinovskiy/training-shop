@@ -103,6 +103,7 @@ const ShoppingCart = () => {
                       </button>
                       <input
                         type='text'
+                        maxLength='2'
                         value={quantity}
                         onChange={({ target: { value } }) => dispatch(changeQuantity({ id, value: Number(value) }))}
                       />

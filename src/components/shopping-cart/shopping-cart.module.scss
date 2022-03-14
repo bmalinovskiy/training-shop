@@ -44,7 +44,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: 48px;
-    height: 78vh;
+    height: 78%;
     span {
       margin-top: 8px;
     }
@@ -52,13 +52,13 @@
   }
 
   .items {
-    height: 70vh;
+    height: 70%;
     margin: 20px 12px 24px 24px;
     overflow: auto;
 
     hr {
       margin: 12px 0;
-      width: 98%;
+      width: 96%;
     }
 
     .item {
@@ -106,9 +106,10 @@
           .price {
             font: 700 14px 'Spartan', sans-serif;
             margin-left: 16px;
+            width: 80px;
           }
           .trash {
-            margin-left: 56px;
+            margin-left: 42px;
           }
         }
       }
