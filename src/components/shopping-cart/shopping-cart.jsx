@@ -53,7 +53,7 @@ const ShoppingCart = () => {
   }, [isShoppingCartOpen]);
 
   return (
-    <div className={ShoppingCartClass} ref={node}>
+    <div className={ShoppingCartClass} ref={node} data-test-id='cart'>
       <div className={styles.header}>
         <span>SHOPPING CART</span>
         <button type='button' onClick={handleCartClose}>
@@ -86,7 +86,7 @@ const ShoppingCart = () => {
         <div className={styles.items}>
           {items.map(({ id, name, quantity, price, color, size, imgUrl }) => (
             <div key={id}>
-              <div className={styles.item}>
+              <div className={styles.item} data-test-id='cart-card'>
                 <img src={`https://training.cleverland.by/shop${imgUrl}`} alt={name} />
                 <div className={styles.details}>
                   <span className={styles.name}>{name}</span>
@@ -97,6 +97,7 @@ const ShoppingCart = () => {
                         type='button'
                         className={styles.minus}
                         onClick={() => dispatch(changeQuantity({ id, value: quantity - 1 }))}
+                        data-test-id='minus-product'
                       >
                         <img src={minusIcon} alt='Minus' />
                       </button>
@@ -109,12 +110,18 @@ const ShoppingCart = () => {
                         type='button'
                         className={styles.plus}
                         onClick={() => dispatch(changeQuantity({ id, value: quantity + 1 }))}
+                        data-test-id='plus-product'
                       >
                         <img src={plusIcon} alt='Plus' />
                       </button>
                     </div>
                     <span className={styles.price}>{`$${(price * quantity).toFixed(2)}`}</span>
-                    <button type='button' className={styles.trash} onClick={() => handleRemoveItem(id)}>
+                    <button
+                      type='button'
+                      className={styles.trash}
+                      onClick={() => handleRemoveItem(id)}
+                      data-test-id='remove-product'
+                    >
                       <img src={trashIcon} alt='Delete item' />
                     </button>
                   </div>

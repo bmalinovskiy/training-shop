@@ -32,7 +32,7 @@ const SidePanel = () => {
       <button type='button'>
         <img src={User} alt='UserIcon' />
       </button>
-      <button type='button' className={styles.shoppingCartBtn} onClick={handleCartOpen}>
+      <button type='button' className={styles.shoppingCartBtn} onClick={handleCartOpen} data-test-id='cart-button'>
         <img src={ShoppingBag} alt='ShoppingBagIcon' />
         {items.length > 0 && <span className={styles.cartItems}>{items.length}</span>}
       </button>
