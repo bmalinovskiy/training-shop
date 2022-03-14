@@ -44,7 +44,7 @@ const PaymentInfo = ({ price, name, color, size, imgUrl }) => {
       <div className={styles.actions}>
         <span className={styles.price}>{`$ ${price}`}</span>
         <button type='button' className={styles.addProduct} onClick={handleItemAction} data-test-id='add-cart-button'>
-          {isItemInCart ? 'REMOVE FROM CARD' : 'ADD TO CARD'}
+          {isItemInCart ? 'REMOVE TO CARD' : 'ADD TO CARD'}
         </button>
         <img src={heartIcon} alt='Favourite' className={styles.favouriteIcon} />
         <img src={scaleIcon} alt='Scale' className={styles.scaleIcon} />
