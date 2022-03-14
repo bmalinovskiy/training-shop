@@ -49,7 +49,7 @@
     margin-top: 48px;
     height: 78%;
     @include mobile {
-      height: 74%;
+      height: 72%;
     }
     span {
       margin-top: 8px;
@@ -60,7 +60,7 @@
   .items {
     height: 70%;
     @include mobile {
-      height: 62%;
+      height: 60%;
     }
     margin: 20px 12px 24px 24px;
     overflow-y: auto;
@@ -71,9 +71,6 @@
     hr {
       margin: 12px 0;
       width: 96%;
-      @include mobile {
-        width: 100%;
-      }
     }
 
     .item {
@@ -125,6 +122,9 @@
           }
           .trash {
             margin-left: 42px;
+            @include mobile {
+              margin-left: 36px;
+            }
           }
         }
       }
