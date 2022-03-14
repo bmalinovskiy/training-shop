@@ -8,13 +8,13 @@ import clothesHanger from '../../images/product/clothes-hanger.svg';
 
 import styles from './product-content.module.scss';
 
-const ProductContent = ({ product: { price, material, images, sizes, reviews } }) => {
+const ProductContent = ({ product: { name, price, material, images, sizes, reviews } }) => {
   const [activeColorId, setActiveColorId] = useState(images[0].id);
   const [activeColor, setActiveColor] = useState(images[0].color);
 
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
-  const colors = new Set(images.map(({ color }) => color));
+  const colors = [...new Set(images.map(({ color }) => color))];
 
   return (
     <div className={styles.container}>
@@ -23,17 +23,17 @@ const ProductContent = ({ product: { price, material, images, sizes, reviews } }
         <span className={styles.value}>{activeColor}</span>
       </div>
       <div className={styles.colorList}>
-        {[...colors]
+        {colors
           .map((item) => images.find(({ color }) => color === item))
-          .map(({ id, color, url }) => (
+          .map(({ id: colorId, color, url }) => (
             <button
               onClick={() => {
-                setActiveColorId(id);
+                setActiveColorId(colorId);
                 setActiveColor(color);
               }}
               type='button'
-              key={id}
-              className={[styles.item, id === activeColorId ? styles.active : styles.inactive].join(' ')}
+              key={colorId}
+              className={[styles.item, colorId === activeColorId ? styles.active : styles.inactive].join(' ')}
             >
               <img src={`https://training.cleverland.by/shop${url}`} alt={color} />
             </button>
@@ -59,7 +59,13 @@ const ProductContent = ({ product: { price, material, images, sizes, reviews } }
         <img src={clothesHanger} alt='Clothes hanger' />
         <span className={styles.text}>Size guide</span>
       </button>
-      <PaymentInfo price={price} />
+      <PaymentInfo
+        name={name}
+        price={price}
+        color={activeColor}
+        size={activeSize}
+        imgUrl={images.find(({ color }) => color === activeColor).url}
+      />
       <div className={styles.description}>
         <hr />
         <span className={styles.title}>DESCRIPTION</span>

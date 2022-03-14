@@ -6,23 +6,27 @@ import ProductHeader from '../../components/product-header';
 import ProductSlider from '../../components/product-slider';
 import ProductContent from '../../components/product-content';
 import RelatedProducts from '../../components/related-products';
+import ShoppingCart from '../../components/shopping-cart/shopping-cart';
 
 import styles from './product-page.module.scss';
 
 const ProductPage = ({ product, productType }) => {
   return (
-    <div className='wrapper'>
-      <Header />
-      <div className={styles.product} data-test-id={`product-page-${productType}`}>
-        <ProductHeader product={product} />
-        <div className={styles.content}>
-          <ProductSlider product={product} />
-          <ProductContent product={product} />
+    <>
+      <div className='wrapper'>
+        <Header />
+        <div className={styles.product} data-test-id={`product-page-${productType}`}>
+          <ProductHeader product={product} />
+          <div className={styles.content}>
+            <ProductSlider product={product} />
+            <ProductContent product={product} />
+          </div>
+          <RelatedProducts />
         </div>
-        <RelatedProducts />
+        <Footer />
       </div>
-      <Footer />
-    </div>
+      <ShoppingCart />
+    </>
   );
 };
 

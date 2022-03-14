@@ -16,7 +16,7 @@ const BurgerBtn = () => {
   const burgerBtnClass = classNames({ [styles.burgerBtn]: true, [styles.active]: isMenuOpen });
 
   return (
-    <button type='button' className={burgerBtnClass} onClick={clickHandler} data-test-id='burger-menu-btn'>
+    <button type='button' className={burgerBtnClass} onMouseDown={clickHandler} data-test-id='burger-menu-btn'>
       <span />
       <span />
       <span />

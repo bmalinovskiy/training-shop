@@ -28,7 +28,7 @@ hr {
   background: #E5E5E5;
 }
 
-button, input[type="submit"], input[type="reset"] {
+button, input[type="submit"], input[type="reset"], input[type="text"], input[type="number"] {
 	background: none;
 	color: inherit;
 	border: none;
@@ -42,6 +42,10 @@ button, input[type="submit"], input[type="reset"] {
   margin: auto;
   @include desktop {
     width: 100%;
+  }
+
+  &.hidden {
+    opacity: 0.4;
   }
 }
 

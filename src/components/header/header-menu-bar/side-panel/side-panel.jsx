@@ -1,6 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import BurgerBtn from '../../../burger-btn';
+
+import { setShoppingCartOpen } from '../../../../store/state/shopping-cart/actions';
+
+import { shoppingCartSelector } from '../../../../selectors';
 
 import Search from '../../../../images/header/search.svg';
 import Globe from '../../../../images/header/globe.svg';
@@ -10,6 +15,12 @@ import ShoppingBag from '../../../../images/header/shopping-bag.svg';
 import styles from './side-panel.module.scss';
 
 const SidePanel = () => {
+  const dispatch = useDispatch();
+
+  const { items } = useSelector(shoppingCartSelector);
+
+  const handleCartOpen = () => dispatch(setShoppingCartOpen(true));
+
   return (
     <div className={styles.container}>
       <button type='button'>
@@ -21,9 +32,9 @@ const SidePanel = () => {
       <button type='button'>
         <img src={User} alt='UserIcon' />
       </button>
-      <button type='button' className={styles.shoppingBag}>
+      <button type='button' className={styles.shoppingCartBtn} onClick={handleCartOpen}>
         <img src={ShoppingBag} alt='ShoppingBagIcon' />
-        <span className={styles.productCounter}>2</span>
+        {items.length > 0 && <span className={styles.cartItems}>{items.length}</span>}
       </button>
       <BurgerBtn />
     </div>

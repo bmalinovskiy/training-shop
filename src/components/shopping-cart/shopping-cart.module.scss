@@ -1,0 +1,150 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.container {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  transition: 0.3s;
+  overflow: hidden;
+  
+  &.open {
+    width: 388px;
+    box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+  }
+
+  .orderStages {
+    font: 400 15px 'Spartan', sans-serif;
+    margin: 16px 12px;
+    color: #E6E6E6;
+    .item {
+      margin: 0 12px;
+
+      &.active {
+        color: $mainDark;
+      }
+    }
+  }
+
+  .header {
+    @include flexbox-between;
+    width: 100%;
+    background-color: $mainDark;
+    padding: 12px 24px;
+    color: #fff;
+    font: 600 14px 'Spartan', sans-serif;
+  }
+
+  .empty {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 48px;
+    height: 78vh;
+    span {
+      margin-top: 8px;
+    }
+    font: 600 26px 'Spartan', sans-serif;
+  }
+
+  .items {
+    height: 70vh;
+    margin: 20px 12px 24px 24px;
+    overflow: auto;
+
+    hr {
+      margin: 12px 0;
+      width: 98%;
+    }
+
+    .item {
+      display: flex;
+      img {
+        width: 83px;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        margin-left: 16px;
+        img {
+          width: 24px;
+        }
+        .name {
+          font: 400 14px 'Spartan', sans-serif;
+          color: $darkGrey;
+        }
+        .features {
+          font: 600 12px 'Spartan', sans-serif;
+          margin-top: 14px;
+        }
+        .itemActions {
+          @include flexbox-center;
+          margin-top: 44px;
+          .number {
+            @include flexbox-center;
+            width: 80px;
+            padding: 0 4px;
+            background-color: #F8F8F8;
+            .plus,
+            .minus {
+              @include flexbox-center;
+              width: 20px;
+              height: 32px;
+            }
+            input {
+              width: 50%;
+              text-align: center;
+              cursor: auto;
+              font: 400 14px 'Spartan', sans-serif;
+            }
+          }
+          .price {
+            font: 700 14px 'Spartan', sans-serif;
+            margin-left: 16px;
+          }
+          .trash {
+            margin-left: 56px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin: 12px 24px;
+
+    .totalPrice {
+      @include flexbox-between;
+
+      .text {
+        font: 400 14px 'Spartan', sans-serif;
+      }
+
+      .price {
+        font: 600 16px 'Spartan', sans-serif;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 0;
+      font: 500 13px 'Spartan', sans-serif;
+    }
+
+    .nextStepBtn {
+      background-color: $mainDark;
+      color: #fff;
+      margin-top: 26px;
+    }
+
+    .viewCartBtn {
+      background-color:  #F8F8F8;
+      margin-top: 12px;
+    }
+  }
+}

@@ -7,11 +7,12 @@
     margin: 8px 0;
   }
 
-  .shoppingBag {
+  .shoppingCartBtn {
     position: relative;
     padding: 4px 4px 0 0;
 
-    .productCounter {
+    .cartItems {
+      @include flexbox-center;
       position: absolute;
       top: 0;
       right: 0;
@@ -23,8 +24,6 @@
       border-radius: 50%;
       border: 2px solid #fff;
       font: 700 9px 'Spartan', sans-serif;
-
-      @include flexbox-center;
     }
   }
 
