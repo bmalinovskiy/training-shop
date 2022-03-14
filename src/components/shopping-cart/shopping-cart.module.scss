@@ -9,8 +9,7 @@
   top: 0;
   right: 0;
   background-color: #fff;
-  transition: 0.3s;
-  overflow: hidden;
+  overflow-x: hidden;
   
   &.open {
     width: 388px;
