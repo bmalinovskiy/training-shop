@@ -8,12 +8,16 @@
   z-index: 1;
   top: 0;
   right: 0;
+  transition: 0.3s;
   background-color: #fff;
-  overflow-x: hidden;
+  overflow: hidden;
   
   &.open {
     width: 388px;
     box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+    @include mobile {
+      width: 100%;
+    }
   }
 
   .orderStages {
@@ -44,6 +48,9 @@
     flex-direction: column;
     margin-top: 48px;
     height: 78%;
+    @include mobile {
+      height: 74%;
+    }
     span {
       margin-top: 8px;
     }
@@ -52,12 +59,21 @@
 
   .items {
     height: 70%;
+    @include mobile {
+      height: 62%;
+    }
     margin: 20px 12px 24px 24px;
-    overflow: auto;
+    overflow-y: auto;
+    @include mobile {
+      margin: 24px 8px;
+    }
 
     hr {
       margin: 12px 0;
       width: 96%;
+      @include mobile {
+        width: 100%;
+      }
     }
 
     .item {
