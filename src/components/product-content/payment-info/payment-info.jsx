@@ -14,12 +14,16 @@ import { addItemToCart, removeItemFromCart } from '../../../store/state/shopping
 
 import styles from './payment-info.module.scss';
 
-const PaymentInfo = ({ price, name, color, size, imgUrl }) => {
+const PaymentInfo = ({ price, discount, name, color, size, imgUrl }) => {
   const dispatch = useDispatch();
 
   const { items } = useSelector(shoppingCartSelector);
 
   const isItemInCart = items.filter((item) => item.color === color && item.size === size).length;
+
+  const discountPrice = discount
+    ? (price - (price / 100) * parseInt(discount.match(/\d+/), 10)).toFixed(2)
+    : price.toFixed(2);
 
   const handleItemAction = () => {
     if (isItemInCart) {
@@ -30,7 +34,7 @@ const PaymentInfo = ({ price, name, color, size, imgUrl }) => {
           id: uuidv4(),
           name,
           quantity: 1,
-          price,
+          price: discountPrice,
           color,
           size,
           imgUrl,
@@ -42,7 +46,7 @@ const PaymentInfo = ({ price, name, color, size, imgUrl }) => {
     <div className={styles.container}>
       <hr />
       <div className={styles.actions}>
-        <span className={styles.price}>{`$ ${price}`}</span>
+        <span className={styles.price}>{discount ? `$ ${discountPrice}` : `$ ${price.toFixed(2)}`}</span>
         <button type='button' className={styles.addProduct} onClick={handleItemAction} data-test-id='add-cart-button'>
           {isItemInCart ? 'REMOVE TO CARD' : 'ADD TO CARD'}
         </button>

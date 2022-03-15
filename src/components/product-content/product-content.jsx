@@ -8,7 +8,7 @@ import clothesHanger from '../../images/product/clothes-hanger.svg';
 
 import styles from './product-content.module.scss';
 
-const ProductContent = ({ product: { name, price, material, images, sizes, reviews } }) => {
+const ProductContent = ({ product: { name, price, discount, material, images, sizes, reviews } }) => {
   const [activeColor, setActiveColor] = useState(images[0].color);
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
@@ -63,7 +63,14 @@ const ProductContent = ({ product: { name, price, material, images, sizes, revie
         <img src={clothesHanger} alt='Clothes hanger' />
         <span className={styles.text}>Size guide</span>
       </button>
-      <PaymentInfo name={name} price={price} color={activeColor} size={activeSize} imgUrl={activeImageUrl} />
+      <PaymentInfo
+        name={name}
+        price={price}
+        discount={discount}
+        color={activeColor}
+        size={activeSize}
+        imgUrl={activeImageUrl}
+      />
       <div className={styles.description}>
         <hr />
         <span className={styles.title}>DESCRIPTION</span>
