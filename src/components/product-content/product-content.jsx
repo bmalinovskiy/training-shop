@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PaymentInfo from './payment-info';
 import AdditionalInfo from './additional-info';
@@ -9,12 +9,15 @@ import clothesHanger from '../../images/product/clothes-hanger.svg';
 import styles from './product-content.module.scss';
 
 const ProductContent = ({ product: { name, price, material, images, sizes, reviews } }) => {
-  const [activeColorId, setActiveColorId] = useState(images[0].id);
   const [activeColor, setActiveColor] = useState(images[0].color);
-
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
   const colors = [...new Set(images.map(({ color }) => color))];
+
+  useEffect(() => {
+    setActiveColor(images[0].color);
+    setActiveSize(sizes[0]);
+  }, [images, sizes]);
 
   return (
     <div className={styles.container}>
@@ -25,15 +28,14 @@ const ProductContent = ({ product: { name, price, material, images, sizes, revie
       <div className={styles.colorList}>
         {colors
           .map((item) => images.find(({ color }) => color === item))
-          .map(({ id: colorId, color, url }) => (
+          .map(({ color, url }) => (
             <button
               onClick={() => {
-                setActiveColorId(colorId);
                 setActiveColor(color);
               }}
               type='button'
-              key={colorId}
-              className={[styles.item, colorId === activeColorId ? styles.active : styles.inactive].join(' ')}
+              key={color}
+              className={[styles.item, color === activeColor ? styles.active : styles.inactive].join(' ')}
             >
               <img src={`https://training.cleverland.by/shop${url}`} alt={color} />
             </button>
@@ -64,7 +66,7 @@ const ProductContent = ({ product: { name, price, material, images, sizes, revie
         price={price}
         color={activeColor}
         size={activeSize}
-        imgUrl={images.find(({ color }) => color === activeColor).url}
+        imgUrl={() => images.find(({ color }) => color === activeColor).url}
       />
       <div className={styles.description}>
         <hr />

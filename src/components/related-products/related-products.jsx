@@ -7,7 +7,7 @@ import { Navigation } from 'swiper';
 
 import ProductCard from '../product-card';
 
-import { RELATED_PRODUCTS } from '../../constants/product';
+import { PRODUCTS } from '../../constants/products';
 
 import swipePrev from '../../images/product/swipe-prev.svg';
 import swipeNext from '../../images/product/swipe-next.svg';
@@ -19,12 +19,15 @@ import './swiper.scss';
 
 import styles from './related-products.module.scss';
 
-const RelatedProducts = () => {
-  const relatedProducts = RELATED_PRODUCTS.map((card) => (
-    <SwiperSlide key={card.id}>
-      <ProductCard card={card} productType={card.category} />
-    </SwiperSlide>
-  ));
+const RelatedProducts = ({ product, productType }) => {
+  const relatedProducts = PRODUCTS[productType]
+    .filter(({ id }) => id !== product.id)
+    .map((card) => (
+      <SwiperSlide key={card.id}>
+        <ProductCard card={card} productType={card.category} />
+      </SwiperSlide>
+    ));
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>

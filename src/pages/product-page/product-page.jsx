@@ -21,7 +21,7 @@ const ProductPage = ({ product, productType }) => {
             <ProductSlider product={product} />
             <ProductContent product={product} />
           </div>
-          <RelatedProducts />
+          <RelatedProducts product={product} productType={productType} />
         </div>
         <Footer />
       </div>
