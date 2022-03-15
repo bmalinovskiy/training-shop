@@ -14,6 +14,8 @@ const ProductContent = ({ product: { name, price, material, images, sizes, revie
 
   const colors = [...new Set(images.map(({ color }) => color))];
 
+  const activeImageUrl = images.find(({ color }) => color === activeColor)?.url;
+
   useEffect(() => {
     setActiveColor(images[0].color);
     setActiveSize(sizes[0]);
@@ -61,13 +63,7 @@ const ProductContent = ({ product: { name, price, material, images, sizes, revie
         <img src={clothesHanger} alt='Clothes hanger' />
         <span className={styles.text}>Size guide</span>
       </button>
-      <PaymentInfo
-        name={name}
-        price={price}
-        color={activeColor}
-        size={activeSize}
-        imgUrl={() => images.find(({ color }) => color === activeColor).url}
-      />
+      <PaymentInfo name={name} price={price} color={activeColor} size={activeSize} imgUrl={activeImageUrl} />
       <div className={styles.description}>
         <hr />
         <span className={styles.title}>DESCRIPTION</span>

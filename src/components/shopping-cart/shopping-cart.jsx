@@ -87,7 +87,7 @@ const ShoppingCart = () => {
           {items.map(({ id, name, quantity, price, color, size, imgUrl }) => (
             <div key={id}>
               <div className={styles.item} data-test-id='cart-card'>
-                <img src={`https://training.cleverland.by/shop${imgUrl}`} alt={name} />
+                <img src={`https://training.cleverland.by/shop${imgUrl}`} alt={name} className={styles.itemImg} />
                 <div className={styles.details}>
                   <span className={styles.name}>{name}</span>
                   <span className={styles.features}>{`${color}, ${size}`}</span>
