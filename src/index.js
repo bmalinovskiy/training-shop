@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from './components/app';
+import ErrorBoundary from './components/error-boundary';
 
 import store from './configure-store';
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   // eslint-disable-next-line react/jsx-filename-extension
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
