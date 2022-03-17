@@ -8,6 +8,9 @@
 
     .header {
       @include flexbox-between;
+      @include mobile {
+        padding-left: 8px;
+      }
 
       .title {
         font: 600 22px 'Spartan', sans-serif;

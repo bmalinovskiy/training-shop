@@ -48,7 +48,7 @@ const PaymentInfo = ({ price, discount, name, color, size, imgUrl }) => {
       <div className={styles.actions}>
         <span className={styles.price}>{discount ? `$ ${discountPrice}` : `$ ${price.toFixed(2)}`}</span>
         <button type='button' className={styles.addProduct} onClick={handleItemAction} data-test-id='add-cart-button'>
-          {isItemInCart ? 'REMOVE TO CARD' : 'ADD TO CARD'}
+          {isItemInCart ? 'REMOVE FROM CART' : 'ADD TO CART'}
         </button>
         <img src={heartIcon} alt='Favourite' className={styles.favouriteIcon} />
         <img src={scaleIcon} alt='Scale' className={styles.scaleIcon} />

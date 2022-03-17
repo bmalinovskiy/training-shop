@@ -3,6 +3,9 @@
 
 .wrapper {
   background-color:  #F8F8F8;
+  @include mobile {
+    padding: 0 8px;
+  }
 
   .container {
     display: flex;

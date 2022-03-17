@@ -1,12 +1,17 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
-.content {
-  display: flex;
-  max-width: $containerWidth;
-  margin: 32px auto 0;
-
-  @include desktop {
-    flex-direction: column;
+.product {
+  .content {
+    display: flex;
+    max-width: $containerWidth;
+    margin: 32px auto 0;
+    @include mobile {
+      padding: 0 8px;
+    }
+  
+    @include desktop {
+      flex-direction: column;
+    }
   }
 }
