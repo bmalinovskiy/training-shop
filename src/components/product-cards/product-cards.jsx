@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ProductCard from '../product-card';
 
-import { PRODUCTS } from '../../constants/products';
-
 import { setItemsFound } from '../../store/state/filter/actions';
+import { getProductsRequest } from '../../store/state/products/actions';
 
-import { filterSelector } from '../../selectors';
+import { filterSelector, productsSelector } from '../../selectors';
 
 import styles from './product-cards.module.scss';
 
@@ -15,11 +14,18 @@ const ProductCards = ({ productType, particular }) => {
   const dispatch = useDispatch();
 
   const { colorFilters, sizeFilters, brandFilters, priceFilters } = useSelector(filterSelector);
+  const { products } = useSelector(productsSelector);
 
   const priceRanges = priceFilters.map((price) => price.replace(/[^0-9,-]/g, '').split('-'));
   const isAnyFilter = colorFilters.length || sizeFilters.length || brandFilters.length || priceFilters.length;
 
-  const productCards = PRODUCTS[productType]
+  useEffect(() => {
+    if (!products[productType].length) {
+      dispatch(getProductsRequest());
+    }
+  }, [dispatch, productType, products]);
+
+  const productCards = products[productType]
     .filter(
       ({ particulars, images, sizes, brand, price, discount }) =>
         (particular ? particulars[particular] : particulars) &&

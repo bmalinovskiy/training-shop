@@ -1,8 +1,6 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PRODUCTS } from '../../constants/products';
-
 import {
   changeColorFilter,
   changeSizeFilter,
@@ -11,20 +9,27 @@ import {
   resetFilters,
 } from '../../store/state/filter/actions';
 
-import { filterSelector } from '../../selectors';
+import { filterSelector, productsSelector } from '../../selectors';
 
 import styles from './filter.module.scss';
 
 const Filter = ({ productType }) => {
   const dispatch = useDispatch();
   const { colorFilters, sizeFilters, brandFilters, priceFilters, itemsFound } = useSelector(filterSelector);
+  const { products } = useSelector(productsSelector);
 
   const colorList = useMemo(
-    () => [...new Set(PRODUCTS[productType].map(({ images }) => images.map(({ color }) => color)).flat())],
-    [productType]
+    () => [...new Set(products[productType].map(({ images }) => images.map(({ color }) => color)).flat())],
+    [productType, products]
   );
-  const sizeList = useMemo(() => [...new Set(PRODUCTS[productType].map((card) => card.sizes).flat())], [productType]);
-  const brandList = useMemo(() => [...new Set(PRODUCTS[productType].map(({ brand }) => brand))], [productType]);
+  const sizeList = useMemo(
+    () => [...new Set(products[productType].map((card) => card.sizes).flat())],
+    [productType, products]
+  );
+  const brandList = useMemo(
+    () => [...new Set(products[productType].map(({ brand }) => brand))],
+    [productType, products]
+  );
   const priceList = useMemo(() => ['$500+', '$200-500', '$100-200', '$50-100', '$0-50'], []);
 
   const handleChange = useCallback(
