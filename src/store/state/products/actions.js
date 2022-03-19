@@ -5,6 +5,7 @@ import {
   GET_PRODUCT_BY_ID_REQUEST,
   GET_PRODUCT_BY_ID_SUCCESS,
   GET_PRODUCT_BY_ID_FAILURE,
+  SET_CURRENT_PRODUCT,
 } from './types';
 
 export const getProductsRequest = (payload) => ({
@@ -34,5 +35,10 @@ export const getProductByIdSuccess = (payload) => ({
 
 export const getProductByIdFailure = (payload) => ({
   type: GET_PRODUCT_BY_ID_FAILURE,
+  payload,
+});
+
+export const setCurrentProduct = (payload) => ({
+  type: SET_CURRENT_PRODUCT,
   payload,
 });

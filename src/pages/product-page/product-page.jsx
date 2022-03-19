@@ -18,12 +18,8 @@ import styles from './product-page.module.scss';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
-  const { products, currentProduct, isLoading } = useSelector(productsSelector);
+  const { products, currentProduct } = useSelector(productsSelector);
   const { id, category } = useParams();
-
-  const product = products[category].length
-    ? products[category].find(({ id: productId }) => id === productId)
-    : currentProduct;
 
   useEffect(() => {
     if (!products[category].length) {
@@ -33,16 +29,16 @@ const ProductPage = () => {
 
   return (
     <>
-      {!isLoading && (
+      {Object.keys(currentProduct).length > 0 && (
         <div className='wrapper'>
           <Header />
           <div className={styles.product} data-test-id={`product-page-${category}`}>
-            <ProductHeader product={product} />
+            <ProductHeader product={currentProduct} />
             <div className={styles.content}>
-              <ProductSlider product={product} />
-              <ProductContent product={product} />
+              <ProductSlider product={currentProduct} />
+              <ProductContent product={currentProduct} />
             </div>
-            <RelatedProducts product={product} productType={category} />
+            <RelatedProducts product={currentProduct} productType={category} />
           </div>
           <Footer />
         </div>

@@ -5,6 +5,7 @@ import {
   GET_PRODUCT_BY_ID_REQUEST,
   GET_PRODUCT_BY_ID_SUCCESS,
   GET_PRODUCT_BY_ID_FAILURE,
+  SET_CURRENT_PRODUCT,
 } from './types';
 
 const initialState = {
@@ -66,6 +67,14 @@ export default (state = initialState, { type, payload }) => {
         error: payload.error,
         currentProduct: {},
       };
+    case SET_CURRENT_PRODUCT: {
+      const { currentProduct } = payload;
+
+      return {
+        ...state,
+        currentProduct,
+      };
+    }
     default:
       return state;
   }
