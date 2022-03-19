@@ -18,7 +18,7 @@ import styles from './product-page.module.scss';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
-  const { products, currentProduct } = useSelector(productsSelector);
+  const { products, currentProduct, isLoading } = useSelector(productsSelector);
   const { id, category } = useParams();
 
   const product = products[category].length
@@ -33,7 +33,7 @@ const ProductPage = () => {
 
   return (
     <>
-      {Object.keys(currentProduct).length > 0 && (
+      {!isLoading && (
         <div className='wrapper'>
           <Header />
           <div className={styles.product} data-test-id={`product-page-${category}`}>
