@@ -13,7 +13,7 @@ const LatestFromBlog = () => {
         <div className={styles.header}>
           <span className={styles.title}>LATEST FROM BLOG</span>
           <Link to='/blog'>
-            <span className={styles.blogLink}>SEE ALL</span>
+            <span>SEE ALL</span>
           </Link>
         </div>
         <div className={styles.articles}>

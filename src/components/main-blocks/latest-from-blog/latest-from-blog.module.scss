@@ -17,9 +17,13 @@
         font: 600 22px 'Spartan', sans-serif;
       }
     
-      .blogLink {
+      a {
         font: 500 12px 'Spartan', sans-serif;
         color: $darkGrey;
+
+        &:hover {
+          color: $mainDark;
+        }
       }
     }
   

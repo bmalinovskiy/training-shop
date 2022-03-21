@@ -26,7 +26,7 @@ const App = () => {
   }, [dispatch, error, products]);
 
   return (
-    <BlockUi blocking={isLoading} keepInView>
+    <BlockUi blocking={isLoading} data-test-id='loader' keepInView>
       <HashRouter>
         <Routes>
           <Route path={ROUTES.root} element={<MainPage />} />

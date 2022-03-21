@@ -39,9 +39,11 @@
       .link {
         font: 400 12px 'Spartan', sans-serif;
         margin: 7px 0;
-
-        &:hover {
-          font-weight: 500;
+        span {
+          &:hover {
+            display: inline;
+            border-bottom: 3px solid #f9dd94;
+          }
         }
       }
   
@@ -60,7 +62,8 @@
         }
   
         .underlineItem {
-          text-decoration: underline;
+          display: inline;
+          border-bottom: 1px solid #000;
         }
       }
     }

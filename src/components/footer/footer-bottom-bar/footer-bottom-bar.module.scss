@@ -42,9 +42,8 @@
     }
   
     .link {
-      text-decoration: underline;
-
-      @include flexbox-center;
+      display: inline;
+      border-bottom: 1px solid #000;
     }
   }
 }
