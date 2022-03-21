@@ -1,14 +1,12 @@
 /* eslint-disable import/no-unresolved */
 // eslint swiper bug
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import ProductCard from '../product-card';
-
-import { getProductsRequest } from '../../store/state/products/actions';
 
 import { productsSelector } from '../../selectors';
 
@@ -23,7 +21,6 @@ import './swiper.scss';
 import styles from './related-products.module.scss';
 
 const RelatedProducts = ({ product, productType }) => {
-  const dispatch = useDispatch();
   const { products } = useSelector(productsSelector);
   const relatedProducts = products[productType]
     .filter(({ id }) => id !== product.id)
@@ -32,12 +29,6 @@ const RelatedProducts = ({ product, productType }) => {
         <ProductCard card={card} productType={card.category} />
       </SwiperSlide>
     ));
-
-  useEffect(() => {
-    if (!products[productType].length) {
-      dispatch(getProductsRequest());
-    }
-  }, [dispatch, productType, products]);
 
   return (
     <div className={styles.wrapper}>

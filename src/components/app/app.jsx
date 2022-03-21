@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import BlockUi from 'react-block-ui';
@@ -13,18 +13,26 @@ import { productsSelector } from '../../selectors';
 import ROUTES from '../../constants/routes';
 
 import 'react-block-ui/style.css';
+import { getProductsRequest } from '../../store/state/products/actions';
 
 const App = () => {
-  const { isLoading } = useSelector(productsSelector);
+  const dispatch = useDispatch();
+  const { products, isLoading, error } = useSelector(productsSelector);
+
+  useEffect(() => {
+    if (!products.men.length && !products.women.length && !error) {
+      dispatch(getProductsRequest());
+    }
+  }, [dispatch, error, products]);
 
   return (
-    <BlockUi blocking={isLoading}>
+    <BlockUi blocking={isLoading} keepInView>
       <HashRouter>
         <Routes>
           <Route path={ROUTES.root} element={<MainPage />} />
           <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
           <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
-          <Route path='/:category/:id' element={<ProductPage />} />
+          <Route path={ROUTES.product} element={<ProductPage />} />
         </Routes>
       </HashRouter>
     </BlockUi>

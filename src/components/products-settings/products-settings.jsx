@@ -25,7 +25,9 @@ const ProductsSettings = ({ productType }) => {
     dispatch(setFilterOpen(!isFilterOpen));
   };
 
-  useEffect(() => dispatch(setFilterOpen(false)), [dispatch, productType]);
+  useEffect(() => {
+    dispatch(setFilterOpen(false));
+  }, [dispatch, productType]);
 
   return (
     <>

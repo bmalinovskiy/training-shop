@@ -6,6 +6,9 @@
   @include desktop {
     position: relative;
   }
+  @include tablet {
+    padding: 0 8px;
+  }
 
   .container {
     display: flex;

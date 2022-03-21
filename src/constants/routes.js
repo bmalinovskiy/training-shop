@@ -1,5 +1,6 @@
 const ROUTES = {
   root: '/',
+  product: '/:category/:id',
   aboutUs: '/about',
   women: '/women',
   men: '/men',

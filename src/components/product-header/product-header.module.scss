@@ -3,7 +3,7 @@
 
 .wrapper {
   background-color:  #F8F8F8;
-  @include mobile {
+  @include tablet {
     padding: 0 8px;
   }
 

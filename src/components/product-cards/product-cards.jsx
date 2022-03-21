@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ProductCard from '../product-card';
 
 import { setItemsFound } from '../../store/state/filter/actions';
-import { getProductsRequest } from '../../store/state/products/actions';
 
 import { filterSelector, productsSelector } from '../../selectors';
 
@@ -12,18 +11,12 @@ import styles from './product-cards.module.scss';
 
 const ProductCards = ({ productType, particular }) => {
   const dispatch = useDispatch();
+  const { products, isLoading } = useSelector(productsSelector);
 
-  const { colorFilters, sizeFilters, brandFilters, priceFilters } = useSelector(filterSelector);
-  const { products } = useSelector(productsSelector);
+  const { colorFilters, sizeFilters, brandFilters, priceFilters, isFilterOpen } = useSelector(filterSelector);
 
   const priceRanges = priceFilters.map((price) => price.replace(/[^0-9,-]/g, '').split('-'));
   const isAnyFilter = colorFilters.length || sizeFilters.length || brandFilters.length || priceFilters.length;
-
-  useEffect(() => {
-    if (!products[productType].length) {
-      dispatch(getProductsRequest());
-    }
-  }, [dispatch, productType, products]);
 
   const productCards = products[productType]
     .filter(
@@ -45,14 +38,20 @@ const ProductCards = ({ productType, particular }) => {
     )
     .map((card) => <ProductCard key={card.id} card={card} productType={productType} />);
 
-  useEffect(
+  const setItems = useCallback(
     () => (isAnyFilter ? dispatch(setItemsFound(productCards.length)) : dispatch(setItemsFound(null))),
     [dispatch, isAnyFilter, productCards.length]
   );
 
+  useEffect(() => {
+    if (isFilterOpen) {
+      setItems();
+    }
+  }, [dispatch, isFilterOpen, setItems]);
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>{productCards}</div>
+      <div className={styles.container}>{!isLoading && productCards}</div>
     </div>
   );
 };

@@ -6,7 +6,7 @@
     display: flex;
     max-width: $containerWidth;
     margin: 32px auto 0;
-    @include mobile {
+    @include tablet {
       padding: 0 8px;
     }
   
