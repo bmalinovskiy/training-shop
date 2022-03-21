@@ -7,6 +7,7 @@ import BlockUi from 'react-block-ui';
 import MainPage from '../../pages/main-page';
 import ProductsPage from '../../pages/products-page';
 import ProductPage from '../../pages/product-page';
+import NotFoundPage from '../../pages/not-found-page';
 
 import { productsSelector } from '../../selectors';
 
@@ -20,7 +21,7 @@ const App = () => {
   const { products, isLoading, error } = useSelector(productsSelector);
 
   useEffect(() => {
-    if (!products.men.length && !products.women.length && !error) {
+    if ((!products.men.length || !products.women.length) && !error) {
       dispatch(getProductsRequest());
     }
   }, [dispatch, error, products]);
@@ -33,6 +34,7 @@ const App = () => {
           <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
           <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
           <Route path={ROUTES.product} element={<ProductPage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </HashRouter>
     </BlockUi>

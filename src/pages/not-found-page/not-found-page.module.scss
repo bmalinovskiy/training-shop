@@ -1,0 +1,10 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.wrapper {
+  @include flexbox-center;
+  width: 100vh;
+  height: 100vh;
+  margin: auto;
+  font: 700 32px 'Spartan', sans-serif;
+}
