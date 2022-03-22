@@ -16,6 +16,7 @@ const initialState = {
   },
   currentProduct: {},
   error: null,
+  productError: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -56,7 +57,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        error: null,
+        productError: null,
         currentProduct,
       };
     }
@@ -64,7 +65,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        error: payload.error,
+        productError: payload.error,
         currentProduct: {},
       };
     case SET_CURRENT_PRODUCT: {

@@ -29,9 +29,9 @@ const ProductPage = () => {
 
   return (
     <>
-      {Object.keys(currentProduct).length > 0 && (
-        <div className='wrapper'>
-          <Header />
+      <div className='wrapper'>
+        <Header />
+        {Object.keys(currentProduct).length > 0 && (
           <div className={styles.product} data-test-id={`product-page-${category}`}>
             <ProductHeader product={currentProduct} />
             <div className={styles.content}>
@@ -40,9 +40,9 @@ const ProductPage = () => {
             </div>
             <RelatedProducts product={currentProduct} productType={category} />
           </div>
-          <Footer />
-        </div>
-      )}
+        )}
+        <Footer />
+      </div>
       <ShoppingCart />
     </>
   );

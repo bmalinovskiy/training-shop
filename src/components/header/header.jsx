@@ -10,12 +10,12 @@ import { productsSelector } from '../../selectors';
 import styles from './header.module.scss';
 
 const Header = () => {
-  const { error } = useSelector(productsSelector);
+  const { error, productError } = useSelector(productsSelector);
   return (
     <header className={styles.wrapper} data-test-id='header'>
       <HeaderTopBar />
       <HeaderMenuBar />
-      {error && <Error />}
+      {(error || productError) && <Error />}
     </header>
   );
 };

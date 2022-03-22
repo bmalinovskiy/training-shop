@@ -4,17 +4,19 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import BlockUi from 'react-block-ui';
 
+import Loader from '../loader';
+
 import MainPage from '../../pages/main-page';
 import ProductsPage from '../../pages/products-page';
 import ProductPage from '../../pages/product-page';
 import NotFoundPage from '../../pages/not-found-page';
 
 import { productsSelector } from '../../selectors';
+import { getProductsRequest } from '../../store/state/products/actions';
 
 import ROUTES from '../../constants/routes';
 
 import 'react-block-ui/style.css';
-import { getProductsRequest } from '../../store/state/products/actions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const App = () => {
   }, [dispatch, error, products]);
 
   return (
-    <BlockUi blocking={isLoading} data-test-id='loader' keepInView>
+    <BlockUi blocking={isLoading} loader={<Loader />} keepInView>
       <HashRouter>
         <Routes>
           <Route path={ROUTES.root} element={<MainPage />} />
