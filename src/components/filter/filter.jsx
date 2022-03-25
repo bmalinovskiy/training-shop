@@ -33,17 +33,10 @@ const Filter = ({ productType }) => {
   const priceList = useMemo(() => ['$500+', '$200-500', '$100-200', '$50-100', '$0-50'], []);
 
   const filterList = [
-    { name: 'color', items: colorList },
-    { name: 'size', items: sizeList },
-    { name: 'brand', items: brandList },
-    { name: 'price', items: priceList },
-  ];
-
-  const itemsFoundList = [
-    { name: 'color', items: colorFilters },
-    { name: 'size', items: sizeFilters },
-    { name: 'brand', items: brandFilters },
-    { name: 'price', items: priceFilters },
+    { name: 'color', items: { list: colorList, filters: colorFilters } },
+    { name: 'size', items: { list: sizeList, filters: sizeFilters } },
+    { name: 'brand', items: { list: brandList, filters: brandFilters } },
+    { name: 'price', items: { list: priceList, filters: priceFilters } },
   ];
 
   const handleChangeFilter = useCallback(
@@ -75,11 +68,11 @@ const Filter = ({ productType }) => {
   return (
     <>
       <div className={styles.filterList} data-test-id={`filters-${productType}`}>
-        {filterList.map(({ name, items }) => (
+        {filterList.map(({ name, items: { list } }) => (
           <div className={styles.item} key={name}>
             <span className={styles.title}>{name.toUpperCase()}</span>
             <div className={styles.list}>
-              {items.map((item) => (
+              {list.map((item) => (
                 <div key={item}>
                   <input
                     type='checkbox'
@@ -95,11 +88,13 @@ const Filter = ({ productType }) => {
       </div>
       {itemsFound !== null && (
         <div className={styles.itemsFoundList}>
-          <span className={styles.title}>{`${itemsFound} items found`}</span>
-          {itemsFoundList.map(({ name, items }) => (
+          <span className={styles.title}>{itemsFound} items found</span>
+          {filterList.map(({ name, items: { filters } }) => (
             <span key={name}>
-              {items.map((item) => (
-                <span key={item} className={styles.item}>{`${name}: ${item}`}</span>
+              {filters.map((item) => (
+                <span key={item} className={styles.item}>
+                  {name}: {item}
+                </span>
               ))}
             </span>
           ))}
