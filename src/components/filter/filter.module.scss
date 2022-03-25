@@ -41,11 +41,11 @@
   }
 }
 
-.appliedFilters {
+.itemsFoundList {
   max-width: $containerWidth;
   margin: 0 auto 32px;
 
-  .itemsFound {
+  .title {
     font: 700 14px 'Spartan', sans-serif;
     margin-right: 16px;
   }
