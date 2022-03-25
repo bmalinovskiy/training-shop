@@ -23,8 +23,8 @@ const ShoppingCart = () => {
 
   const ShoppingCartClass = classNames({ [styles.container]: true, [styles.open]: isShoppingCartOpen });
 
-  const node = useRef();
-  useOnClickOutside(node, () => {
+  const ref = useRef();
+  useOnClickOutside(ref, () => {
     if (isShoppingCartOpen) {
       dispatch(setShoppingCartOpen(false));
     }
@@ -53,7 +53,7 @@ const ShoppingCart = () => {
   }, [isShoppingCartOpen]);
 
   return (
-    <div className={ShoppingCartClass} ref={node} data-test-id='cart'>
+    <div className={ShoppingCartClass} ref={ref} data-test-id='cart'>
       <div className={styles.header}>
         <span>SHOPPING CART</span>
         <button type='button' onClick={handleCartClose}>

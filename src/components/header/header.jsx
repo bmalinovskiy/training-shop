@@ -11,6 +11,7 @@ import styles from './header.module.scss';
 
 const Header = () => {
   const { error, productError } = useSelector(productsSelector);
+
   return (
     <header className={styles.wrapper} data-test-id='header'>
       <HeaderTopBar />

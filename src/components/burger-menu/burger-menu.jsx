@@ -16,8 +16,8 @@ const BurgerMenu = () => {
 
   const BurgerMenuClass = classNames({ [styles.container]: true, [styles.open]: isMenuOpen });
 
-  const node = useRef();
-  useOnClickOutside(node, () => {
+  const ref = useRef();
+  useOnClickOutside(ref, () => {
     if (isMenuOpen) {
       toggleMenuMode();
     }
@@ -30,7 +30,7 @@ const BurgerMenu = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className={BurgerMenuClass} ref={node} data-test-id='burger-menu'>
+    <nav className={BurgerMenuClass} ref={ref} data-test-id='burger-menu'>
       {MENU.map(({ id, path, name }) => (
         <Link key={id} to={path} className={styles.link}>
           <span>{name}</span>

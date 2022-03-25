@@ -8,14 +8,14 @@ import LatestFromBlog from './latest-from-blog';
 
 const MainBlocks = () => {
   return (
-    <>
+    <main>
       <TopSection />
       <Products title={`WOMEN'S`} productType='women' />
       <Products title={`MEN'S`} productType='men' />
       <Sale />
       <SpecialOffer />
       <LatestFromBlog />
-    </>
+    </main>
   );
 };
 
