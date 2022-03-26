@@ -10,8 +10,9 @@ export const changeFilter = (payload) => ({
   payload,
 });
 
-export const resetFilters = () => ({
+export const resetFilters = (payload) => ({
   type: RESET_FILTERS,
+  payload,
 });
 
 export const setItemsFound = (payload) => ({

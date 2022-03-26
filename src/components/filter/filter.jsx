@@ -42,7 +42,7 @@ const Filter = ({ productType }) => {
 
   useEffect(() => {
     dispatch(resetFilters());
-  }, [dispatch]);
+  }, [dispatch, productType]);
 
   return (
     <>

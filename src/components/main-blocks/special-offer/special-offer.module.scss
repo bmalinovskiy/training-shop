@@ -72,24 +72,44 @@
           color: #E91E63;
         }
       }
-  
-      input {
-        background: #F8F8F8;
-        color: #9C9C9C;
-        text-align: center;
-        border: 0;
-        margin-top: 32px;
-        padding: 15px 54px;
-        outline: none;
-        font: 500 16px 'Spartan', sans-serif;
-      }
-  
-      button {
-        background-color: $mainDark;
-        color: #fff;
-        margin-top: 24px;
-        padding: 20px 116px;
-        font: 500 16px 'Spartan', sans-serif;
+
+      form {
+        @include flexbox-center;
+        flex-direction: column;
+        input {
+          width: 100%;
+          background: #F8F8F8;
+          color: #9C9C9C;
+          text-align: center;
+          border: 0;
+          margin-top: 32px;
+          padding: 16px 0;
+          outline: none;
+          font: 500 16px 'Spartan', sans-serif;
+        }
+
+        button {
+          background-color: $mainDark;
+          color: #fff;
+          margin-top: 24px;
+          padding: 20px 116px;
+          font: 500 16px 'Spartan', sans-serif;
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        .subscribeError {
+          margin-top: 12px;
+          color: red;
+        }
+
+        .subscribeSuccess {
+          margin-top: 12px;
+          color: green;
+        }
       }
     }
   }

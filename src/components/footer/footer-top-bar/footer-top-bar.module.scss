@@ -26,9 +26,10 @@
       }
     }
   
-    .form {
+    form {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       
       @include desktop {
         margin: 8px 0;
@@ -50,10 +51,26 @@
       }
   
       button {
+        height: 35px;
         border: 1px solid #fff;
         margin-left: 12px;
         padding: 0 27px;
         font: 600 12px 'Spartan', sans-serif;
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
+
+      .subscribeError {
+        margin-left: 12px;
+        color: red;
+      }
+
+      .subscribeSuccess {
+        margin-left: 12px;
+        color: green;
       }
     }
   }
