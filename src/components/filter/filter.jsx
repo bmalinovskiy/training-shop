@@ -1,13 +1,7 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  changeColorFilter,
-  changeSizeFilter,
-  changeBrandFilter,
-  changePriceFilter,
-  resetFilters,
-} from '../../store/state/filter/actions';
+import { changeFilter, resetFilters } from '../../store/state/filter/actions';
 
 import { filterSelector, productsSelector } from '../../selectors';
 
@@ -33,30 +27,15 @@ const Filter = ({ productType }) => {
   const priceList = useMemo(() => ['$500+', '$200-500', '$100-200', '$50-100', '$0-50'], []);
 
   const filterList = [
-    { name: 'color', items: { list: colorList, filters: colorFilters } },
-    { name: 'size', items: { list: sizeList, filters: sizeFilters } },
-    { name: 'brand', items: { list: brandList, filters: brandFilters } },
-    { name: 'price', items: { list: priceList, filters: priceFilters } },
+    { name: 'colorFilters', title: 'COLOR', items: { list: colorList, filters: colorFilters } },
+    { name: 'sizeFilters', title: 'SIZE', items: { list: sizeList, filters: sizeFilters } },
+    { name: 'brandFilters', title: 'BRAND', items: { list: brandList, filters: brandFilters } },
+    { name: 'priceFilters', title: 'PRICE', items: { list: priceList, filters: priceFilters } },
   ];
 
   const handleChangeFilter = useCallback(
-    (name, value) => {
-      switch (name) {
-        case 'color':
-          dispatch(changeColorFilter({ value }));
-          break;
-        case 'size':
-          dispatch(changeSizeFilter({ value }));
-          break;
-        case 'brand':
-          dispatch(changeBrandFilter({ value }));
-          break;
-        case 'price':
-          dispatch(changePriceFilter({ value }));
-          break;
-        default:
-          break;
-      }
+    (filterName, value) => {
+      dispatch(changeFilter({ filterName, value }));
     },
     [dispatch]
   );
@@ -68,9 +47,9 @@ const Filter = ({ productType }) => {
   return (
     <>
       <div className={styles.filterList} data-test-id={`filters-${productType}`}>
-        {filterList.map(({ name, items: { list } }) => (
+        {filterList.map(({ name, title, items: { list } }) => (
           <div className={styles.item} key={name}>
-            <span className={styles.title}>{name.toUpperCase()}</span>
+            <span className={styles.title}>{title}</span>
             <div className={styles.list}>
               {list.map((item) => (
                 <div key={item}>
