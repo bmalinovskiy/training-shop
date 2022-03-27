@@ -9,9 +9,11 @@ import {
 } from './types';
 
 const initialState = {
-  responce: null,
+  emailResponce: null,
+  reviewResponce: null,
   isLoading: false,
-  error: null,
+  emailError: null,
+  reviewError: null,
   isReviewModalOpen: false,
 };
 
@@ -27,9 +29,9 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        responce,
+        emailResponce: responce,
         isLoading: false,
-        error: null,
+        emailError: null,
       };
     }
     case SEND_EMAIL_FAILURE: {
@@ -38,8 +40,8 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        responce,
-        error,
+        emailResponce: responce,
+        emailError: error,
       };
     }
     case SET_REVIEW_MODAL_OPEN: {
@@ -60,9 +62,9 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        responce,
+        reviewResponce: responce,
         isLoading: false,
-        error: null,
+        reviewError: null,
       };
     }
     case SEND_REVIEW_FAILURE: {
@@ -71,7 +73,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        error,
+        reviewError: error,
       };
     }
     default:

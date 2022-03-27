@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
@@ -11,6 +12,7 @@ import { formSelector } from '../../selectors/form';
 import { productsSelector } from '../../selectors/products';
 
 import { sendReviewRequest, setReviewModalOpen } from '../../store/state/form/actions';
+import { getProductsRequest } from '../../store/state/products/actions';
 
 import useOnClickOutside from '../../hooks/on-click-outside';
 
@@ -21,11 +23,10 @@ import styles from './reviews.module.scss';
 const Reviews = ({ reviews }) => {
   const dispatch = useDispatch();
 
-  const { isReviewModalOpen, isLoading } = useSelector(formSelector);
-  const {
-    products,
-    currentProduct: { id: productId },
-  } = useSelector(productsSelector);
+  const { id: productId } = useParams();
+
+  const { isReviewModalOpen, isLoading, reviewError, reviewResponce } = useSelector(formSelector);
+  const { products } = useSelector(productsSelector);
 
   const reviewModalClass = classNames({ [styles.modal]: true, [styles.open]: isReviewModalOpen });
 
@@ -47,10 +48,6 @@ const Reviews = ({ reviews }) => {
     reset();
   };
 
-  useEffect(() => {
-    dispatch(setReviewModalOpen(false));
-  }, [dispatch, products]);
-
   const handleAddReview = () => {
     dispatch(setReviewModalOpen(true));
   };
@@ -67,6 +64,16 @@ const Reviews = ({ reviews }) => {
       document.body.style.overflow = 'hidden';
     } else document.body.style.overflow = 'auto';
   }, [isReviewModalOpen]);
+
+  useEffect(() => {
+    if (reviewResponce) {
+      dispatch(getProductsRequest());
+    }
+  }, [dispatch, reviewResponce]);
+
+  useEffect(() => {
+    dispatch(setReviewModalOpen(false));
+  }, [dispatch, products]);
 
   return (
     <>
@@ -105,7 +112,6 @@ const Reviews = ({ reviews }) => {
             <input
               {...register('name', {
                 required: 'Введите имя',
-                pattern: { value: /^[a-zA-Z]+$/, message: 'Введите корректное имя' },
                 minLength: { value: 4, message: 'Минимум 4 символа' },
               })}
               placeholder='Имя'
@@ -113,6 +119,7 @@ const Reviews = ({ reviews }) => {
             {errors?.name && <span>{errors?.name?.message}</span>}
             <textarea {...register('review', { required: 'Введите отзыв' })} rows='12' placeholder='Комментарий' />
             {errors?.review && <span>{errors?.review?.message}</span>}
+            {reviewError && <span>Ошибка отправки отзыва</span>}
             <button type='submit' disabled={!isValid || isLoading}>
               Send
             </button>

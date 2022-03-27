@@ -1,12 +1,4 @@
-import {
-  GET_PRODUCTS_REQUEST,
-  GET_PRODUCTS_SUCCESS,
-  GET_PRODUCTS_FAILURE,
-  GET_PRODUCT_BY_ID_REQUEST,
-  GET_PRODUCT_BY_ID_SUCCESS,
-  GET_PRODUCT_BY_ID_FAILURE,
-  SET_CURRENT_PRODUCT,
-} from './types';
+import { GET_PRODUCTS_REQUEST, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE } from './types';
 
 const initialState = {
   isLoading: false,
@@ -14,9 +6,7 @@ const initialState = {
     men: [],
     women: [],
   },
-  currentProduct: {},
   error: null,
-  productError: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -46,36 +36,6 @@ export default (state = initialState, { type, payload }) => {
           women: [],
         },
       };
-    case GET_PRODUCT_BY_ID_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case GET_PRODUCT_BY_ID_SUCCESS: {
-      const { currentProduct } = payload;
-
-      return {
-        ...state,
-        isLoading: false,
-        productError: null,
-        currentProduct,
-      };
-    }
-    case GET_PRODUCT_BY_ID_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        productError: payload.error,
-        currentProduct: {},
-      };
-    case SET_CURRENT_PRODUCT: {
-      const { currentProduct } = payload;
-
-      return {
-        ...state,
-        currentProduct,
-      };
-    }
     default:
       return state;
   }

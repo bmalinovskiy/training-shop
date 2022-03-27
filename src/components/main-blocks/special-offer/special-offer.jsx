@@ -15,7 +15,7 @@ import styles from './special-offer.module.scss';
 const SpecialOffer = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, error, responce } = useSelector(formSelector);
+  const { isLoading, emailError, emailResponce } = useSelector(formSelector);
 
   const {
     register,
@@ -47,8 +47,8 @@ const SpecialOffer = () => {
               })}
               placeholder='Enter your email'
             />
-            {responce &&
-              (error ? (
+            {emailResponce &&
+              (emailError ? (
                 <span className={styles.subscribeError}>Ошибка при отправке почты</span>
               ) : (
                 <span className={styles.subscribeSuccess}>Почта успешно отправлена</span>

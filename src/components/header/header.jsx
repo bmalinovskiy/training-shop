@@ -10,13 +10,13 @@ import { productsSelector } from '../../selectors';
 import styles from './header.module.scss';
 
 const Header = () => {
-  const { error, productError } = useSelector(productsSelector);
+  const { error } = useSelector(productsSelector);
 
   return (
     <header className={styles.wrapper} data-test-id='header'>
       <HeaderTopBar />
       <HeaderMenuBar />
-      {(error || productError) && <Error />}
+      {error && <Error />}
     </header>
   );
 };

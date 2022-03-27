@@ -14,7 +14,7 @@ import styles from './footer-top-bar.module.scss';
 const FooterTopBar = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, error, responce } = useSelector(formSelector);
+  const { isLoading, reviewError, emailResponce } = useSelector(formSelector);
 
   const {
     register,
@@ -44,8 +44,8 @@ const FooterTopBar = () => {
           <button type='submit' disabled={!isValid || isLoading}>
             JOIN US
           </button>
-          {responce &&
-            (error ? (
+          {emailResponce &&
+            (reviewError ? (
               <span className={styles.subscribeError}>Ошибка при отправке почты</span>
             ) : (
               <span className={styles.subscribeSuccess}>Почта успешно отправлена</span>
