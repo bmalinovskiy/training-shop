@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import BlockUi from 'react-block-ui';
 
 import Loader from '../loader';
+import ScrollToTop from '../scroll-to-top';
 
 import MainPage from '../../pages/main-page';
 import ProductsPage from '../../pages/products-page';
@@ -32,13 +33,15 @@ const App = () => {
   return (
     <BlockUi blocking={isLoading} loader={<Loader />} keepInView>
       <HashRouter>
-        <Routes>
-          <Route path={ROUTES.root} element={<MainPage />} />
-          <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
-          <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
-          <Route path={ROUTES.product} element={<ProductPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route path={ROUTES.root} element={<MainPage />} />
+            <Route path={ROUTES.women} element={<ProductsPage productType='women' title='WOMEN' />} />
+            <Route path={ROUTES.men} element={<ProductsPage productType='men' title='MEN' />} />
+            <Route path={ROUTES.product} element={<ProductPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
+        </ScrollToTop>
       </HashRouter>
     </BlockUi>
   );
