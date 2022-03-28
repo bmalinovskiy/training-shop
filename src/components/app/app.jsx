@@ -25,6 +25,10 @@ const App = () => {
   const { products, isLoading, error } = useSelector(productsSelector);
 
   useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+  }, []);
+
+  useEffect(() => {
     if ((!products.men.length || !products.women.length) && !error) {
       dispatch(getProductsRequest());
     }
