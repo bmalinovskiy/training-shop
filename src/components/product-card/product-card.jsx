@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Rating from '../rating';
+import ReactStars from 'react-rating-stars-component';
 
 import styles from './product-card.module.scss';
 
@@ -28,7 +28,7 @@ const ProductCard = ({ card: { id, name, price, images, rating, discount }, prod
             </span>
           )}
         </div>
-        <Rating rating={rating} />
+        <ReactStars count={5} value={rating} size={14} color='#e7e7e7' activeColor='#f0cd85' edit={false} />
       </div>
     </Link>
   );

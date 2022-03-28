@@ -73,14 +73,11 @@
       .rating {
         @include flexbox-center;
 
-        .stars {
-          margin: 0 4px;
-        }
-
         .text {
           font: 500 11px 'Spartan', sans-serif;
           color: $darkGrey;
-          margin: 0 4px;
+          margin-left: 8px;
+          margin-top: 5px;
         }
       }
 

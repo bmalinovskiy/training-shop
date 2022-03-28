@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import ReactStars from 'react-rating-stars-component';
 
-import Rating from '../rating';
-
 import { formSelector } from '../../selectors/form';
 import { productsSelector } from '../../selectors/products';
 
@@ -81,8 +79,8 @@ const Reviews = ({ reviews, totalRating }) => {
         <span className={styles.title}>REVIEWS</span>
         <div className={styles.header}>
           <div className={styles.rating}>
-            <Rating rating={totalRating} />
-            <span className={styles.text}>{`${reviews.length} Reviews`}</span>
+            <ReactStars count={5} value={totalRating} size={14} color='#e7e7e7' activeColor='#f0cd85' edit={false} />
+            <span className={styles.ratingText}>{`${reviews.length} Reviews`}</span>
           </div>
           <button type='button' className={styles.addReview} onClick={handleAddReview} data-test-id='review-button'>
             <img src={annotationIcon} alt='Annotation' />
@@ -94,7 +92,7 @@ const Reviews = ({ reviews, totalRating }) => {
             <div key={id} className={styles.item}>
               <div className={styles.header}>
                 <span>{name}</span>
-                <Rating rating={rating} className={styles.rating} />
+                <ReactStars count={5} value={rating} size={14} color='#e7e7e7' activeColor='#f0cd85' edit={false} />
               </div>
               <span className={styles.text}>{text}</span>
             </div>
@@ -104,7 +102,14 @@ const Reviews = ({ reviews, totalRating }) => {
       <div className={reviewModalClass}>
         <div ref={ref} className={styles.modalContent} data-test-id='review-modal'>
           <h1>Write a review</h1>
-          <ReactStars count={5} value={1} size={24} isHalf={false} onChange={handleChangeRating} />
+          <ReactStars
+            count={5}
+            value={1}
+            size={24}
+            color='#e7e7e7'
+            activeColor='#f0cd85'
+            onChange={handleChangeRating}
+          />
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               {...register('name', {

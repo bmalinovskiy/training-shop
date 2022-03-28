@@ -14,8 +14,9 @@
     .rating {
       @include flexbox-center;
 
-      .text {
+      .ratingText {
         margin-left: 10px;
+        margin-top: 5px;
         font: 500 11px 'Spartan', sans-serif;
         color: $darkGrey;
       }
@@ -42,10 +43,6 @@
       .header {
         @include flexbox-between;
         font: 500 14px 'Spartan', sans-serif;
-
-        div {
-          display: flex;
-        }
       }
 
       .text {

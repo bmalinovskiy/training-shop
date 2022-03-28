@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Rating from '../rating';
+import ReactStars from 'react-rating-stars-component';
 
 import ROUTES from '../../constants/routes';
 
@@ -36,7 +36,7 @@ const ProductHeader = ({ product: { id, name, category, rating, reviews } }) => 
         <span className={styles.title}>{name}</span>
         <div className={styles.bottomLine}>
           <div className={styles.rating}>
-            <Rating rating={rating} className={styles.stars} />
+            <ReactStars count={5} value={rating} size={14} color='#e7e7e7' activeColor='#f0cd85' edit={false} />
             <span className={styles.text}>{`${reviews.length} Reviews`}</span>
           </div>
           <div className={styles.article}>
