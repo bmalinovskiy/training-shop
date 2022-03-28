@@ -46,6 +46,7 @@ const SpecialOffer = () => {
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               })}
               placeholder='Enter your email'
+              data-test-id='main-subscribe-mail-field'
             />
             {emailResponce &&
               (emailError ? (
@@ -53,7 +54,8 @@ const SpecialOffer = () => {
               ) : (
                 <span className={styles.subscribeSuccess}>Почта успешно отправлена</span>
               ))}
-            <button type='submit' disabled={!isValid || isLoading}>
+            <button type='submit' disabled={!isValid || isLoading} data-test-id='main-subscribe-mail-button'>
+              {isLoading && <div className={styles.loader} />}
               SUBSCRIBE
             </button>
           </form>

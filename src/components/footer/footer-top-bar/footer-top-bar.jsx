@@ -40,8 +40,10 @@ const FooterTopBar = () => {
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             })}
             placeholder='Enter your email'
+            data-test-id='footer-mail-field'
           />
-          <button type='submit' disabled={!isValid || isLoading}>
+          <button type='submit' disabled={!isValid || isLoading} data-test-id='footer-subscribe-mail-button'>
+            {isLoading && <div className={styles.loader} />}
             JOIN US
           </button>
           {emailResponce &&

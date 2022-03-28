@@ -20,7 +20,7 @@ import annotationIcon from '../../images/product/annotation.svg';
 
 import styles from './reviews.module.scss';
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, totalRating }) => {
   const dispatch = useDispatch();
 
   const { id: productId } = useParams();
@@ -81,10 +81,10 @@ const Reviews = ({ reviews }) => {
         <span className={styles.title}>REVIEWS</span>
         <div className={styles.header}>
           <div className={styles.rating}>
-            <Rating rating='5' />
+            <Rating rating={totalRating} />
             <span className={styles.text}>{`${reviews.length} Reviews`}</span>
           </div>
-          <button type='button' className={styles.addReview} onClick={handleAddReview}>
+          <button type='button' className={styles.addReview} onClick={handleAddReview} data-test-id='review-button'>
             <img src={annotationIcon} alt='Annotation' />
             <span className={styles.text}>Write a review</span>
           </button>
@@ -105,7 +105,7 @@ const Reviews = ({ reviews }) => {
         </div>
       </div>
       <div className={reviewModalClass}>
-        <div ref={ref} className={styles.modalContent}>
+        <div ref={ref} className={styles.modalContent} data-test-id='review-modal'>
           <h1>Write a review</h1>
           <ReactStars count={5} value={1} size={24} isHalf={false} onChange={handleChangeRating} />
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -115,12 +115,19 @@ const Reviews = ({ reviews }) => {
                 minLength: { value: 4, message: 'Минимум 4 символа' },
               })}
               placeholder='Имя'
+              data-test-id='review-name-field'
             />
             {errors?.name && <span>{errors?.name?.message}</span>}
-            <textarea {...register('review', { required: 'Введите отзыв' })} rows='12' placeholder='Комментарий' />
+            <textarea
+              {...register('review', { required: 'Введите отзыв' })}
+              rows='12'
+              placeholder='Комментарий'
+              data-test-id='review-text-field'
+            />
             {errors?.review && <span>{errors?.review?.message}</span>}
             {reviewError && <span>Ошибка отправки отзыва</span>}
-            <button type='submit' disabled={!isValid || isLoading}>
+            <button type='submit' disabled={!isValid || isLoading} data-test-id='review-submit-button'>
+              {isLoading && <div className={styles.loader} />}
               Send
             </button>
           </form>

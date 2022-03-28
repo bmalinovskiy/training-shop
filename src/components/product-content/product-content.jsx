@@ -8,7 +8,7 @@ import clothesHanger from '../../images/product/clothes-hanger.svg';
 
 import styles from './product-content.module.scss';
 
-const ProductContent = ({ product: { name, price, discount, material, images, sizes, reviews } }) => {
+const ProductContent = ({ product: { name, price, discount, material, images, sizes, rating, reviews } }) => {
   const [activeColor, setActiveColor] = useState(images[0].color);
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
@@ -84,7 +84,7 @@ const ProductContent = ({ product: { name, price, discount, material, images, si
         ]}
       />
       <hr />
-      <Reviews reviews={reviews} />
+      <Reviews reviews={reviews} totalRating={rating} />
       <hr />
     </div>
   );

@@ -59,6 +59,7 @@
 
       .text {
         display: flex;
+        word-break: break-word;
         font: 400 14px 'Spartan', sans-serif;
         color: $darkGrey;
         margin-top: 18px;
@@ -122,15 +123,34 @@
       }
 
       button {
+        @include flexbox-center;
+        width: 230px;
+        height: 55px;
         background-color: $mainDark;
         color: #fff;
-        padding: 18px 92px;
+        padding: 18px 0;
         font: 500 16px 'Spartan', sans-serif;
 
         &:disabled {
           opacity: 0.6;
           cursor: not-allowed;
         }
+
+        .loader {
+          border: 8px solid #f3f3f3;
+          border-top: 8px solid #121212;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          animation: spin 1.5s linear infinite;
+          margin-right: 12px;
+          margin-top: 0;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        } 
       }
 
       span {

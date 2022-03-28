@@ -51,16 +51,32 @@
       }
   
       button {
+        @include flexbox-center;
         height: 35px;
+        width: 110px;
         border: 1px solid #fff;
         margin-left: 12px;
-        padding: 0 27px;
         font: 600 12px 'Spartan', sans-serif;
 
         &:disabled {
           opacity: 0.4;
           cursor: not-allowed;
         }
+
+        .loader {
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #121212;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          animation: spin 1.5s linear infinite;
+          margin: 0 12px;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        } 
       }
 
       .subscribeError {
