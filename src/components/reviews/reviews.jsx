@@ -93,11 +93,8 @@ const Reviews = ({ reviews, totalRating }) => {
           {reviews.map(({ id, name, text, rating }) => (
             <div key={id} className={styles.item}>
               <div className={styles.header}>
-                <span className={styles.author}>{name}</span>
-                <div className={styles.rating}>
-                  <span className={styles.date}>3 months ago</span>
-                  <Rating rating={rating} />
-                </div>
+                <span>{name}</span>
+                <Rating rating={rating} className={styles.rating} />
               </div>
               <span className={styles.text}>{text}</span>
             </div>
@@ -117,15 +114,17 @@ const Reviews = ({ reviews, totalRating }) => {
               placeholder='Имя'
               data-test-id='review-name-field'
             />
-            {errors?.name && <span>{errors?.name?.message}</span>}
+            <div className={styles.errorMessage}>{errors?.name && <span>{errors?.name?.message}</span>}</div>
             <textarea
               {...register('review', { required: 'Введите отзыв' })}
               rows='12'
               placeholder='Комментарий'
               data-test-id='review-text-field'
             />
-            {errors?.review && <span>{errors?.review?.message}</span>}
-            {reviewError && <span>Ошибка отправки отзыва</span>}
+            <div className={styles.errorMessage}>
+              {(errors?.review && <span>{errors?.review?.message}</span>) ||
+                (reviewError && <span>Ошибка отправки отзыва</span>)}
+            </div>
             <button type='submit' disabled={!isValid || isLoading} data-test-id='review-submit-button'>
               {isLoading && <div className={styles.loader} />}
               Send
