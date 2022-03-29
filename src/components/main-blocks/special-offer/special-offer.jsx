@@ -28,7 +28,7 @@ const SpecialOffer = () => {
 
   const onSubmit = (email) => {
     dispatch(sendEmailRequest({ email, formType: 'main' }));
-    reset();
+    reset({ email: '' });
   };
 
   return (

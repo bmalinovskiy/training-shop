@@ -27,7 +27,7 @@ const FooterTopBar = () => {
 
   const onSubmit = (email) => {
     dispatch(sendEmailRequest({ email, formType: 'footer' }));
-    reset();
+    reset({ email: '' });
   };
 
   return (
