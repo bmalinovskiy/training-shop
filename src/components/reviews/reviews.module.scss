@@ -57,7 +57,6 @@
 }
 
 .modal {
-  display: none;
   position: fixed;
   z-index: 10;
   padding-top: calc((100vh - 573px) / 2);
@@ -68,10 +67,6 @@
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 
-  &.open {
-    display: block;
-  }
-
   .modalContent {
     @include flexbox-center;
     flex-direction: column;
@@ -81,6 +76,9 @@
     border: 2px solid #000;
     border-radius: 16px;
     width: 500px;
+    @include small {
+      width: 100%;
+    }
 
     form {
       @include flexbox-center;

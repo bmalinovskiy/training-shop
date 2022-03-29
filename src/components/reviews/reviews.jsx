@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import ReactStars from 'react-rating-stars-component';
 
@@ -25,8 +24,6 @@ const Reviews = ({ reviews, totalRating }) => {
 
   const { isModalOpen, isLoading, error, responce } = useSelector(reviewFormSelector);
   const { products } = useSelector(productsSelector);
-
-  const reviewModalClass = classNames({ [styles.modal]: true, [styles.open]: isModalOpen });
 
   const [reviewRating, setReviewRating] = useState(1);
 
@@ -98,44 +95,46 @@ const Reviews = ({ reviews, totalRating }) => {
           ))}
         </div>
       </div>
-      <div className={reviewModalClass}>
-        <div ref={ref} className={styles.modalContent} data-test-id='review-modal'>
-          <h1>Write a review</h1>
-          <ReactStars
-            count={5}
-            value={1}
-            size={24}
-            color='#e7e7e7'
-            activeColor='#f0cd85'
-            onChange={handleChangeRating}
-          />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              {...register('name', {
-                required: 'Введите имя',
-                minLength: { value: 4, message: 'Минимум 4 символа' },
-              })}
-              placeholder='Имя'
-              data-test-id='review-name-field'
+      {isModalOpen && (
+        <div className={styles.modal}>
+          <div ref={ref} className={styles.modalContent} data-test-id='review-modal'>
+            <h1>Write a review</h1>
+            <ReactStars
+              count={5}
+              value={1}
+              size={24}
+              color='#e7e7e7'
+              activeColor='#f0cd85'
+              onChange={handleChangeRating}
             />
-            <div className={styles.errorMessage}>{errors?.name && <span>{errors?.name?.message}</span>}</div>
-            <textarea
-              {...register('review', { required: 'Введите отзыв' })}
-              rows='12'
-              placeholder='Комментарий'
-              data-test-id='review-text-field'
-            />
-            <div className={styles.errorMessage}>
-              {(errors?.review && <span>{errors?.review?.message}</span>) ||
-                (error && <span>Ошибка отправки отзыва</span>)}
-            </div>
-            <button type='submit' disabled={!isValid || isLoading} data-test-id='review-submit-button'>
-              {isLoading && <div className={styles.loader} />}
-              Send
-            </button>
-          </form>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                {...register('name', {
+                  required: 'Введите имя',
+                  minLength: { value: 4, message: 'Минимум 4 символа' },
+                })}
+                placeholder='Имя'
+                data-test-id='review-name-field'
+              />
+              <div className={styles.errorMessage}>{errors?.name && <span>{errors?.name?.message}</span>}</div>
+              <textarea
+                {...register('review', { required: 'Введите отзыв' })}
+                rows='12'
+                placeholder='Комментарий'
+                data-test-id='review-text-field'
+              />
+              <div className={styles.errorMessage}>
+                {(errors?.review && <span>{errors?.review?.message}</span>) ||
+                  (error && <span>Ошибка отправки отзыва</span>)}
+              </div>
+              <button type='submit' disabled={!isValid || isLoading} data-test-id='review-submit-button'>
+                {isLoading && <div className={styles.loader} />}
+                Send
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
