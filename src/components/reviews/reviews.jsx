@@ -39,7 +39,7 @@ const Reviews = ({ reviews, totalRating }) => {
     formState: { isValid, errors },
     reset,
     handleSubmit,
-  } = useForm({ mode: 'onBlur' });
+  } = useForm({ mode: 'onChange' });
 
   const onSubmit = ({ name, review }) => {
     dispatch(sendReviewRequest({ review: { id: productId, name, text: review, rating: reviewRating } }));
