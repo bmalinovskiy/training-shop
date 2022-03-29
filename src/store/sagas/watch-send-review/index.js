@@ -3,12 +3,12 @@ import axios from 'axios';
 
 import { SEND_REVIEW } from '../../../constants/api';
 
-import { SEND_REVIEW_REQUEST } from '../../state/form/types';
+import { SEND_REVIEW_REQUEST } from '../../state/review-form/types';
 
-import { sendReviewSuccess, sendReviewFailure } from '../../state/form/actions';
+import { sendReviewSuccess, sendReviewFailure } from '../../state/review-form/actions';
 
 function* sendReview({ payload }) {
-  const review = payload;
+  const { review } = payload;
 
   try {
     const responce = yield call(axios.post, SEND_REVIEW, review);

@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from 'react-hook-form';
 
-import { sendEmailRequest } from '../../../store/state/form/actions';
+import { sendEmailRequest } from '../../../store/state/email-form/actions';
 
-import { formSelector } from '../../../selectors/form';
+import { emailFormSelector } from '../../../selectors';
 
 import SocialNetworks from '../social-networks';
 
@@ -14,7 +14,9 @@ import styles from './footer-top-bar.module.scss';
 const FooterTopBar = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, reviewError, emailResponce } = useSelector(formSelector);
+  const {
+    footer: { isLoading, error, responce },
+  } = useSelector(emailFormSelector);
 
   const {
     register,
@@ -23,8 +25,8 @@ const FooterTopBar = () => {
     handleSubmit,
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = ({ email }) => {
-    dispatch(sendEmailRequest({ email }));
+  const onSubmit = (email) => {
+    dispatch(sendEmailRequest({ email, formType: 'footer' }));
     reset();
   };
 
@@ -46,8 +48,8 @@ const FooterTopBar = () => {
             {isLoading && <div className={styles.loader} />}
             JOIN US
           </button>
-          {emailResponce &&
-            (reviewError ? (
+          {responce &&
+            (error ? (
               <span className={styles.subscribeError}>Ошибка при отправке почты</span>
             ) : (
               <span className={styles.subscribeSuccess}>Почта успешно отправлена</span>

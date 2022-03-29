@@ -6,10 +6,9 @@ import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import ReactStars from 'react-rating-stars-component';
 
-import { formSelector } from '../../selectors/form';
-import { productsSelector } from '../../selectors/products';
+import { reviewFormSelector, productsSelector } from '../../selectors';
 
-import { sendReviewRequest, setReviewModalOpen } from '../../store/state/form/actions';
+import { sendReviewRequest, setReviewModalOpen } from '../../store/state/review-form/actions';
 import { getProductsRequest } from '../../store/state/products/actions';
 
 import useOnClickOutside from '../../hooks/on-click-outside';
@@ -20,13 +19,14 @@ import styles from './reviews.module.scss';
 
 const Reviews = ({ reviews, totalRating }) => {
   const dispatch = useDispatch();
+  const ref = useRef();
 
   const { id: productId } = useParams();
 
-  const { isReviewModalOpen, isLoading, reviewError, reviewResponce } = useSelector(formSelector);
+  const { isModalOpen, isLoading, error, responce } = useSelector(reviewFormSelector);
   const { products } = useSelector(productsSelector);
 
-  const reviewModalClass = classNames({ [styles.modal]: true, [styles.open]: isReviewModalOpen });
+  const reviewModalClass = classNames({ [styles.modal]: true, [styles.open]: isModalOpen });
 
   const [reviewRating, setReviewRating] = useState(1);
 
@@ -42,35 +42,34 @@ const Reviews = ({ reviews, totalRating }) => {
   } = useForm({ mode: 'onBlur' });
 
   const onSubmit = ({ name, review }) => {
-    dispatch(sendReviewRequest({ id: productId, name, text: review, rating: reviewRating }));
+    dispatch(sendReviewRequest({ review: { id: productId, name, text: review, rating: reviewRating } }));
     reset();
   };
 
   const handleAddReview = () => {
-    dispatch(setReviewModalOpen(true));
+    dispatch(setReviewModalOpen({ isModalOpen: true }));
   };
 
-  const ref = useRef();
   useOnClickOutside(ref, () => {
-    if (isReviewModalOpen) {
-      dispatch(setReviewModalOpen(false));
+    if (isModalOpen) {
+      dispatch(setReviewModalOpen({ isModalOpen: false }));
     }
   });
 
   useEffect(() => {
-    if (isReviewModalOpen) {
+    if (isModalOpen) {
       document.body.style.overflow = 'hidden';
     } else document.body.style.overflow = 'auto';
-  }, [isReviewModalOpen]);
+  }, [isModalOpen]);
 
   useEffect(() => {
-    if (reviewResponce) {
+    if (responce) {
       dispatch(getProductsRequest());
     }
-  }, [dispatch, reviewResponce]);
+  }, [dispatch, responce]);
 
   useEffect(() => {
-    dispatch(setReviewModalOpen(false));
+    dispatch(setReviewModalOpen({ isModalOpen: false }));
   }, [dispatch, products]);
 
   return (
@@ -128,7 +127,7 @@ const Reviews = ({ reviews, totalRating }) => {
             />
             <div className={styles.errorMessage}>
               {(errors?.review && <span>{errors?.review?.message}</span>) ||
-                (reviewError && <span>Ошибка отправки отзыва</span>)}
+                (error && <span>Ошибка отправки отзыва</span>)}
             </div>
             <button type='submit' disabled={!isValid || isLoading} data-test-id='review-submit-button'>
               {isLoading && <div className={styles.loader} />}

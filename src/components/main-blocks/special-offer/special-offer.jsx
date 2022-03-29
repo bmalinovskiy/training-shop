@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from 'react-hook-form';
 
-import { sendEmailRequest } from '../../../store/state/form/actions';
+import { sendEmailRequest } from '../../../store/state/email-form/actions';
 
-import { formSelector } from '../../../selectors/form';
+import { emailFormSelector } from '../../../selectors';
 
 import womanImage from '../../../images/main-blocks/special-offer/woman.svg';
 import manImage from '../../../images/main-blocks/special-offer/man.svg';
@@ -15,7 +15,9 @@ import styles from './special-offer.module.scss';
 const SpecialOffer = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, emailError, emailResponce } = useSelector(formSelector);
+  const {
+    main: { isLoading, error, responce },
+  } = useSelector(emailFormSelector);
 
   const {
     register,
@@ -24,8 +26,8 @@ const SpecialOffer = () => {
     handleSubmit,
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = ({ email }) => {
-    dispatch(sendEmailRequest({ email }));
+  const onSubmit = (email) => {
+    dispatch(sendEmailRequest({ email, formType: 'main' }));
     reset();
   };
 
@@ -48,8 +50,8 @@ const SpecialOffer = () => {
               placeholder='Enter your email'
               data-test-id='main-subscribe-mail-field'
             />
-            {emailResponce &&
-              (emailError ? (
+            {responce &&
+              (error ? (
                 <span className={styles.subscribeError}>Ошибка при отправке почты</span>
               ) : (
                 <span className={styles.subscribeSuccess}>Почта успешно отправлена</span>
