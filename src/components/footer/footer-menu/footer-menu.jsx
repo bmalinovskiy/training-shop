@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { CATEGORIES, INFORMATION, USEFUL_LINKS } from '../../../constants/footer';
@@ -12,51 +11,40 @@ import Mail from '../../../images/footer/mail.svg';
 import styles from './footer-menu.module.scss';
 
 const FooterMenu = () => {
+  const footerMenuLinks = [
+    { title: 'CATEGORIES', items: CATEGORIES },
+    { title: 'INFORMATION', items: INFORMATION },
+    { title: 'USEFUL LINKS', items: USEFUL_LINKS },
+  ];
+
+  const footerMenuContacts = [
+    { id: '1', text: 'Belarus, Gomel, Lange 17', imgPath: LocationMarker },
+    { id: '2', text: '+375 29 100 20 30', imgPath: Phone },
+    { id: '3', text: 'All week 24/7', imgPath: Clock },
+    { id: '4', text: 'info@clevertec.ru', imgPath: Mail },
+  ];
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.item}>
-          <span className={styles.title}>CATEGORIES</span>
-          {CATEGORIES.map(({ id, path, name }) => (
-            <Link key={id} to={path} className={styles.link} data-test-id={`footer-nav-link-${path.substring(1)}`}>
-              <span>{name}</span>
-            </Link>
-          ))}
-        </div>
-        <div className={styles.item}>
-          <span className={styles.title}>INFORMATION</span>
-          {INFORMATION.map(({ id, path, name }) => (
-            <Link key={id} to={path} className={styles.link}>
-              <span>{name}</span>
-            </Link>
-          ))}
-        </div>
-        <div className={styles.item}>
-          <span className={styles.title}>USEFUL LINKS</span>
-          {USEFUL_LINKS.map(({ id, path, name }) => (
-            <Link key={id} to={path} className={styles.link}>
-              <span>{name}</span>
-            </Link>
-          ))}
-        </div>
+        {footerMenuLinks.map(({ title, items }) => (
+          <div key={title} className={styles.item}>
+            <span className={styles.title}>{title}</span>
+            {items.map(({ id, path, name }) => (
+              <Link key={id} to={path} className={styles.link}>
+                <span>{name}</span>
+              </Link>
+            ))}
+          </div>
+        ))}
         <div className={styles.item}>
           <span className={styles.title}>CONTACT US</span>
-          <div className={styles.contactItem}>
-            <img src={LocationMarker} alt='location-marker icon' />
-            <span>Belarus, Gomel, Lange 17</span>
-          </div>
-          <div className={styles.contactItem}>
-            <img src={Phone} alt='phone icon' />
-            <span>+375 29 100 20 30</span>
-          </div>
-          <div className={styles.contactItem}>
-            <img src={Clock} alt='clock icon' />
-            <span>All week 24/7</span>
-          </div>
-          <div className={styles.contactItem}>
-            <img src={Mail} alt='mail icon' />
-            <span className={styles.underlineItem}>info@clevertec.ru</span>
-          </div>
+          {footerMenuContacts.map(({ id, text, imgPath }) => (
+            <div key={id} className={styles.contactItem}>
+              <img src={imgPath} alt='Contact icon' />
+              <span>{text}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

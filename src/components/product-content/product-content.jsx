@@ -78,9 +78,9 @@ const ProductContent = ({ product: { name, price, discount, material, images, si
       </div>
       <AdditionalInfo
         infoList={[
-          { id: '1', name: 'Color', value: [...colors] },
-          { id: '2', name: 'Size', value: sizes },
-          { id: '3', name: 'Material', value: [material] },
+          { id: '1', name: 'Color', items: colors },
+          { id: '2', name: 'Size', items: sizes },
+          { id: '3', name: 'Material', items: [material] },
         ]}
       />
       <hr />

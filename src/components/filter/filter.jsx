@@ -68,14 +68,14 @@ const Filter = ({ productType }) => {
       {itemsFound !== null && (
         <div className={styles.itemsFoundList}>
           <span className={styles.title}>{itemsFound} items found</span>
-          {filterList.map(({ name, items: { filters } }) => (
-            <span key={name}>
+          {filterList.map(({ title, items: { filters } }) => (
+            <React.Fragment key={title}>
               {filters.map((item) => (
                 <span key={item} className={styles.item}>
-                  {name}: {item}
+                  {title.toLowerCase()}: {item}
                 </span>
               ))}
-            </span>
+            </React.Fragment>
           ))}
         </div>
       )}

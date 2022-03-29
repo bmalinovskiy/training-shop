@@ -7,11 +7,11 @@ const AdditionalInfo = ({ infoList }) => {
     <div className={styles.container}>
       <span className={styles.title}>ADDITIONAL INFORMATION</span>
       <div className={styles.text}>
-        {infoList.map(({ id, name, value }) => (
+        {infoList.map(({ id, name, items }) => (
           <div key={id} className={styles.item}>
             <span className={styles.name}>{name}:</span>
             <span className={styles.value}>
-              {value.map((item) => (item !== value[value.length - 1] ? `${item}, ` : item))}
+              {items.map((item) => (item !== items[items.length - 1] ? `${item}, ` : item))}
             </span>
           </div>
         ))}

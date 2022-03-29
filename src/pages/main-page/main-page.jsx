@@ -8,7 +8,7 @@ import ShoppingCart from '../../components/shopping-cart';
 const MainPage = () => {
   return (
     <>
-      <div className='wrapper' data-test-id='app'>
+      <div className='wrapper'>
         <Header />
         <hr />
         <MainBlocks />
