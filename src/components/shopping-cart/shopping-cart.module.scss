@@ -20,11 +20,11 @@
     }
   }
 
-  .orderStages {
+  .tabs {
     font: 400 15px 'Spartan', sans-serif;
     margin: 16px 12px;
     color: #E6E6E6;
-    .item {
+    .tab {
       margin: 0 12px;
 
       &.active {
@@ -54,17 +54,22 @@
     font: 600 26px 'Spartan', sans-serif;
   }
 
-  .items {
+  .itemsTab,
+  .deliveryInfoTab,
+  .paymentTab {
     height: calc(100vh - 290px);
-    margin: 20px 12px 24px 24px;
+    margin: 24px;
     overflow-y: auto;
+    overflow-x: hidden;
     @include mobile {
       margin: 24px 8px;
     }
+  }
+
+  .itemsTab {
 
     hr {
       margin: 12px 0;
-      width: 96%;
     }
 
     .item {
@@ -74,7 +79,7 @@
       }
 
       .details {
-        width: 70%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         margin-left: 16px;
@@ -119,12 +124,143 @@
             width: 80px;
           }
           .trash {
-            margin-left: 42px;
+            margin-left: 40px;
             @include mobile {
               margin-left: 36px;
             }
           }
         }
+      }
+    }
+  }
+
+  .deliveryInfoTab {
+    .title {
+      font: 400 14px 'Spartan', sans-serif;
+    }
+
+    .agreement {
+      margin-top: 12px;
+
+      input {
+        margin-right: 12px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      padding-right: 8px;
+
+      input[type="radio"] {
+        accent-color: $mainDark;
+        margin-right: 12px;
+      }
+
+      input[type="checkbox"] {
+        accent-color: $mainDark;
+      }
+
+      input[type="text"], input[type="tel"], input[type="email"] {
+        color: $darkGrey;
+        background-color: #F8F8F8;
+        padding: 12px;
+        margin-top: 8px;
+        cursor: auto;
+        width: 100%;
+      }
+
+      label {
+        display: flex;
+        font: 400 14px 'Spartan', sans-serif;
+      }
+
+      hr {
+        margin: 10px 0;
+      }
+
+      span {
+        font: 600 12px 'Spartan', sans-serif;
+        margin-top: 12px;
+      }
+
+      div {
+        display: flex;
+        margin: 0 -4px;
+
+        input {
+          margin: 0 4px;;
+        }
+      }
+    }
+  }
+
+  .paymentTab {
+    .title {
+      font: 400 14px 'Spartan', sans-serif;
+    }
+
+    hr {
+      margin: 12px 0;
+    }
+
+    form {
+      .paymentMethodItem {
+        display: flex;
+        align-items: center;
+      }
+
+      .cardPayment {
+        label {
+          font: 600 12px 'Spartan', sans-serif;
+          margin-top: 24px;
+        }
+
+        div {
+          display: flex;
+          margin: 8px -4px;
+          input {
+            margin: 0 4px;
+          }
+
+          div {
+            margin: 0 4px;
+
+            button {
+              background-color: #F8F8F8;
+              margin-left: -4px;
+              padding-right: 8px;
+            }
+          }
+        }
+      }
+
+      .payPalPayment {
+        label {
+          font: 600 12px 'Spartan', sans-serif;
+          margin-top: 24px;
+        }
+      }
+
+      input[type="radio"] {
+        accent-color: $mainDark;
+        margin-right: 12px;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        height: 24px;
+        font: 400 14px 'Spartan', sans-serif;
+      }
+
+      input[type="text"], input[type="tel"], input[type="email"] {
+        color: $darkGrey;
+        background-color: #F8F8F8;
+        padding: 12px;
+        margin-top: 8px;
+        cursor: auto;
+        width: 100%;
       }
     }
   }
@@ -150,7 +286,7 @@
       font: 500 13px 'Spartan', sans-serif;
     }
 
-    .nextStepBtn {
+    .setTabBtn {
       background-color: $mainDark;
       color: #fff;
       margin-top: 26px;

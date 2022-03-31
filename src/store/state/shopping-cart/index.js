@@ -8,10 +8,10 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_SHOPPING_CART_OPEN: {
-      const value = payload;
+      const { isShoppingCartOpen } = payload;
       return {
         ...state,
-        isShoppingCartOpen: value,
+        isShoppingCartOpen,
       };
     }
     case ADD_ITEM_TO_CART: {
@@ -22,10 +22,11 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     case REMOVE_ITEM_FROM_CART: {
-      const value = payload;
+      const { id } = payload;
+
       return {
         ...state,
-        items: state.items.filter(({ id }) => id !== value),
+        items: state.items.filter((item) => item.id !== id),
       };
     }
     case CHANGE_QUANTITY: {
