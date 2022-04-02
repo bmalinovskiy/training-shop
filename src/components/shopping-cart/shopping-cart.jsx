@@ -10,7 +10,7 @@ import useOnClickOutside from '../../hooks/on-click-outside';
 
 import { changeQuantity, removeItemFromCart, setShoppingCartOpen } from '../../store/state/shopping-cart/actions';
 
-import { PAYMENT_METHODS } from '../../constants/shopping-cart';
+import { DELIVERY_METHODS, PAYMENT_METHODS } from '../../constants/shopping-cart';
 
 import closeIcon from '../../images/shopping-cart/close.svg';
 import trashIcon from '../../images/shopping-cart/trash.svg';
@@ -28,10 +28,14 @@ const ShoppingCart = () => {
 
   const [activeTab, setActiveTab] = useState(1);
 
-  const [deliveryMethod, setDeliveryMethod] = useState('delivery-method-1');
+  const [deliveryMethod, setDeliveryMethod] = useState(DELIVERY_METHODS[0].text);
   const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHODS[0].name);
 
-  const { register, setValue } = useForm({ mode: 'onBlur' });
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm({ mode: 'onBlur' });
 
   const shoppingCartClass = classNames({ [styles.container]: true, [styles.open]: isShoppingCartOpen });
 
@@ -178,72 +182,163 @@ const ShoppingCart = () => {
             <div className={styles.deliveryInfoTab}>
               <span className={styles.title}>Choose the method of delivery of the items</span>
               <form>
-                <hr />
-                <label>
-                  <input
-                    type='radio'
-                    name='delivery-method'
-                    value='delivery-method-1'
-                    checked={deliveryMethod === 'delivery-method-1'}
-                    onChange={({ target: { value } }) => setDeliveryMethod(value)}
-                  />
-                  Pickup from post offices
+                {DELIVERY_METHODS.map(({ id, text }) => (
+                  <React.Fragment key={id}>
+                    <hr />
+                    <div className={styles.deliveryMethodItem}>
+                      <input
+                        type='radio'
+                        name='delivery-method'
+                        id={id}
+                        value={text}
+                        checked={deliveryMethod === text}
+                        onChange={({ target: { value } }) => setDeliveryMethod(value)}
+                      />
+                      <label htmlFor={id}>{text}</label>
+                    </div>
+                  </React.Fragment>
+                ))}
+                <hr style={{ marginBottom: '24px' }} />
+                <label htmlFor='phone' className={styles.sectionLabel}>
+                  PHONE
                 </label>
-                <hr />
-                <label>
-                  <input
-                    type='radio'
-                    name='delivery-method'
-                    value='delivery-method-2'
-                    checked={deliveryMethod === 'delivery-method-2'}
-                    onChange={({ target: { value } }) => setDeliveryMethod(value)}
-                  />
-                  Express delivery
+                <input
+                  {...register('phone', {
+                    required: 'Поле должно быть заполнено',
+                  })}
+                  type='tel'
+                  id='phone'
+                  placeholder='+375 ( _ _ ) _ _ _ _ _ _ _'
+                  className={errors?.phone ? styles.inputError : null}
+                />
+                <div className={styles.errorMessage}>{errors?.phone && <span>{errors?.phone?.message}</span>}</div>
+                <label htmlFor='email' className={styles.sectionLabel}>
+                  E-MAIL
                 </label>
-                <hr />
-                <label>
-                  <input
-                    type='radio'
-                    name='delivery-method'
-                    value='delivery-method-3'
-                    checked={deliveryMethod === 'delivery-method-3'}
-                    onChange={({ target: { value } }) => setDeliveryMethod(value)}
-                  />
-                  Store pickup
-                </label>
-                <hr />
-                <span>PHONE</span>
-                <input type='tel' placeholder='+375 ( _ _ ) _ _ _ _ _ _ _' />
-                <span>E-MAIL</span>
-                <input type='email' placeholder='e-mail' />
-                {deliveryMethod !== 'delivery-method-3' && (
+                <input
+                  {...register('email', {
+                    required: 'Поле должно быть заполнено',
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Введите корректный email',
+                    },
+                  })}
+                  type='email'
+                  id='email'
+                  placeholder='e-mail'
+                  className={errors?.email ? styles.inputError : null}
+                />
+                <div className={styles.errorMessage}>{errors?.email && <span>{errors?.email?.message}</span>}</div>
+                {deliveryMethod !== DELIVERY_METHODS[2].text && (
                   <>
-                    <span>ADRESS</span>
-                    <input type='text' placeholder='Country' />
-                    <input type='text' placeholder='City' />
-                    <input type='text' placeholder='Street' />
-                    <div>
-                      <input type='text' placeholder='House' />
-                      <input type='text' placeholder='Apartment' />
+                    <label htmlFor='country' className={styles.sectionLabel}>
+                      ADRESS
+                    </label>
+                    <input
+                      {...register('country', { required: 'Поле должно быть заполнено' })}
+                      type='text'
+                      id='country'
+                      autoComplete='country-name'
+                      placeholder='Country'
+                      className={errors?.country ? styles.inputError : null}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.country && <span>{errors?.country?.message}</span>}
+                    </div>
+                    <input
+                      {...register('city', { required: 'Поле должно быть заполнено' })}
+                      type='text'
+                      placeholder='City'
+                      className={errors?.city ? styles.inputError : null}
+                    />
+                    <div className={styles.errorMessage}>{errors?.city && <span>{errors?.city?.message}</span>}</div>
+                    <input
+                      {...register('street', { required: 'Поле должно быть заполнено' })}
+                      type='text'
+                      autoComplete='street-address'
+                      placeholder='Street'
+                      className={errors?.street ? styles.inputError : null}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.street && <span>{errors?.street?.message}</span>}
+                    </div>
+                    <div className={styles.adressPart}>
+                      <div className={styles.adressHouse}>
+                        <input
+                          {...register('house', { required: 'Поле должно быть заполнено' })}
+                          type='tel'
+                          maxLength='2'
+                          inputMode='numeric'
+                          onChange={({ target: { value } }) => setValue('house', value.replace(/[^\d]/g, ''))}
+                          placeholder='House'
+                          className={errors?.house ? styles.inputError : null}
+                        />
+                        <div className={styles.errorMessage}>
+                          {errors?.house && <span>{errors?.house?.message}</span>}
+                        </div>
+                      </div>
+                      <div className={styles.adressApartment}>
+                        <input
+                          {...register('apartment', { required: 'Поле должно быть заполнено' })}
+                          type='tel'
+                          maxLength='2'
+                          onChange={({ target: { value } }) => setValue('apartment', value.replace(/[^\d]/g, ''))}
+                          inputMode='numeric'
+                          placeholder='Apartment'
+                          className={errors?.apartment ? styles.inputError : null}
+                        />
+                        <div className={styles.errorMessage}>
+                          {errors?.apartment && <span>{errors?.apartment?.message}</span>}
+                        </div>
+                      </div>
                     </div>
                   </>
                 )}
-                {deliveryMethod === 'delivery-method-3' && (
+                {deliveryMethod === DELIVERY_METHODS[2].text && (
                   <>
-                    <span>ADRESS OF STORE</span>
-                    <input type='text' placeholder='Country' />
+                    <label htmlFor='storeAdress' className={styles.sectionLabel}>
+                      ADRESS OF STORE
+                    </label>
+                    <input type='text' id='storeAdress' placeholder='Country' />
                     <input type='text' placeholder='Store adress' />
                   </>
                 )}
-                {deliveryMethod === 'delivery-method-1' && (
+                {deliveryMethod === DELIVERY_METHODS[0].text && (
                   <>
-                    <span>POSTCODE</span>
-                    <input type='text' placeholder='BY _ _ _ _ _ _' />
+                    <label htmlFor='postcode' className={styles.sectionLabel}>
+                      POSTCODE
+                    </label>
+                    <input
+                      {...register('postcode', {
+                        required: 'Поле должно быть заполнено',
+                        minLength: { value: '9', message: 'Почтовый индекс должен состоять из 6 цифр' },
+                      })}
+                      type='tel'
+                      inputMode='numeric'
+                      maxLength='9'
+                      autoComplete='postal-code'
+                      id='postcode'
+                      placeholder='BY _ _ _ _ _ _'
+                      className={errors?.postcode ? styles.inputError : null}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.postcode && <span>{errors?.postcode?.message}</span>}
+                    </div>
                   </>
                 )}
-                <label className={styles.agreement}>
-                  <input type='checkbox' />I agree to the processing of my personal information
-                </label>
+                <div className={styles.agreement}>
+                  <input
+                    {...register('agreement', { required: 'Вы должны согласиться на обработку личной информации' })}
+                    id='agreement'
+                    type='checkbox'
+                    className={errors?.agreement ? styles.inputError : null}
+                  />
+                  <label htmlFor='agreement'>I agree to the processing of my personal information</label>
+                </div>
+                <div className={styles.errorMessage}>
+                  {errors?.agreement && <span>{errors?.agreement?.message}</span>}
+                </div>
               </form>
             </div>
           )}

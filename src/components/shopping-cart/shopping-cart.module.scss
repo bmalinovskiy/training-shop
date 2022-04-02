@@ -139,58 +139,69 @@
       font: 400 14px 'Spartan', sans-serif;
     }
 
-    .agreement {
-      margin-top: 12px;
-
-      input {
-        margin-right: 12px;
-      }
-    }
-
     form {
       display: flex;
       flex-direction: column;
       padding-right: 8px;
 
-      input[type="radio"] {
+      .deliveryMethodItem {
+        display: flex;
+        align-items: center;
+      }
+
+      .sectionLabel {
+        font: 600 12px 'Spartan', sans-serif;
+        margin-top: 8px;
+      }
+
+      .errorMessage {
+        height: 24px;
+        padding: 4px 0;
+        color: $error;
+        font: 500 11px 'Spartan', sans-serif;
+      }
+
+      .adressPart {
+        display: flex;
+        margin: 0 -4px;
+
+        .adressHouse,
+        .adressApartment {
+          margin: 0 4px;
+        }
+      }
+
+      .agreement {
+        display: flex;
+        margin-top: 8px;
+      }
+
+      hr {
+        margin: 12px 0;
+      }
+
+      input[type="radio"], input[type="checkbox"] {
         accent-color: $mainDark;
         margin-right: 12px;
       }
 
-      input[type="checkbox"] {
-        accent-color: $mainDark;
-      }
-
       input[type="text"], input[type="tel"], input[type="email"] {
-        color: $darkGrey;
         background-color: #F8F8F8;
+        font: 500 14px 'Spartan', sans-serif;
         padding: 12px;
         margin-top: 8px;
         cursor: auto;
         width: 100%;
+        height: 48px;
+
+        &.inputError {
+          border: 1px solid $error;
+        }
       }
 
       label {
         display: flex;
         font: 400 14px 'Spartan', sans-serif;
-      }
-
-      hr {
-        margin: 10px 0;
-      }
-
-      span {
-        font: 600 12px 'Spartan', sans-serif;
-        margin-top: 12px;
-      }
-
-      div {
-        display: flex;
-        margin: 0 -4px;
-
-        input {
-          margin: 0 4px;;
-        }
       }
     }
   }
@@ -205,6 +216,9 @@
     }
 
     form {
+      display: flex;
+      flex-direction: column;
+
       .paymentMethodItem {
         display: flex;
         align-items: center;
