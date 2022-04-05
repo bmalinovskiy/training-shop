@@ -47,10 +47,6 @@ const ShoppingCart = () => {
     handleSubmit,
   } = useForm({ mode: 'onSubmit' });
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const options = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
@@ -173,7 +169,7 @@ const ShoppingCart = () => {
           {activeTab === 2 && (
             <div className={styles.deliveryInfoTab}>
               <span className={styles.title}>Choose the method of delivery of the items</span>
-              <form ref={deliveryFormRef} onSubmit={handleSubmit(onSubmit)}>
+              <form ref={deliveryFormRef} onSubmit={handleSubmit()}>
                 {DELIVERY_METHODS.map(({ id, text }) => (
                   <React.Fragment key={id}>
                     <hr />
@@ -399,7 +395,7 @@ const ShoppingCart = () => {
           {activeTab === 3 && (
             <div className={styles.paymentTab}>
               <span className={styles.title}>Method of payments</span>
-              <form ref={paymentFormRef} onSubmit={handleSubmit(onSubmit)}>
+              <form ref={paymentFormRef} onSubmit={handleSubmit()}>
                 <hr />
                 {PAYMENT_METHODS.map(({ id, name, imgPath }) => (
                   <React.Fragment key={id}>
