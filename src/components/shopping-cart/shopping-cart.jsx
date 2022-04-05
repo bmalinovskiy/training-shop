@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import Select from 'react-select';
 
 import { shoppingCartSelector } from '../../selectors';
 
@@ -11,6 +12,10 @@ import useOnClickOutside from '../../hooks/on-click-outside';
 import { changeQuantity, removeItemFromCart, setShoppingCartOpen } from '../../store/state/shopping-cart/actions';
 
 import { DELIVERY_METHODS, PAYMENT_METHODS } from '../../constants/shopping-cart';
+
+import { selectStyles } from '../../constants/select-styles';
+
+import { normalizeCardNumber, normalizeCardDate, normalizePostcode, normalizePhoneNumber } from '../../utils/masks';
 
 import closeIcon from '../../images/shopping-cart/close.svg';
 import trashIcon from '../../images/shopping-cart/trash.svg';
@@ -24,49 +29,50 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
+  const deliveryFormRef = useRef();
+  const paymentFormRef = useRef();
+
   const { isShoppingCartOpen, items } = useSelector(shoppingCartSelector);
 
   const [activeTab, setActiveTab] = useState(1);
 
   const [deliveryMethod, setDeliveryMethod] = useState(DELIVERY_METHODS[0].text);
-  const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHODS[0].name);
+  const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHODS[1].name);
 
   const {
     register,
     setValue,
+    control,
     formState: { errors },
-  } = useForm({ mode: 'onBlur' });
+    handleSubmit,
+  } = useForm({ mode: 'onSubmit' });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+  ];
 
   const shoppingCartClass = classNames({ [styles.container]: true, [styles.open]: isShoppingCartOpen });
 
   const totalPrice = items.reduce((total, { quantity, price }) => total + quantity * price, 0).toFixed(2);
 
-  const normalizeCardNumber = (value) =>
-    value
-      .replace(/\s/g, '')
-      .match(/.{1,4}/g)
-      ?.join(' ')
-      .substring(0, 19) || '';
+  // eslint-disable-next-line no-nested-ternary
+  const tabBtnText = activeTab === 3 ? (paymentMethod !== PAYMENT_METHODS[3].name ? 'CHECK OUT' : 'READY') : 'FURTHER';
 
-  const normalizeCardDate = (value) =>
-    value
-      .replace(/[/]/g, '')
-      .match(/.{1,2}/g)
-      ?.join('/')
-      .substring(0, 5) || '';
-
-  const tabBtnText = activeTab === 3 ? 'CHECK OUT' : 'FURTHER';
+  const handleCartAction = () => {
+    if (!items.length) {
+      dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
+    } else if (activeTab !== 3) {
+      setActiveTab((active) => active + 1);
+    }
+  };
 
   const handleCartClose = () => {
     dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
-  };
-
-  const handleSetTab = (tab) => {
-    if (!items.length) {
-      dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
-    } else if (tabBtnText === 'FURTHER') {
-      setActiveTab(tab);
-    }
   };
 
   const handleRemoveItem = (id) => dispatch(removeItemFromCart({ id }));
@@ -102,35 +108,21 @@ const ShoppingCart = () => {
       )}
       {!!items.length && (
         <>
-          <div className={styles.tabs}>
-            <button
-              type='button'
-              onClick={() => setActiveTab(1)}
-              className={classNames({ [styles.tab]: true, [styles.active]: activeTab === 1 })}
-            >
+          <div className={styles.tabNames}>
+            <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 1 })}>
               Item in Cart
-            </button>
+            </span>
             &frasl;
-            <button
-              type='button'
-              onClick={() => setActiveTab(2)}
-              className={classNames({ [styles.tab]: true, [styles.active]: activeTab === 2 })}
-            >
+            <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 2 })}>
               Delivery Info
-            </button>
+            </span>
             &frasl;
-            <button
-              type='button'
-              onClick={() => setActiveTab(3)}
-              className={classNames({ [styles.tab]: true, [styles.active]: activeTab === 3 })}
-            >
-              Payment
-            </button>
+            <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 3 })}>Payment</span>
           </div>
           {activeTab === 1 && (
             <div className={styles.itemsTab}>
               {items.map(({ id, name, quantity, price, color, size, imgUrl }) => (
-                <div key={id}>
+                <div key={id} style={{ marginRight: '12px' }}>
                   <div className={styles.item} data-test-id='cart-card'>
                     <img src={`https://training.cleverland.by/shop${imgUrl}`} alt={name} className={styles.itemImg} />
                     <div className={styles.details}>
@@ -181,7 +173,7 @@ const ShoppingCart = () => {
           {activeTab === 2 && (
             <div className={styles.deliveryInfoTab}>
               <span className={styles.title}>Choose the method of delivery of the items</span>
-              <form>
+              <form ref={deliveryFormRef} onSubmit={handleSubmit(onSubmit)}>
                 {DELIVERY_METHODS.map(({ id, text }) => (
                   <React.Fragment key={id}>
                     <hr />
@@ -205,10 +197,17 @@ const ShoppingCart = () => {
                 <input
                   {...register('phone', {
                     required: 'Поле должно быть заполнено',
+                    minLength: {
+                      value: '17',
+                      message: 'Введите корректный номер телефона',
+                    },
                   })}
                   type='tel'
                   id='phone'
                   placeholder='+375 ( _ _ ) _ _ _ _ _ _ _'
+                  maxLength='17'
+                  onChange={({ target: { value } }) => setValue('phone', normalizePhoneNumber(value))}
+                  onFocus={({ target: { value } }) => (!value ? setValue('phone', '+375 (') : value)}
                   className={errors?.phone ? styles.inputError : null}
                 />
                 <div className={styles.errorMessage}>{errors?.phone && <span>{errors?.phone?.message}</span>}</div>
@@ -297,11 +296,64 @@ const ShoppingCart = () => {
                 )}
                 {deliveryMethod === DELIVERY_METHODS[2].text && (
                   <>
-                    <label htmlFor='storeAdress' className={styles.sectionLabel}>
+                    <label htmlFor='storeCountry' className={styles.sectionLabel}>
                       ADRESS OF STORE
                     </label>
-                    <input type='text' id='storeAdress' placeholder='Country' />
-                    <input type='text' placeholder='Store adress' />
+                    <Controller
+                      control={control}
+                      name='storeCountry'
+                      rules={{ required: 'Поле должно быть заполнено' }}
+                      render={({ field: { onChange } }) => (
+                        <Select
+                          id='storeCountry'
+                          placeholder='Country'
+                          isSearchable
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary: '#121212',
+                            },
+                          })}
+                          maxMenuHeight={150}
+                          menuPosition='fixed'
+                          styles={selectStyles}
+                          options={options}
+                          onChange={(option) => onChange(option.value)}
+                        />
+                      )}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.storeCountry && <span>{errors?.storeCountry?.message}</span>}
+                    </div>
+                    <Controller
+                      control={control}
+                      name='storeAdress'
+                      rules={{ required: 'Поле должно быть заполнено' }}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          placeholder='Store adress'
+                          isSearchable
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary: '#121212',
+                            },
+                          })}
+                          maxMenuHeight={150}
+                          menuPosition='fixed'
+                          styles={selectStyles}
+                          options={options}
+                          value={options.find(({ value }) => value === field.value)}
+                          onChange={({ value }) => field.onChange(value)}
+                        />
+                      )}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.storeAdress && <span>{errors?.storeAdress?.message}</span>}
+                    </div>
                   </>
                 )}
                 {deliveryMethod === DELIVERY_METHODS[0].text && (
@@ -318,6 +370,8 @@ const ShoppingCart = () => {
                       inputMode='numeric'
                       maxLength='9'
                       autoComplete='postal-code'
+                      onChange={({ target: { value } }) => setValue('postcode', normalizePostcode(value))}
+                      onFocus={({ target: { value } }) => (!value ? setValue('postcode', 'BY ') : value)}
                       id='postcode'
                       placeholder='BY _ _ _ _ _ _'
                       className={errors?.postcode ? styles.inputError : null}
@@ -345,7 +399,7 @@ const ShoppingCart = () => {
           {activeTab === 3 && (
             <div className={styles.paymentTab}>
               <span className={styles.title}>Method of payments</span>
-              <form>
+              <form ref={paymentFormRef} onSubmit={handleSubmit(onSubmit)}>
                 <hr />
                 {PAYMENT_METHODS.map(({ id, name, imgPath }) => (
                   <React.Fragment key={id}>
@@ -370,7 +424,7 @@ const ShoppingCart = () => {
                     <label htmlFor='cardNumber'>CARD</label>
                     <input
                       {...register('cardNumber', {
-                        required: 'Введите номер карты',
+                        required: 'Поле должно быть заполнено',
                         minLength: { value: 19, message: 'Номер карты должен состоять из 16 цифр' },
                       })}
                       placeholder='_ _ _ _  _ _ _ _  _ _ _ _  _ _ _ _'
@@ -379,34 +433,50 @@ const ShoppingCart = () => {
                       inputMode='numeric'
                       autoComplete='cc-number'
                       onChange={({ target: { value } }) => setValue('cardNumber', normalizeCardNumber(value))}
+                      className={errors?.cardNumber ? styles.inputError : null}
                     />
-                    <div>
-                      <input
-                        {...register('cardDate', {
-                          required: 'Введите срок действия карты',
-                          minLength: { value: 5, message: 'Срок действия должен состоять из 4 цифр' },
-                        })}
-                        placeholder='YY/MM'
-                        type='tel'
-                        inputMode='numeric'
-                        autoComplete='cc-exp'
-                        onChange={({ target: { value } }) => setValue('cardDate', normalizeCardDate(value))}
-                      />
-                      <div>
+                    <div className={styles.errorMessage}>
+                      {errors?.cardNumber && <span>{errors?.cardNumber?.message}</span>}
+                    </div>
+                    <div className={styles.cardPart}>
+                      <div className={styles.cardDate}>
                         <input
-                          {...register('cardCVV', {
-                            required: 'Введите CVV код',
-                            minLength: { value: 3, message: 'CVV код должен состоять из 3 цифр' },
+                          {...register('cardDate', {
+                            required: 'Поле должно быть заполнено',
+                            minLength: { value: 5, message: 'Срок действия должен состоять из 4 цифр' },
                           })}
-                          placeholder='CVV'
-                          maxLength='3'
+                          placeholder='YY/MM'
                           type='tel'
                           inputMode='numeric'
-                          autoComplete='cc-scs'
+                          autoComplete='cc-exp'
+                          onChange={({ target: { value } }) => setValue('cardDate', normalizeCardDate(value))}
+                          className={errors?.cardDate ? styles.inputError : null}
                         />
-                        <button type='button'>
-                          <img src={eyeSlashIcon} alt='See code' />
-                        </button>
+                        <div className={styles.errorMessage}>
+                          {errors?.cardDate && <span>{errors?.cardDate?.message}</span>}
+                        </div>
+                      </div>
+                      <div className={styles.cardCVV}>
+                        <div>
+                          <input
+                            {...register('cardCVV', {
+                              required: 'Поле должно быть заполнено',
+                              minLength: { value: 3, message: 'CVV код должен состоять из 3 цифр' },
+                            })}
+                            placeholder='CVV'
+                            maxLength='3'
+                            type='tel'
+                            inputMode='numeric'
+                            autoComplete='cc-scs'
+                            className={errors?.cardCVV ? styles.inputError : null}
+                          />
+                          <button type='button' className={errors?.cardCVV ? styles.inputError : null}>
+                            <img src={eyeSlashIcon} alt='See code' />
+                          </button>
+                        </div>
+                        <div className={styles.errorMessage}>
+                          {errors?.cardCVV && <span>{errors?.cardCVV?.message}</span>}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -414,7 +484,24 @@ const ShoppingCart = () => {
                 {paymentMethod === PAYMENT_METHODS[0].name && (
                   <div className={styles.payPalPayment}>
                     <label htmlFor='email'>E-MAIL</label>
-                    <input type='email' id='email' placeholder='e-mail' />
+                    <input
+                      {...register('payPalEmail', {
+                        required: 'Поле должно быть заполнено',
+                        pattern: {
+                          value:
+                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          message: 'Введите корректный email',
+                        },
+                      })}
+                      type='email'
+                      id='email'
+                      placeholder='e-mail'
+                      autoComplete='email'
+                      className={errors?.payPalEmail ? styles.inputError : null}
+                    />
+                    <div className={styles.errorMessage}>
+                      {errors?.payPalEmail && <span>{errors?.payPalEmail?.message}</span>}
+                    </div>
                   </div>
                 )}
               </form>
@@ -429,12 +516,14 @@ const ShoppingCart = () => {
             <span className={styles.price}>{`$${totalPrice}`}</span>
           </div>
         )}
-        <button type='button' className={styles.setTabBtn} onClick={() => handleSetTab(activeTab + 1)}>
+        <button type='button' onClick={handleCartAction} className={styles.cartAction}>
           {items.length ? tabBtnText : 'BACK TO SHOPPING'}
         </button>
-        <button type='button' className={styles.viewCartBtn} onClick={handleCartClose}>
-          VIEW CART
-        </button>
+        {activeTab !== 1 && (
+          <button type='button' className={styles.viewCartBtn} onClick={() => setActiveTab(1)}>
+            VIEW CART
+          </button>
+        )}
       </div>
     </div>
   );
