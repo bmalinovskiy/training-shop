@@ -42,22 +42,40 @@
     font: 600 14px 'Spartan', sans-serif;
   }
 
-  .empty {
+  .orderSuccess {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 48px;
     height: calc(100vh - 212px);
+    margin: 48px 72px 0;
+    text-align: center;
     span {
-      margin-top: 8px;
+      margin-top: 24px;
     }
-    font: 600 26px 'Spartan', sans-serif;
+  }
+
+  .orderFailure {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 262px);
+    margin: 48px 72px 0;
+    text-align: center;
+    span {
+      margin-top: 24px;
+    }
+  }
+
+  .empty {
+    text-align: center;
+    margin: 48px 92px 0;
+    height: calc(100vh - 212px);
   }
 
   .itemsTab,
   .deliveryInfoTab,
   .paymentTab {
-    height: calc(100vh - 290px);
+    height: calc(100vh - 288px);
     margin: 24px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -76,10 +94,10 @@
       cursor: auto;
       width: 100%;
       height: 48px;
-  
-      &.inputError {
-        border: 1px solid $error;
-      }
+    }
+
+    .inputError {
+      border: 1px solid $error;
     }
   
     .errorMessage {
@@ -179,19 +197,23 @@
         margin-top: 8px;
       }
 
-      .adressPart {
+      .addressPart {
         display: flex;
         margin: 0 -4px;
 
-        .adressHouse,
-        .adressApartment {
-          margin: 0 4px;
+        input {
+          margin: 8px 4px 0;
         }
       }
 
       .agreement {
         display: flex;
         margin-top: 8px;
+      }
+
+      .customSelect {
+        margin-top: 8px;
+        height: 48px;
       }
 
       hr {
@@ -315,7 +337,7 @@
     .cartAction {
       background-color: $mainDark;
       color: #fff;
-      margin-top: 26px;
+      margin-top: 24px;
     }
 
     .viewCartBtn {
