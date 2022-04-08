@@ -37,7 +37,7 @@ const ProductsSettings = ({ productType }) => {
           <span className={styles.text}>FILTER</span>
         </button>
         <div className={styles.viewType}>
-          <button type='button' className={styles.list}>
+          <button type='button'>
             <img src={viewListIcon} alt='View list' />
           </button>
           <button type='button' className={styles.grid}>

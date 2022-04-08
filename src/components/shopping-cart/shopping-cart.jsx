@@ -49,6 +49,8 @@ const ShoppingCart = () => {
   const [activeCountry, setActiveCountry] = useState(null);
   const [search, setSearch] = useState('');
 
+  const [isInputVisible, setInputVisible] = useState(false);
+
   const {
     register: deliveryFormRegister,
     setValue: setDeliveryFormValue,
@@ -465,34 +467,41 @@ const ShoppingCart = () => {
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.storeCountry && <span>{deliveryFormErrors?.storeCountry?.message}</span>}
                     </div>
-                    <Controller
-                      control={control}
-                      name='storeAddress'
-                      rules={{ required: 'Поле должно быть заполнено' }}
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          placeholder='Store address'
-                          isSearchable
-                          theme={(theme) => ({
-                            ...theme,
-                            borderRadius: 0,
-                            colors: {
-                              ...theme.colors,
-                              primary: '#121212',
-                            },
-                          })}
-                          maxMenuHeight={150}
-                          menuPosition='fixed'
-                          noOptionsMessage={() => 'Store address not founded'}
-                          styles={selectStyles}
-                          options={cityOptions}
-                          value={cityOptions.find(({ value }) => value === field.value)}
-                          onChange={({ value }) => field.onChange(value)}
-                          onInputChange={(value) => setSearch(value)}
-                        />
-                      )}
-                    />
+                    <div
+                      className={[
+                        deliveryFormErrors?.storeAddress ? styles.inputError : null,
+                        styles.customSelect,
+                      ].join(' ')}
+                    >
+                      <Controller
+                        control={control}
+                        name='storeAddress'
+                        rules={{ required: 'Поле должно быть заполнено' }}
+                        render={({ field }) => (
+                          <Select
+                            {...field}
+                            placeholder='Store address'
+                            isSearchable
+                            theme={(theme) => ({
+                              ...theme,
+                              borderRadius: 0,
+                              colors: {
+                                ...theme.colors,
+                                primary: '#121212',
+                              },
+                            })}
+                            maxMenuHeight={150}
+                            menuPosition='fixed'
+                            noOptionsMessage={() => 'Store address not founded'}
+                            styles={selectStyles}
+                            options={cityOptions}
+                            value={cityOptions.find(({ value }) => value === field.value)}
+                            onChange={({ value }) => field.onChange(value)}
+                            onInputChange={(value) => setSearch(value)}
+                          />
+                        )}
+                      />
+                    </div>
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.storeAddress && <span>{deliveryFormErrors?.storeAddress?.message}</span>}
                     </div>
@@ -611,12 +620,19 @@ const ShoppingCart = () => {
                             })}
                             placeholder='CVV'
                             maxLength='3'
-                            type='tel'
+                            type={isInputVisible ? 'text' : 'password'}
                             inputMode='numeric'
                             autoComplete='cc-scs'
-                            className={paymentFormErrors?.cardCVV ? styles.inputError : null}
+                            className={classNames({ [styles.cvvError]: paymentFormErrors?.cardCVV })}
                           />
-                          <button type='button' className={paymentFormErrors?.cardCVV ? styles.inputError : null}>
+                          <button
+                            type='button'
+                            onClick={() => setInputVisible(!isInputVisible)}
+                            className={classNames({
+                              [styles.cvvError]: paymentFormErrors?.cardCVV,
+                              [styles.visible]: isInputVisible,
+                            })}
+                          >
                             <img src={eyeSlashIcon} alt='See code' />
                           </button>
                         </div>

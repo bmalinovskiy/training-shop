@@ -34,7 +34,8 @@ input[type="reset"],
 input[type="text"], 
 input[type="number"], 
 input[type="tel"], 
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
 	background: none;
 	color: inherit;
 	border: none;

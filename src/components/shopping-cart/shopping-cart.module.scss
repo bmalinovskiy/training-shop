@@ -86,7 +86,7 @@
 
   .deliveryInfoTab,
   .paymentTab {
-    input[type="text"], input[type="tel"], input[type="email"] {
+    input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
       background-color: #F8F8F8;
       font: 500 14px 'Spartan', sans-serif;
       padding: 12px;
@@ -272,11 +272,25 @@
             div {
               display: flex;
 
+              input {
+                &.cvvError {
+                  border-left: 1px solid $error;
+                  border-top: 1px solid $error;
+                  border-bottom: 1px solid $error;
+                }
+              }
+
               button {
-                &.inputError {
+                &.cvvError {
                   border-right: 1px solid $error;
                   border-top: 1px solid $error;
                   border-bottom: 1px solid $error;
+                }
+
+                &.visible {
+                  img {
+                    content:url('../../images/shopping-cart/eye.svg');
+                  }
                 }
               }
             }
