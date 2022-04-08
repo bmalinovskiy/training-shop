@@ -36,6 +36,7 @@
           "unnamedComponents": "arrow-function"
       }],
       "jsx-a11y/label-has-associated-control": 0,
+      "no-nested-ternary": 0,
       "default-param-last": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
