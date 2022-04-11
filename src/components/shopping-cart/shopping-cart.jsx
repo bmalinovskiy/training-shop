@@ -22,8 +22,16 @@ import {
 import { DELIVERY_METHODS, PAYMENT_METHODS } from '../../constants/shopping-cart';
 
 import { selectStyles } from '../../constants/select-styles';
+import { emailPattern, numbersPattern } from '../../constants/patters';
 
-import { normalizeCardNumber, normalizeCardDate, normalizePostcode, normalizePhoneNumber } from '../../utils/masks';
+import {
+  normalizeCardNumber,
+  normalizeCardDate,
+  normalizePostcode,
+  normalizePhoneNumber,
+  isCorrectCode,
+  isCorrectCardDate,
+} from '../../utils/masks';
 
 import closeIcon from '../../images/shopping-cart/close.svg';
 import trashIcon from '../../images/shopping-cart/trash.svg';
@@ -49,12 +57,14 @@ const ShoppingCart = () => {
   const [activeCountry, setActiveCountry] = useState(null);
   const [search, setSearch] = useState('');
 
+  const [isInputVisible, setInputVisible] = useState(false);
+
   const {
     register: deliveryFormRegister,
     setValue: setDeliveryFormValue,
     control,
     getValues: getDeliveryFormValues,
-    reset: deliveryFormReset,
+    reset: resetDeliveryForm,
     formState: { errors: deliveryFormErrors },
     handleSubmit: handleDeliveryFormSubmit,
   } = useForm({ mode: 'onBlur' });
@@ -63,7 +73,7 @@ const ShoppingCart = () => {
     register: paymentFormRegister,
     setValue: setPaymentFormValue,
     getValues: getPaymentFormValues,
-    reset: paymentFormReset,
+    reset: resetPaymentForm,
     formState: { errors: paymentFormErrors },
     handleSubmit: handlePaymentFormSubmit,
   } = useForm({ mode: 'onBlur' });
@@ -167,15 +177,35 @@ const ShoppingCart = () => {
   }, [items.length, isShoppingCartOpen]);
 
   useEffect(() => {
+    if (deliveryMethod !== DELIVERY_METHODS[0].text) {
+      resetDeliveryForm({ postcode: '' });
+    }
+    if (deliveryMethod === DELIVERY_METHODS[2].text) {
+      resetDeliveryForm({ country: '', city: '', street: '', house: '', apartment: '' });
+    } else {
+      resetDeliveryForm({ storeCountry: '', storeAddress: '' });
+    }
+  }, [deliveryMethod, resetDeliveryForm]);
+
+  useEffect(() => {
+    if (paymentMethod !== PAYMENT_METHODS[0].name) {
+      resetPaymentForm({ cashEmail: '' });
+    }
+    if (paymentMethod !== PAYMENT_METHODS[1].name && paymentMethod !== PAYMENT_METHODS[2].name) {
+      resetPaymentForm({ card: '', cardDate: '', cardCVV: '' });
+    }
+  }, [paymentMethod, resetPaymentForm]);
+
+  useEffect(() => {
     if (!isShoppingCartOpen) {
-      deliveryFormReset();
-      paymentFormReset();
+      resetDeliveryForm();
+      resetPaymentForm();
       setActiveTab(null);
       setOrderStatus(null);
       setPaymentMethod(PAYMENT_METHODS[1].name);
       setDeliveryMethod(DELIVERY_METHODS[0].text);
     }
-  }, [deliveryFormReset, isShoppingCartOpen, paymentFormReset]);
+  }, [resetDeliveryForm, isShoppingCartOpen, resetPaymentForm]);
 
   useEffect(() => {
     if (!countries.length && deliveryMethod === DELIVERY_METHODS[2].text) {
@@ -194,11 +224,11 @@ const ShoppingCart = () => {
   }, [cities.length, activeCountry, dispatch, search]);
 
   useEffect(() => {
-    if (message) {
+    if (message && isShoppingCartOpen) {
       setOrderStatus(message);
       setActiveTab(null);
     }
-  }, [message]);
+  }, [isShoppingCartOpen, message]);
 
   useEffect(() => {
     if (orderStatus === 'success') {
@@ -326,17 +356,17 @@ const ShoppingCart = () => {
                   {...deliveryFormRegister('phone', {
                     required: 'Поле должно быть заполнено',
                     minLength: {
-                      value: 17,
+                      value: 19,
                       message: 'Введите корректный номер телефона',
                     },
+                    validate: isCorrectCode,
                   })}
                   type='tel'
                   id='phone'
                   placeholder='+375 ( _ _ ) _ _ _ _ _ _ _'
-                  maxLength='17'
+                  maxLength='19'
                   onChange={({ target: { value } }) => setDeliveryFormValue('phone', normalizePhoneNumber(value))}
-                  onFocus={({ target: { value } }) => (!value ? setDeliveryFormValue('phone', '+375 (') : value)}
-                  className={deliveryFormErrors?.phone ? styles.inputError : null}
+                  className={classNames({ [styles.inputError]: deliveryFormErrors.phone })}
                 />
                 <div className={styles.errorMessage}>
                   {deliveryFormErrors?.phone && <span>{deliveryFormErrors?.phone?.message}</span>}
@@ -348,15 +378,14 @@ const ShoppingCart = () => {
                   {...deliveryFormRegister('email', {
                     required: 'Поле должно быть заполнено',
                     pattern: {
-                      value:
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      value: emailPattern,
                       message: 'Введите корректный email',
                     },
                   })}
                   type='email'
                   id='email'
                   placeholder='e-mail'
-                  className={deliveryFormErrors?.email ? styles.inputError : null}
+                  className={classNames({ [styles.inputError]: deliveryFormErrors?.email })}
                 />
                 <div className={styles.errorMessage}>
                   {deliveryFormErrors?.email && <span>{deliveryFormErrors?.email?.message}</span>}
@@ -372,7 +401,7 @@ const ShoppingCart = () => {
                       id='country'
                       autoComplete='country-name'
                       placeholder='Country'
-                      className={deliveryFormErrors?.country ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: deliveryFormErrors?.country })}
                     />
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.country && <span>{deliveryFormErrors?.country?.message}</span>}
@@ -381,7 +410,7 @@ const ShoppingCart = () => {
                       {...deliveryFormRegister('city', { required: 'Поле должно быть заполнено' })}
                       type='text'
                       placeholder='City'
-                      className={deliveryFormErrors?.city ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: deliveryFormErrors?.city })}
                     />
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.city && <span>{deliveryFormErrors?.city?.message}</span>}
@@ -391,7 +420,7 @@ const ShoppingCart = () => {
                       type='text'
                       autoComplete='street-address'
                       placeholder='Street'
-                      className={deliveryFormErrors?.street ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: deliveryFormErrors?.street })}
                     />
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.street && <span>{deliveryFormErrors?.street?.message}</span>}
@@ -402,16 +431,18 @@ const ShoppingCart = () => {
                         type='tel'
                         maxLength='2'
                         inputMode='numeric'
-                        onChange={({ target: { value } }) => setDeliveryFormValue('house', value.replace(/[^\d]/g, ''))}
+                        onChange={({ target: { value } }) =>
+                          setDeliveryFormValue('house', value.replace(numbersPattern, ''))
+                        }
                         placeholder='House'
-                        className={deliveryFormErrors?.house ? styles.inputError : null}
+                        className={classNames({ [styles.inputError]: deliveryFormErrors?.house })}
                       />
                       <input
                         {...deliveryFormRegister('apartment')}
                         type='tel'
                         maxLength='2'
                         onChange={({ target: { value } }) =>
-                          setDeliveryFormValue('apartment', value.replace(/[^\d]/g, ''))
+                          setDeliveryFormValue('apartment', value.replace(numbersPattern, ''))
                         }
                         inputMode='numeric'
                         placeholder='Apartment'
@@ -426,10 +457,10 @@ const ShoppingCart = () => {
                   <>
                     <label className={styles.sectionLabel}>ADDRESS OF STORE</label>
                     <div
-                      className={[
-                        deliveryFormErrors?.storeCountry ? styles.inputError : null,
-                        styles.customSelect,
-                      ].join(' ')}
+                      className={classNames({
+                        [styles.customSelect]: true,
+                        [styles.inputError]: deliveryFormErrors?.storeCountry,
+                      })}
                     >
                       <Controller
                         control={control}
@@ -465,34 +496,41 @@ const ShoppingCart = () => {
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.storeCountry && <span>{deliveryFormErrors?.storeCountry?.message}</span>}
                     </div>
-                    <Controller
-                      control={control}
-                      name='storeAddress'
-                      rules={{ required: 'Поле должно быть заполнено' }}
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          placeholder='Store address'
-                          isSearchable
-                          theme={(theme) => ({
-                            ...theme,
-                            borderRadius: 0,
-                            colors: {
-                              ...theme.colors,
-                              primary: '#121212',
-                            },
-                          })}
-                          maxMenuHeight={150}
-                          menuPosition='fixed'
-                          noOptionsMessage={() => 'Store address not founded'}
-                          styles={selectStyles}
-                          options={cityOptions}
-                          value={cityOptions.find(({ value }) => value === field.value)}
-                          onChange={({ value }) => field.onChange(value)}
-                          onInputChange={(value) => setSearch(value)}
-                        />
-                      )}
-                    />
+                    <div
+                      className={classNames({
+                        [styles.customSelect]: true,
+                        [styles.inputError]: deliveryFormErrors?.storeAddress,
+                      })}
+                    >
+                      <Controller
+                        control={control}
+                        name='storeAddress'
+                        rules={{ required: 'Поле должно быть заполнено' }}
+                        render={({ field }) => (
+                          <Select
+                            {...field}
+                            placeholder='Store address'
+                            isSearchable
+                            theme={(theme) => ({
+                              ...theme,
+                              borderRadius: 0,
+                              colors: {
+                                ...theme.colors,
+                                primary: '#121212',
+                              },
+                            })}
+                            maxMenuHeight={150}
+                            menuPosition='fixed'
+                            noOptionsMessage={() => 'Store address not founded'}
+                            styles={selectStyles}
+                            options={cityOptions}
+                            value={cityOptions.find(({ value }) => value === field.value)}
+                            onChange={({ value }) => field.onChange(value)}
+                            onInputChange={(value) => setSearch(value)}
+                          />
+                        )}
+                      />
+                    </div>
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.storeAddress && <span>{deliveryFormErrors?.storeAddress?.message}</span>}
                     </div>
@@ -516,7 +554,7 @@ const ShoppingCart = () => {
                       onFocus={({ target: { value } }) => (!value ? setDeliveryFormValue('postcode', 'BY ') : value)}
                       id='postcode'
                       placeholder='BY _ _ _ _ _ _'
-                      className={deliveryFormErrors?.postcode ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: deliveryFormErrors?.postcode })}
                     />
                     <div className={styles.errorMessage}>
                       {deliveryFormErrors?.postcode && <span>{deliveryFormErrors?.postcode?.message}</span>}
@@ -530,7 +568,7 @@ const ShoppingCart = () => {
                     })}
                     id='agreement'
                     type='checkbox'
-                    className={deliveryFormErrors?.agreement ? styles.inputError : null}
+                    className={classNames({ [styles.inputError]: deliveryFormErrors?.agreement })}
                   />
                   <label htmlFor='agreement'>I agree to the processing of my personal information</label>
                 </div>
@@ -577,7 +615,7 @@ const ShoppingCart = () => {
                       inputMode='numeric'
                       autoComplete='cc-number'
                       onChange={({ target: { value } }) => setPaymentFormValue('card', normalizeCardNumber(value))}
-                      className={paymentFormErrors?.card ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: paymentFormErrors?.card })}
                     />
                     <div className={styles.errorMessage}>
                       {paymentFormErrors?.card && <span>{paymentFormErrors?.card?.message}</span>}
@@ -588,6 +626,7 @@ const ShoppingCart = () => {
                           {...paymentFormRegister('cardDate', {
                             required: 'Поле должно быть заполнено',
                             minLength: { value: 5, message: 'Срок действия должен состоять из 4 цифр' },
+                            validate: isCorrectCardDate,
                           })}
                           placeholder='YY/MM'
                           type='tel'
@@ -596,7 +635,7 @@ const ShoppingCart = () => {
                           onChange={({ target: { value } }) =>
                             setPaymentFormValue('cardDate', normalizeCardDate(value))
                           }
-                          className={paymentFormErrors?.cardDate ? styles.inputError : null}
+                          className={classNames({ [styles.inputError]: paymentFormErrors?.cardDate })}
                         />
                         <div className={styles.errorMessage}>
                           {paymentFormErrors?.cardDate && <span>{paymentFormErrors?.cardDate?.message}</span>}
@@ -609,14 +648,24 @@ const ShoppingCart = () => {
                               required: 'Поле должно быть заполнено',
                               minLength: { value: 3, message: 'CVV код должен состоять из 3 цифр' },
                             })}
+                            onChange={({ target: { value } }) =>
+                              setPaymentFormValue('cardCVV', value.replace(numbersPattern, ''))
+                            }
                             placeholder='CVV'
                             maxLength='3'
-                            type='tel'
+                            type={isInputVisible ? 'text' : 'password'}
                             inputMode='numeric'
                             autoComplete='cc-scs'
-                            className={paymentFormErrors?.cardCVV ? styles.inputError : null}
+                            className={classNames({ [styles.cvvError]: paymentFormErrors?.cardCVV })}
                           />
-                          <button type='button' className={paymentFormErrors?.cardCVV ? styles.inputError : null}>
+                          <button
+                            type='button'
+                            onClick={() => setInputVisible(!isInputVisible)}
+                            className={classNames({
+                              [styles.cvvError]: paymentFormErrors?.cardCVV,
+                              [styles.visible]: isInputVisible,
+                            })}
+                          >
                             <img src={eyeSlashIcon} alt='See code' />
                           </button>
                         </div>
@@ -634,15 +683,14 @@ const ShoppingCart = () => {
                       {...paymentFormRegister('cashEmail', {
                         required: 'Поле должно быть заполнено',
                         pattern: {
-                          value:
-                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          value: emailPattern,
                           message: 'Введите корректный email',
                         },
                       })}
                       type='email'
                       id='cashEmail'
                       placeholder='e-mail'
-                      className={paymentFormErrors?.cashEmail ? styles.inputError : null}
+                      className={classNames({ [styles.inputError]: paymentFormErrors?.cashEmail })}
                     />
                     <div className={styles.errorMessage}>
                       {paymentFormErrors?.cashEmail && <span>{paymentFormErrors?.cashEmail?.message}</span>}
@@ -665,7 +713,7 @@ const ShoppingCart = () => {
           {cartButtonText}
         </button>
         {activeTab !== 1 && orderStatus !== 'success' && (
-          <button type='button' className={styles.viewCartBtn} onClick={() => setActiveTab(1)}>
+          <button type='button' className={styles.viewCartBtn} onClick={() => setActiveTab((prev) => prev - 1)}>
             VIEW CART
           </button>
         )}
