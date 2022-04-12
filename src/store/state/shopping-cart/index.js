@@ -13,6 +13,7 @@ import {
   MAKE_ORDER_REQUEST,
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILURE,
+  CLEAR_ORDER_MESSAGE,
 } from './types';
 
 const initialState = {
@@ -29,16 +30,18 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_SHOPPING_CART_OPEN: {
       const { isShoppingCartOpen } = payload;
+
       return {
         ...state,
         isShoppingCartOpen,
       };
     }
     case ADD_ITEM_TO_CART: {
-      const value = payload;
+      const { item } = payload;
+
       return {
         ...state,
-        items: [...state.items, value],
+        items: [...state.items, item],
       };
     }
     case REMOVE_ITEM_FROM_CART: {
@@ -56,10 +59,12 @@ export default (state = initialState, { type, payload }) => {
       };
     case CHANGE_QUANTITY: {
       const { id, value } = payload;
+
       const items = state.items.map((item) => ({
         ...item,
         quantity: item.id === id && value > 0 ? value : item.quantity,
       }));
+
       return {
         ...state,
         items,
@@ -107,14 +112,13 @@ export default (state = initialState, { type, payload }) => {
         error: null,
       };
     }
-    case GET_CITIES_FAILURE: {
+    case GET_CITIES_FAILURE:
       return {
         ...state,
         isLoading: false,
         error: payload.error,
         cities: [],
       };
-    }
     case MAKE_ORDER_REQUEST:
       return {
         ...state,
@@ -135,6 +139,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         error: payload.error,
+      };
+    case CLEAR_ORDER_MESSAGE:
+      return {
+        ...state,
+        message: null,
       };
     default:
       return state;

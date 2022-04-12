@@ -11,6 +11,7 @@ import useOnClickOutside from '../../hooks/on-click-outside';
 
 import {
   changeQuantity,
+  clearOrderMessage,
   getCitiesRequest,
   getCountriesRequest,
   makeOrderRequest,
@@ -141,7 +142,7 @@ const ShoppingCart = () => {
         handlePaymentFormSubmit(onPaymentFormSubmit)();
         break;
       default:
-        if (orderStatus === 'success') {
+        if (!orderStatus || orderStatus === 'success') {
           dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
         } else {
           setOrderStatus(null);
@@ -201,11 +202,12 @@ const ShoppingCart = () => {
       resetDeliveryForm();
       resetPaymentForm();
       setActiveTab(null);
+      dispatch(clearOrderMessage());
       setOrderStatus(null);
       setPaymentMethod(PAYMENT_METHODS[1].name);
       setDeliveryMethod(DELIVERY_METHODS[0].text);
     }
-  }, [resetDeliveryForm, isShoppingCartOpen, resetPaymentForm]);
+  }, [resetDeliveryForm, isShoppingCartOpen, resetPaymentForm, dispatch]);
 
   useEffect(() => {
     if (!countries.length && deliveryMethod === DELIVERY_METHODS[2].text) {
@@ -551,7 +553,6 @@ const ShoppingCart = () => {
                       maxLength='9'
                       autoComplete='postal-code'
                       onChange={({ target: { value } }) => setDeliveryFormValue('postcode', normalizePostcode(value))}
-                      onFocus={({ target: { value } }) => (!value ? setDeliveryFormValue('postcode', 'BY ') : value)}
                       id='postcode'
                       placeholder='BY _ _ _ _ _ _'
                       className={classNames({ [styles.inputError]: deliveryFormErrors?.postcode })}

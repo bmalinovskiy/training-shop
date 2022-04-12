@@ -2,6 +2,7 @@ import { numbersPattern } from '../constants/patters';
 
 export const normalizeCardNumber = (value) =>
   value
+    .replace(numbersPattern, '')
     .replace(/\s/g, '')
     .match(/.{1,4}/g)
     ?.join(' ')
@@ -9,34 +10,48 @@ export const normalizeCardNumber = (value) =>
 
 export const normalizeCardDate = (value) =>
   value
+    .replace(numbersPattern, '')
     .replace(/[/]/g, '')
     .match(/.{1,2}/g)
     ?.join('/')
     .substring(0, 5) || '';
 
-export const normalizePostcode = (value) => (value.includes('BY ') ? value : value.replace(value, 'BY '));
+export const normalizePostcode = (value) => {
+  const postcodeValue = value.replace(numbersPattern, '');
+  const formattedPostcodeValue = `BY ${postcodeValue}`;
+
+  if (!postcodeValue) {
+    return '';
+  }
+
+  return formattedPostcodeValue;
+};
 
 export const normalizePhoneNumber = (value) => {
-  let inputNumbersValue = value.replace(numbersPattern, '');
-  let formattedInputValue = '+375 ';
+  let phoneValue = value.replace(numbersPattern, '');
+  let formattedPhoneValue = '+375 ';
 
-  if (inputNumbersValue.length === 1) {
-    inputNumbersValue = `375${inputNumbersValue}`;
-  }
-  if (inputNumbersValue.length > 3) {
-    formattedInputValue += `(${inputNumbersValue.substring(3, 5)}`;
-  }
-  if (inputNumbersValue.length >= 6) {
-    formattedInputValue += `) ${inputNumbersValue.substring(5, 8)}`;
-  }
-  if (inputNumbersValue.length >= 9) {
-    formattedInputValue += `-${inputNumbersValue.substring(8, 10)}`;
-  }
-  if (inputNumbersValue.length >= 11) {
-    formattedInputValue += `-${inputNumbersValue.substring(10, 12)}`;
+  if (!phoneValue) {
+    return '';
   }
 
-  return formattedInputValue;
+  if (phoneValue.length === 1) {
+    phoneValue = `375${phoneValue}`;
+  }
+  if (phoneValue.length > 3) {
+    formattedPhoneValue += `(${phoneValue.substring(3, 5)}`;
+  }
+  if (phoneValue.length >= 6) {
+    formattedPhoneValue += `) ${phoneValue.substring(5, 8)}`;
+  }
+  if (phoneValue.length >= 9) {
+    formattedPhoneValue += `-${phoneValue.substring(8, 10)}`;
+  }
+  if (phoneValue.length >= 11) {
+    formattedPhoneValue += `-${phoneValue.substring(10, 12)}`;
+  }
+
+  return formattedPhoneValue;
 };
 
 export const isCorrectCode = (value) => {

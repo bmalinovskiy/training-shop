@@ -13,6 +13,7 @@ import {
   MAKE_ORDER_REQUEST,
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILURE,
+  CLEAR_ORDER_MESSAGE,
 } from './types';
 
 export const setShoppingCartOpen = (payload) => ({
@@ -82,5 +83,10 @@ export const makeOrderSuccess = (payload) => ({
 
 export const makeOrderFailure = (payload) => ({
   type: MAKE_ORDER_FAILURE,
+  payload,
+});
+
+export const clearOrderMessage = (payload) => ({
+  type: CLEAR_ORDER_MESSAGE,
   payload,
 });
