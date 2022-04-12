@@ -31,13 +31,15 @@ const PaymentInfo = ({ price, discount, name, color, size, imgUrl }) => {
     } else
       dispatch(
         addItemToCart({
-          id: uuidv4(),
-          name,
-          quantity: 1,
-          price: discountPrice,
-          color,
-          size,
-          imgUrl,
+          item: {
+            id: uuidv4(),
+            name,
+            quantity: 1,
+            price: discountPrice,
+            color,
+            size,
+            imgUrl,
+          },
         })
       );
   };
