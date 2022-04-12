@@ -80,7 +80,7 @@ const ShoppingCart = () => {
   } = useForm({ mode: 'onBlur' });
 
   const countryOptions = countries.map((value) => ({ value, label: value }));
-  const cityOptions = search.length >= 3 ? cities.map((value) => ({ value, label: value })) : [];
+  const cityOptions = cities.length ? cities.map((value) => ({ value, label: value })) : [];
 
   const shoppingCartClass = classNames({ [styles.container]: true, [styles.open]: isShoppingCartOpen });
 
@@ -513,6 +513,7 @@ const ShoppingCart = () => {
                             {...field}
                             placeholder='Store address'
                             isSearchable
+                            isDisabled={!getDeliveryFormValues('storeCountry')}
                             theme={(theme) => ({
                               ...theme,
                               borderRadius: 0,

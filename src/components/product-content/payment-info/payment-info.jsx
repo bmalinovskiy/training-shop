@@ -27,7 +27,7 @@ const PaymentInfo = ({ price, discount, name, color, size, imgUrl }) => {
 
   const handleItemAction = () => {
     if (isItemInCart) {
-      dispatch(removeItemFromCart(items.find((item) => item.color === color && item.size === size).id));
+      dispatch(removeItemFromCart({ id: items.find((item) => item.color === color && item.size === size).id }));
     } else
       dispatch(
         addItemToCart({
