@@ -16,6 +16,8 @@ import {
   CLEAR_ORDER_MESSAGE,
 } from './types';
 
+import { removeItem, changeQuantity } from '../../../utils/shopping-cart';
+
 const initialState = {
   isShoppingCartOpen: false,
   isLoading: false,
@@ -49,7 +51,7 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== id),
+        items: removeItem(state.items, id),
       };
     }
     case REMOVE_ALL_ITEMS:
@@ -62,7 +64,7 @@ export default (state = initialState, { type, payload }) => {
 
       const items = state.items.map((item) => ({
         ...item,
-        quantity: item.id === id && value > 0 ? value : item.quantity,
+        quantity: changeQuantity(item, id, value),
       }));
 
       return {

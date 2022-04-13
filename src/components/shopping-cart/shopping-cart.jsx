@@ -20,7 +20,7 @@ import {
   setShoppingCartOpen,
 } from '../../store/state/shopping-cart/actions';
 
-import { DELIVERY_METHODS, PAYMENT_METHODS } from '../../constants/shopping-cart';
+import { DELIVERY_METHODS, PAYMENT_METHODS, ORDER_SUCCESS } from '../../constants/shopping-cart';
 
 import { selectStyles } from '../../constants/select-styles';
 import { emailPattern, numbersPattern } from '../../constants/patters';
@@ -66,7 +66,8 @@ const ShoppingCart = () => {
     control,
     getValues: getDeliveryFormValues,
     reset: resetDeliveryForm,
-    formState: { errors: deliveryFormErrors },
+    resetField,
+    formState: { errors: deliveryFormErrors, isValid },
     handleSubmit: handleDeliveryFormSubmit,
   } = useForm({ mode: 'onBlur' });
 
@@ -82,20 +83,17 @@ const ShoppingCart = () => {
   const countryOptions = countries.map((value) => ({ value, label: value }));
   const cityOptions = cities.length ? cities.map((value) => ({ value, label: value })) : [];
 
-  const shoppingCartClass = classNames({ [styles.container]: true, [styles.open]: isShoppingCartOpen });
+  const shoppingCartClass = classNames(styles.container, { [styles.open]: isShoppingCartOpen });
 
   const totalPrice = items.reduce((total, { quantity, price }) => total + quantity * price, 0).toFixed(2);
 
-  const cartButtonText =
-    !items.length || orderStatus === 'success'
-      ? 'BACK TO SHOPPING'
-      : orderStatus && orderStatus !== 'success'
-      ? 'BACK TO PAYMENT'
-      : activeTab === 3 && paymentMethod === 'Cash'
-      ? 'READY'
-      : activeTab === 3 && paymentMethod !== 'Cash'
-      ? 'CHECK OUT'
-      : 'FURTHER';
+  const cartButtonText = new Map([
+    [!items.length || orderStatus === ORDER_SUCCESS, 'BACK TO SHOPPING'],
+    [orderStatus && orderStatus !== ORDER_SUCCESS, 'BACK TO PAYMENT'],
+    [activeTab === 3 && paymentMethod === PAYMENT_METHODS[3].name, 'READY'],
+    [activeTab === 3 && paymentMethod !== PAYMENT_METHODS[3].name, 'CHECK OUT'],
+    [activeTab === 1 || activeTab === 2, 'FURTHER'],
+  ]);
 
   const onDeliveryFormSubmit = () => {
     setActiveTab(3);
@@ -137,12 +135,15 @@ const ShoppingCart = () => {
         break;
       case 2:
         handleDeliveryFormSubmit(onDeliveryFormSubmit)();
+        if (!isValid) {
+          resetField('agreement');
+        }
         break;
       case 3:
         handlePaymentFormSubmit(onPaymentFormSubmit)();
         break;
       default:
-        if (!orderStatus || orderStatus === 'success') {
+        if (!orderStatus || orderStatus === ORDER_SUCCESS) {
           dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
         } else {
           setOrderStatus(null);
@@ -233,7 +234,7 @@ const ShoppingCart = () => {
   }, [isShoppingCartOpen, message]);
 
   useEffect(() => {
-    if (orderStatus === 'success') {
+    if (orderStatus === ORDER_SUCCESS) {
       dispatch(removeAllItems());
     }
   }, [dispatch, orderStatus]);
@@ -251,14 +252,14 @@ const ShoppingCart = () => {
           <h1>Sorry, your cart is empty</h1>
         </div>
       )}
-      {orderStatus === 'success' && (
+      {orderStatus === ORDER_SUCCESS && (
         <div className={styles.orderSuccess}>
           <h1>Thank you for your order</h1>
           <span>Information about your order will appear in your e-mail.</span>
           <span>Our manager will call you back.</span>
         </div>
       )}
-      {orderStatus && orderStatus !== 'success' && (
+      {orderStatus && orderStatus !== ORDER_SUCCESS && (
         <div className={styles.orderFailure}>
           <h1>Sorry, your payment has not been processed.</h1>
           <span>{message}</span>
@@ -268,21 +269,17 @@ const ShoppingCart = () => {
         <>
           {!orderStatus && (
             <div className={styles.tabNames}>
-              <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 1 })}>
-                Item in Cart
-              </span>
+              <span className={classNames(styles.tabName, { [styles.active]: activeTab === 1 })}>Item in Cart</span>
               &frasl;
-              <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 2 })}>
-                Delivery Info
-              </span>
+              <span className={classNames(styles.tabName, { [styles.active]: activeTab === 2 })}>Delivery Info</span>
               &frasl;
-              <span className={classNames({ [styles.tabName]: true, [styles.active]: activeTab === 3 })}>Payment</span>
+              <span className={classNames(styles.tabName, { [styles.active]: activeTab === 3 })}>Payment</span>
             </div>
           )}
           {activeTab === 1 && (
             <div className={styles.itemsTab}>
               {items.map(({ id, name, quantity, price, color, size, imgUrl }) => (
-                <div key={id} style={{ marginRight: '12px' }}>
+                <div key={id}>
                   <div className={styles.item} data-test-id='cart-card'>
                     <img src={`https://training.cleverland.by/shop${imgUrl}`} alt={name} className={styles.itemImg} />
                     <div className={styles.details}>
@@ -459,8 +456,7 @@ const ShoppingCart = () => {
                   <>
                     <label className={styles.sectionLabel}>ADDRESS OF STORE</label>
                     <div
-                      className={classNames({
-                        [styles.customSelect]: true,
+                      className={classNames(styles.customSelect, {
                         [styles.inputError]: deliveryFormErrors?.storeCountry,
                       })}
                     >
@@ -499,8 +495,7 @@ const ShoppingCart = () => {
                       {deliveryFormErrors?.storeCountry && <span>{deliveryFormErrors?.storeCountry?.message}</span>}
                     </div>
                     <div
-                      className={classNames({
-                        [styles.customSelect]: true,
+                      className={classNames(styles.customSelect, {
                         [styles.inputError]: deliveryFormErrors?.storeAddress,
                       })}
                     >
@@ -712,9 +707,9 @@ const ShoppingCart = () => {
           </div>
         )}
         <button type='button' onClick={handleCartAction} className={styles.cartAction}>
-          {cartButtonText}
+          {cartButtonText.get(true)}
         </button>
-        {activeTab !== 1 && orderStatus !== 'success' && (
+        {activeTab !== 1 && orderStatus !== ORDER_SUCCESS && (
           <button type='button' className={styles.viewCartBtn} onClick={() => setActiveTab((prev) => prev - 1)}>
             VIEW CART
           </button>
