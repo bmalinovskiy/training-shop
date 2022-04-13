@@ -111,11 +111,13 @@
   .itemsTab {
 
     hr {
-      margin: 12px 0;
+      margin: 12px 12px 12px 0;
     }
 
     .item {
       display: flex;
+      margin-right: 12px;
+
       .itemImg {
         width: 83px;
       }
