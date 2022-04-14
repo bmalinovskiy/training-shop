@@ -506,6 +506,7 @@ const ShoppingCart = () => {
                         render={({ field }) => (
                           <Select
                             {...field}
+                            name='storeAddress'
                             placeholder='Store address'
                             isSearchable
                             isDisabled={!getDeliveryFormValues('storeCountry')}

@@ -25,9 +25,9 @@ const FooterTopBar = () => {
     handleSubmit,
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = (email) => {
-    dispatch(sendEmailRequest({ email, formType: 'footer' }));
-    reset({ email: '' });
+  const onSubmit = ({ footerEmail }) => {
+    dispatch(sendEmailRequest({ email: footerEmail, formType: 'footer' }));
+    reset({ footerEmail: '' });
   };
 
   return (
@@ -36,7 +36,7 @@ const FooterTopBar = () => {
         <span className={styles.title}>BE IN TOUCH WITH US:</span>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            {...register('email', {
+            {...register('footerEmail', {
               required: true,
               pattern:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
