@@ -26,9 +26,9 @@ const SpecialOffer = () => {
     handleSubmit,
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = (email) => {
-    dispatch(sendEmailRequest({ email, formType: 'main' }));
-    reset({ email: '' });
+  const onSubmit = ({ mainEmail }) => {
+    dispatch(sendEmailRequest({ email: mainEmail, formType: 'main' }));
+    reset({ mainEmail: '' });
   };
 
   return (
@@ -42,7 +42,7 @@ const SpecialOffer = () => {
           </span>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
-              {...register('email', {
+              {...register('mainEmail', {
                 required: true,
                 pattern:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
