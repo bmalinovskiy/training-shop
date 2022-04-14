@@ -69,7 +69,7 @@ const ShoppingCart = () => {
     resetField,
     formState: { errors: deliveryFormErrors, isValid },
     handleSubmit: handleDeliveryFormSubmit,
-  } = useForm({ mode: 'onBlur' });
+  } = useForm({ mode: 'onTouched' });
 
   const {
     register: paymentFormRegister,
@@ -78,7 +78,7 @@ const ShoppingCart = () => {
     reset: resetPaymentForm,
     formState: { errors: paymentFormErrors },
     handleSubmit: handlePaymentFormSubmit,
-  } = useForm({ mode: 'onBlur' });
+  } = useForm({ mode: 'onTouched' });
 
   const countryOptions = countries.map((value) => ({ value, label: value }));
   const cityOptions = cities.length ? cities.map((value) => ({ value, label: value })) : [];
