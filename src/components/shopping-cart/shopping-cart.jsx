@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 
 import { shoppingCartSelector } from '../../selectors';
 
@@ -41,6 +41,8 @@ import plusIcon from '../../images/shopping-cart/plus.svg';
 import eyeSlashIcon from '../../images/shopping-cart/eye-slash.svg';
 
 import styles from './shopping-cart.module.scss';
+
+const Input = (props) => <components.Input name='storeAddress' {...props} />;
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -505,6 +507,7 @@ const ShoppingCart = () => {
                             {...field}
                             name='storeAddress'
                             placeholder='Store address'
+                            components={{ Input }}
                             isSearchable
                             isDisabled={!getDeliveryFormValues('storeCountry')}
                             theme={(theme) => ({
