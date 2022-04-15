@@ -42,7 +42,9 @@ import eyeSlashIcon from '../../images/shopping-cart/eye-slash.svg';
 
 import styles from './shopping-cart.module.scss';
 
-const Input = (props) => <components.Input name='storeAddress' {...props} />;
+const CountryInput = (props) => <components.Input placeholder='Country' {...props} />;
+
+const AddressInput = (props) => <components.Input name='storeAddress' {...props} />;
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -151,6 +153,16 @@ const ShoppingCart = () => {
           setOrderStatus(null);
           setActiveTab(3);
         }
+    }
+  };
+
+  const handleViewCart = () => {
+    if (activeTab) {
+      setActiveTab((prev) => prev - 1);
+    } else {
+      setActiveTab(1);
+      resetDeliveryForm();
+      resetPaymentForm();
     }
   };
 
@@ -467,6 +479,7 @@ const ShoppingCart = () => {
                           <Select
                             {...field}
                             placeholder='Country'
+                            components={{ CountryInput }}
                             isSearchable
                             theme={(theme) => ({
                               ...theme,
@@ -507,7 +520,7 @@ const ShoppingCart = () => {
                             {...field}
                             name='storeAddress'
                             placeholder='Store address'
-                            components={{ Input }}
+                            components={{ AddressInput }}
                             isSearchable
                             isDisabled={!getDeliveryFormValues('storeCountry')}
                             theme={(theme) => ({
@@ -713,7 +726,7 @@ const ShoppingCart = () => {
         </>
       )}
       <div className={styles.footer}>
-        {!!items.length && !orderStatus && (
+        {!!items.length && !orderStatus && !error && (
           <div className={styles.totalPrice}>
             <span className={styles.text}>Total</span>
             <span className={styles.price}>{`$${totalPrice}`}</span>
@@ -723,7 +736,7 @@ const ShoppingCart = () => {
           {cartButtonText.get(true)}
         </button>
         {activeTab !== 1 && orderStatus !== ORDER_SUCCESS && (
-          <button type='button' className={styles.viewCartBtn} onClick={() => setActiveTab((prev) => prev - 1)}>
+          <button type='button' className={styles.viewCartBtn} onClick={handleViewCart}>
             VIEW CART
           </button>
         )}
