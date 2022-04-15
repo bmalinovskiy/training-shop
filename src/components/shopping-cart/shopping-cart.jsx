@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 
 import { shoppingCartSelector } from '../../selectors';
 
@@ -42,15 +42,11 @@ import eyeSlashIcon from '../../images/shopping-cart/eye-slash.svg';
 
 import styles from './shopping-cart.module.scss';
 
-const CountryInput = (props) => <components.Input placeholder='Country' {...props} />;
-
-const AddressInput = (props) => <components.Input name='storeAddress' {...props} />;
-
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const { isShoppingCartOpen, items, countries, cities, message, error } = useSelector(shoppingCartSelector);
+  const { isShoppingCartOpen, items, countries, cities, message } = useSelector(shoppingCartSelector);
 
   const [activeTab, setActiveTab] = useState(null);
 
@@ -93,7 +89,7 @@ const ShoppingCart = () => {
 
   const cartButtonText = new Map([
     [!items.length || orderStatus === ORDER_SUCCESS, 'BACK TO SHOPPING'],
-    [!!error, 'back to payment'],
+    [orderStatus && orderStatus !== ORDER_SUCCESS, 'BACK TO PAYMENT'],
     [activeTab === 3 && paymentMethod === 'Cash', 'READY'],
     [activeTab === 3 && paymentMethod !== 'Cash', 'CHECK OUT'],
     [activeTab === 1 || activeTab === 2, 'FURTHER'],
@@ -147,7 +143,7 @@ const ShoppingCart = () => {
         handlePaymentFormSubmit(onPaymentFormSubmit)();
         break;
       default:
-        if ((!orderStatus && !error) || orderStatus === ORDER_SUCCESS) {
+        if (!orderStatus || orderStatus === ORDER_SUCCESS) {
           dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
         } else {
           setOrderStatus(null);
@@ -161,6 +157,7 @@ const ShoppingCart = () => {
       setActiveTab((prev) => prev - 1);
     } else {
       setActiveTab(1);
+      setOrderStatus(null);
       resetDeliveryForm();
       resetPaymentForm();
     }
@@ -241,11 +238,11 @@ const ShoppingCart = () => {
   }, [cities.length, activeCountry, dispatch, search]);
 
   useEffect(() => {
-    if ((message || error) && isShoppingCartOpen) {
+    if (message && isShoppingCartOpen) {
       setOrderStatus(message);
       setActiveTab(null);
     }
-  }, [error, isShoppingCartOpen, message]);
+  }, [isShoppingCartOpen, message]);
 
   useEffect(() => {
     if (orderStatus === ORDER_SUCCESS) {
@@ -273,7 +270,7 @@ const ShoppingCart = () => {
           <span>Our manager will call you back.</span>
         </div>
       )}
-      {error && !activeTab && (
+      {orderStatus && orderStatus !== ORDER_SUCCESS && (
         <div className={styles.orderFailure}>
           <h1>Sorry, your payment has not been processed.</h1>
           <span>{message}</span>
@@ -281,7 +278,7 @@ const ShoppingCart = () => {
       )}
       {!!items.length && (
         <>
-          {!orderStatus && !error && (
+          {!orderStatus && (
             <div className={styles.tabNames}>
               <span className={classNames(styles.tabName, { [styles.active]: activeTab === 1 })}>Item in Cart</span>
               &frasl;
@@ -479,7 +476,6 @@ const ShoppingCart = () => {
                           <Select
                             {...field}
                             placeholder='Country'
-                            components={{ CountryInput }}
                             isSearchable
                             theme={(theme) => ({
                               ...theme,
@@ -520,7 +516,6 @@ const ShoppingCart = () => {
                             {...field}
                             name='storeAddress'
                             placeholder='Store address'
-                            components={{ AddressInput }}
                             isSearchable
                             isDisabled={!getDeliveryFormValues('storeCountry')}
                             theme={(theme) => ({
@@ -726,7 +721,7 @@ const ShoppingCart = () => {
         </>
       )}
       <div className={styles.footer}>
-        {!!items.length && !orderStatus && !error && (
+        {!!items.length && !orderStatus && (
           <div className={styles.totalPrice}>
             <span className={styles.text}>Total</span>
             <span className={styles.price}>{`$${totalPrice}`}</span>
