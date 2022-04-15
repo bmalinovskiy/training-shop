@@ -90,8 +90,8 @@ const ShoppingCart = () => {
   const cartButtonText = new Map([
     [!items.length || orderStatus === ORDER_SUCCESS, 'BACK TO SHOPPING'],
     [orderStatus && orderStatus !== ORDER_SUCCESS, 'BACK TO PAYMENT'],
-    [activeTab === 3 && paymentMethod === PAYMENT_METHODS[3].name, 'READY'],
-    [activeTab === 3 && paymentMethod !== PAYMENT_METHODS[3].name, 'CHECK OUT'],
+    [activeTab === 3 && paymentMethod === 'Cash', 'READY'],
+    [activeTab === 3 && paymentMethod !== 'Cash', 'CHECK OUT'],
     [activeTab === 1 || activeTab === 2, 'FURTHER'],
   ]);
 
@@ -599,6 +599,18 @@ const ShoppingCart = () => {
                     <hr />
                   </React.Fragment>
                 ))}
+                <div className={styles.paymentMethodItem}>
+                  <input
+                    type='radio'
+                    name='payment-method'
+                    id='Cash'
+                    value='Cash'
+                    checked={paymentMethod === 'Cash'}
+                    onChange={({ target: { value } }) => setPaymentMethod(value)}
+                  />
+                  <label htmlFor='Cash'>Cash</label>
+                </div>
+                <hr />
                 {(paymentMethod === PAYMENT_METHODS[1].name || paymentMethod === PAYMENT_METHODS[2].name) && (
                   <div className={styles.cardPayment}>
                     <label htmlFor='card'>CARD</label>
