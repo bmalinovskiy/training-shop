@@ -48,7 +48,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const { isShoppingCartOpen, items, countries, cities, message } = useSelector(shoppingCartSelector);
+  const { isShoppingCartOpen, items, countries, cities, message, error } = useSelector(shoppingCartSelector);
 
   const [activeTab, setActiveTab] = useState(null);
 
@@ -91,7 +91,7 @@ const ShoppingCart = () => {
 
   const cartButtonText = new Map([
     [!items.length || orderStatus === ORDER_SUCCESS, 'BACK TO SHOPPING'],
-    [orderStatus && orderStatus !== ORDER_SUCCESS, 'back to payment'],
+    [!!error, 'back to payment'],
     [activeTab === 3 && paymentMethod === 'Cash', 'READY'],
     [activeTab === 3 && paymentMethod !== 'Cash', 'CHECK OUT'],
     [activeTab === 1 || activeTab === 2, 'FURTHER'],
@@ -145,7 +145,7 @@ const ShoppingCart = () => {
         handlePaymentFormSubmit(onPaymentFormSubmit)();
         break;
       default:
-        if (!orderStatus || orderStatus === ORDER_SUCCESS) {
+        if ((!orderStatus && !error) || orderStatus === ORDER_SUCCESS) {
           dispatch(setShoppingCartOpen({ isShoppingCartOpen: false }));
         } else {
           setOrderStatus(null);
@@ -229,11 +229,11 @@ const ShoppingCart = () => {
   }, [cities.length, activeCountry, dispatch, search]);
 
   useEffect(() => {
-    if (message && isShoppingCartOpen) {
+    if ((message || error) && isShoppingCartOpen) {
       setOrderStatus(message);
       setActiveTab(null);
     }
-  }, [isShoppingCartOpen, message]);
+  }, [error, isShoppingCartOpen, message]);
 
   useEffect(() => {
     if (orderStatus === ORDER_SUCCESS) {
@@ -261,7 +261,7 @@ const ShoppingCart = () => {
           <span>Our manager will call you back.</span>
         </div>
       )}
-      {orderStatus && orderStatus !== ORDER_SUCCESS && (
+      {error && !activeTab && (
         <div className={styles.orderFailure}>
           <h1>Sorry, your payment has not been processed.</h1>
           <span>{message}</span>
@@ -269,7 +269,7 @@ const ShoppingCart = () => {
       )}
       {!!items.length && (
         <>
-          {!orderStatus && (
+          {!orderStatus && !error && (
             <div className={styles.tabNames}>
               <span className={classNames(styles.tabName, { [styles.active]: activeTab === 1 })}>Item in Cart</span>
               &frasl;
