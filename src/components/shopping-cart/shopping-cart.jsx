@@ -69,7 +69,7 @@ const ShoppingCart = () => {
     resetField,
     formState: { errors: deliveryFormErrors, isValid },
     handleSubmit: handleDeliveryFormSubmit,
-  } = useForm({ mode: 'onTouched' });
+  } = useForm({ mode: 'onBlur' });
 
   const {
     register: paymentFormRegister,
@@ -78,7 +78,7 @@ const ShoppingCart = () => {
     reset: resetPaymentForm,
     formState: { errors: paymentFormErrors },
     handleSubmit: handlePaymentFormSubmit,
-  } = useForm({ mode: 'onTouched' });
+  } = useForm({ mode: 'onBlur' });
 
   const countryOptions = countries.map((value) => ({ value, label: value }));
   const cityOptions = cities.length ? cities.map((value) => ({ value, label: value })) : [];
@@ -89,7 +89,7 @@ const ShoppingCart = () => {
 
   const cartButtonText = new Map([
     [!items.length || orderStatus === ORDER_SUCCESS, 'BACK TO SHOPPING'],
-    [orderStatus && orderStatus !== ORDER_SUCCESS, 'BACK TO PAYMENT'],
+    [orderStatus && orderStatus !== ORDER_SUCCESS, 'back to payment'],
     [activeTab === 3 && paymentMethod === 'Cash', 'READY'],
     [activeTab === 3 && paymentMethod !== 'Cash', 'CHECK OUT'],
     [activeTab === 1 || activeTab === 2, 'FURTHER'],
@@ -430,9 +430,6 @@ const ShoppingCart = () => {
                         type='tel'
                         maxLength='2'
                         inputMode='numeric'
-                        onChange={({ target: { value } }) =>
-                          setDeliveryFormValue('house', value.replace(numbersPattern, ''))
-                        }
                         placeholder='House'
                         className={classNames({ [styles.inputError]: deliveryFormErrors?.house })}
                       />
@@ -719,7 +716,7 @@ const ShoppingCart = () => {
             <span className={styles.price}>{`$${totalPrice}`}</span>
           </div>
         )}
-        <button type='button' onClick={handleCartAction} className={styles.cartAction}>
+        <button type='submit' onClick={handleCartAction} className={styles.cartAction}>
           {cartButtonText.get(true)}
         </button>
         {activeTab !== 1 && orderStatus !== ORDER_SUCCESS && (
