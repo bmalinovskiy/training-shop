@@ -31,8 +31,40 @@ export const normalizePhoneNumber = (value) => {
   let phoneValue = value.replace(numbersPattern, '');
   let formattedPhoneValue = '+375 ';
 
+  const codeFirstChar = phoneValue.substring(3, 4);
+  const codeSecondChar = phoneValue.substring(4, 5);
+
   if (!phoneValue) {
     return '';
+  }
+
+  if (phoneValue.length === 1 && phoneValue !== '2' && phoneValue !== '3' && phoneValue !== '4') {
+    return '';
+  }
+
+  if (phoneValue.length === 4 && codeFirstChar !== '2' && codeFirstChar !== '3' && codeFirstChar !== '4') {
+    return formattedPhoneValue;
+  }
+
+  if (phoneValue.length === 5) {
+    if (codeFirstChar === '2') {
+      if (codeSecondChar !== '5' && codeSecondChar !== '9') {
+        formattedPhoneValue += `(${codeFirstChar}`;
+        return formattedPhoneValue;
+      }
+    }
+    if (codeFirstChar === '3') {
+      if (codeSecondChar !== '3') {
+        formattedPhoneValue += `(${codeFirstChar}`;
+        return formattedPhoneValue;
+      }
+    }
+    if (codeFirstChar === '4') {
+      if (codeSecondChar !== '4') {
+        formattedPhoneValue += `(${codeFirstChar}`;
+        return formattedPhoneValue;
+      }
+    }
   }
 
   if (phoneValue.length === 1) {
@@ -52,12 +84,6 @@ export const normalizePhoneNumber = (value) => {
   }
 
   return formattedPhoneValue;
-};
-
-export const isCorrectCode = (value) => {
-  const code = value.replace(numbersPattern, '').substring(3, 5);
-
-  return code === '25' || code === '44' || code === '33' || code === '29' ? true : 'Введите корректный код оператора';
 };
 
 export const isCorrectCardDate = (value) => {

@@ -14,7 +14,11 @@ import {
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILURE,
   CLEAR_ORDER_MESSAGE,
+  SET_DELIVERY_METHOD,
+  SET_PAYMENT_METHOD,
 } from './types';
+
+import { DELIVERY_METHODS, PAYMENT_METHODS } from '../../../constants/shopping-cart';
 
 import { removeItem, changeQuantity } from '../../../utils/shopping-cart';
 
@@ -26,6 +30,8 @@ const initialState = {
   items: [],
   countries: [],
   cities: [],
+  deliveryMethod: DELIVERY_METHODS[0].text,
+  paymentMethod: PAYMENT_METHODS[1].name,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -147,6 +153,22 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         message: null,
       };
+    case SET_DELIVERY_METHOD: {
+      const { deliveryMethod } = payload;
+
+      return {
+        ...state,
+        deliveryMethod,
+      };
+    }
+    case SET_PAYMENT_METHOD: {
+      const { paymentMethod } = payload;
+
+      return {
+        ...state,
+        paymentMethod,
+      };
+    }
     default:
       return state;
   }
