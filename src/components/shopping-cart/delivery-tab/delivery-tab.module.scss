@@ -1,0 +1,82 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.deliveryInfoTab {
+  height: calc(100vh - 288px);
+  margin: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include mobile {
+    margin: 24px 8px;
+  }
+
+  input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
+    background-color: #F8F8F8;
+    font-weight: 500;
+    padding: 12px;
+    margin-top: 8px;
+    cursor: auto;
+    width: 100%;
+    height: 48px;
+  }
+
+  .inputError {
+    border: 1px solid $error;
+  }
+
+  .errorMessage {
+    height: 24px;
+    padding: 4px 0;
+    color: $error;
+    font-size: 11px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-right: 8px;
+
+    .deliveryMethodItem {
+      display: flex;
+      align-items: center;
+    }
+
+    .sectionLabel {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .addressPart {
+      display: flex;
+      margin: 0 -4px;
+
+      input {
+        margin: 8px 4px 0;
+      }
+    }
+
+    .agreement {
+      display: flex;
+      margin-top: 8px;
+    }
+
+    .customSelect {
+      margin-top: 8px;
+      height: 48px;
+    }
+
+    hr {
+      margin: 12px 0;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: $mainDark;
+      margin-right: 12px;
+    }
+
+    label {
+      display: flex;
+    }
+  }
+}

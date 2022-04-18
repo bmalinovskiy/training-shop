@@ -14,6 +14,8 @@ import {
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILURE,
   CLEAR_ORDER_MESSAGE,
+  SET_DELIVERY_METHOD,
+  SET_PAYMENT_METHOD,
 } from './types';
 
 export const setShoppingCartOpen = (payload) => ({
@@ -88,5 +90,15 @@ export const makeOrderFailure = (payload) => ({
 
 export const clearOrderMessage = (payload) => ({
   type: CLEAR_ORDER_MESSAGE,
+  payload,
+});
+
+export const setDeliveryMethod = (payload) => ({
+  type: SET_DELIVERY_METHOD,
+  payload,
+});
+
+export const setPaymentMethod = (payload) => ({
+  type: SET_PAYMENT_METHOD,
   payload,
 });
