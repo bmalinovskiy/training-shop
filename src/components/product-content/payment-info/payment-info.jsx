@@ -27,17 +27,19 @@ const PaymentInfo = ({ price, discount, name, color, size, imgUrl }) => {
 
   const handleItemAction = () => {
     if (isItemInCart) {
-      dispatch(removeItemFromCart(items.find((item) => item.color === color && item.size === size).id));
+      dispatch(removeItemFromCart({ id: items.find((item) => item.color === color && item.size === size).id }));
     } else
       dispatch(
         addItemToCart({
-          id: uuidv4(),
-          name,
-          quantity: 1,
-          price: discountPrice,
-          color,
-          size,
-          imgUrl,
+          item: {
+            id: uuidv4(),
+            name,
+            quantity: 1,
+            price: discountPrice,
+            color,
+            size,
+            imgUrl,
+          },
         })
       );
   };

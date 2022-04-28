@@ -12,11 +12,12 @@ import { MENU } from '../../constants/header';
 import styles from './burger-menu.module.scss';
 
 const BurgerMenu = () => {
+  const ref = useRef();
+
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
   const BurgerMenuClass = classNames({ [styles.container]: true, [styles.open]: isMenuOpen });
 
-  const ref = useRef();
   useOnClickOutside(ref, () => {
     if (isMenuOpen) {
       toggleMenuMode();

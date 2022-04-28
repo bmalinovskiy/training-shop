@@ -11,7 +11,7 @@ function* sendEmail({ payload }) {
   const { formType, email } = payload;
 
   try {
-    const responce = yield call(axios.post, SEND_EMAIL, email);
+    const responce = yield call(axios.post, SEND_EMAIL, { email });
     yield put(sendEmailSuccess({ formType, responce }));
   } catch (e) {
     yield put(sendEmailFailure({ formType, error: e.message, responce: {} }));

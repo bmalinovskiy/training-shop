@@ -28,7 +28,14 @@ hr {
   background: #E5E5E5;
 }
 
-button, input[type="submit"], input[type="reset"], input[type="text"], input[type="number"] {
+button, 
+input[type="submit"], 
+input[type="reset"], 
+input[type="text"], 
+input[type="number"], 
+input[type="tel"], 
+input[type="email"],
+input[type="password"] {
 	background: none;
 	color: inherit;
 	border: none;

@@ -19,7 +19,7 @@ const SidePanel = () => {
 
   const { items } = useSelector(shoppingCartSelector);
 
-  const handleCartOpen = () => dispatch(setShoppingCartOpen(true));
+  const handleCartOpen = () => dispatch(setShoppingCartOpen({ isShoppingCartOpen: true }));
 
   return (
     <div className={styles.container}>
